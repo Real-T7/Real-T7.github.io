@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Epic Button</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    button {
+      font-size: 24px;
+      padding: 10px 20px;
+    }
+    #count {
+      margin-top: 20px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>The Epic Button ™</h1>
+  <button id="epic-button">click</button>
+  <div id="count">loading...</div>
+
+  <script>
+    const countDiv = document.getElementById('count');
+    const button = document.getElementById('epic-button');
+
+    const API_URL = 'https://your-api.com/clicks'; // <-- We'll fix this in Step 2
+
+    async function fetchClicks() {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      countDiv.textContent = `Everyone has clicked ${data.count} times`;
+    }
+
+    async function incrementClicks() {
+      await fetch(API_URL, { method: 'POST' });
+      fetchClicks();
+    }
+
+    button.addEventListener('click', incrementClicks);
+
+    // Load the count when the page loads
+    fetchClicks();
+  </script>
+</body>
+</html>
