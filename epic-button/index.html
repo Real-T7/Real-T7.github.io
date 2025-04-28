@@ -8,42 +8,77 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding-top: 50px;
+      background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+      color: #333;
     }
     button {
       font-size: 24px;
-      padding: 10px 20px;
+      padding: 15px 30px;
+      background-color: #ff5e57;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
     }
     #count {
-      margin-top: 20px;
-      font-size: 30px;
+      margin-top: 30px;
+      font-size: 32px;
     }
   </style>
 </head>
 <body>
-  <h1>The Epic Button ™</h1>
+  <h1>the epic button ™</h1>
   <button id="epic-button">click</button>
   <div id="count">loading...</div>
 
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+
+  <!-- Firebase Realtime Database SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+
   <script>
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuWHuy_J214rnn-KN8i83sbjIkIufZu2U",
+      authDomain: "github-epicbutton.firebaseapp.com",
+      databaseURL: "https://github-epicbutton-default-rtdb.firebaseio.com",
+      projectId: "github-epicbutton",
+      storageBucket: "github-epicbutton.firebasestorage.app",
+      messagingSenderId: "694293692094",
+      appId: "1:694293692094:web:50082c2152b26bf39428ef"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const clicksRef = database.ref('clicks');
+
     const countDiv = document.getElementById('count');
     const button = document.getElementById('epic-button');
 
-    const API_URL = 'https://your-api.com/clicks'; // <-- We'll fix this in Step 2
-
-    async function fetchClicks() {
-      const response = await fetch(API_URL);
-      const data = await response.json();
-      countDiv.textContent = `Everyone has clicked ${data.count} times`;
+    // Fetch current click count
+    function fetchClicks() {
+      clicksRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        countDiv.textContent = `everyone has clicked ${data || 0} times, epic!`;
+      });
     }
 
-    async function incrementClicks() {
-      await fetch(API_URL, { method: 'POST' });
-      fetchClicks();
+    // Increment click count
+    function incrementClicks() {
+      clicksRef.transaction(currentClicks => {
+        return (currentClicks || 0) + 1;
+      });
     }
 
     button.addEventListener('click', incrementClicks);
 
-    // Load the count when the page loads
+    // Load clicks on page load
     fetchClicks();
   </script>
 </body>
