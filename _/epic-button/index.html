@@ -57,7 +57,7 @@
   </div>
 
   <div id="about-link">
-    <a href="/epic-button/about" id="about-hyperlink">why did i create this website?</a>
+    <a href="/_/epic-button/about" id="about-hyperlink">why did i create this website?</a>
   </div>
 
   <!-- Firebase App (the core Firebase SDK) -->
@@ -89,8 +89,8 @@
 
     // Format numbers nicely (e.g., 1000 -> 1k)
     function formatNumber(num) {
-      if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'B';
-      if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+      if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
+      if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
       if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
       return num;
     }
@@ -100,7 +100,7 @@
       clicksRef.on('value', (snapshot) => {
         const data = snapshot.val() || 0;
         const formatted = formatNumber(data);
-        countDiv.innerHTML = `everyone has clicked <a href="/epic-button/number" target="_blank" id="click-link">${formatted}</a> times, epic!`;
+        countDiv.innerHTML = `everyone has clicked <a href="/_/epic-button/number" target="_blank" id="click-link">${formatted}</a> times, epic!`;
       });
     }
 
@@ -133,7 +133,7 @@
     onlineUsersRef.on('value', (snapshot) => {
       const onlineCount = snapshot.numChildren();
       if (onlineCount === 1) {
-        onlineDiv.textContent = `you are the only person here.`;
+        onlineDiv.textContent = `you are the only person here. bring some friends!`;
       } else {
         onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
       }
