@@ -22,6 +22,17 @@
       font-size: 20px;
       color: #555;
     }
+    #about-link {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+    #about-hyperlink {
+      color: #007bff;
+      text-decoration: underline;
+    }
+    #about-hyperlink:hover {
+      color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -29,6 +40,10 @@
   <button id="epic-button">click</button>
   <div id="count">loading...</div>
   <div id="online">checking...</div>
+
+  <div id="about-link">
+    <a href="/epic-button/about" id="about-hyperlink">why did i create this website?</a>
+  </div>
 
   <!-- Firebase App (the core Firebase SDK) -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
