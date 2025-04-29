@@ -28,7 +28,7 @@
   <h1>the epic button ™</h1>
   <button id="epic-button">click</button>
   <div id="count">loading...</div>
-  <div id="online">checking how many cool people are here...</div>
+  <div id="online">checking...</div>
 
   <!-- Firebase App (the core Firebase SDK) -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
@@ -94,7 +94,7 @@
     onlineUsersRef.on('value', (snapshot) => {
       const onlineCount = snapshot.numChildren();
       if (onlineCount === 1) {
-        onlineDiv.textContent = `there is 1 cool person clicking the button!`;
+        onlineDiv.textContent = `you are the only person here.`;
       } else {
         onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
       }
