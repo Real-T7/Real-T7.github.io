@@ -17,12 +17,18 @@
       margin-top: 20px;
       font-size: 24px;
     }
+    #online {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
   <h1>the epic button ™</h1>
   <button id="epic-button">click</button>
   <div id="count">loading...</div>
+  <div id="online">checking how many cool people are here...</div>
 
   <!-- Firebase App (the core Firebase SDK) -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
@@ -31,7 +37,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
 
   <script>
-    
     const firebaseConfig = {
       apiKey: "AIzaSyCuWHuy_J214rnn-KN8i83sbjIkIufZu2U",
       authDomain: "github-epicbutton.firebaseapp.com",
@@ -46,11 +51,13 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
     const clicksRef = database.ref('clicks');
+    const onlineUsersRef = database.ref('onlineUsers');
 
     const countDiv = document.getElementById('count');
+    const onlineDiv = document.getElementById('online');
     const button = document.getElementById('epic-button');
 
-    // Fetch current click count
+    // Fetch and display current click count
     function fetchClicks() {
       clicksRef.on('value', (snapshot) => {
         const data = snapshot.val();
@@ -69,6 +76,29 @@
 
     // Load clicks on page load
     fetchClicks();
+
+    // Track online users
+    const myConnectionRef = database.ref('.info/connected');
+    myConnectionRef.on('value', (snapshot) => {
+      if (snapshot.val() === true) {
+        // User connected
+        const userRef = onlineUsersRef.push();
+        userRef.set(true);
+
+        // Remove when disconnected
+        userRef.onDisconnect().remove();
+      }
+    });
+
+    // Display number of online users
+    onlineUsersRef.on('value', (snapshot) => {
+      const onlineCount = snapshot.numChildren();
+      if (onlineCount === 1) {
+        onlineDiv.textContent = `there is 1 cool person clicking the button!`;
+      } else {
+        onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
+      }
+    });
   </script>
 </body>
 </html>
