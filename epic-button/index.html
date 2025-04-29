@@ -100,7 +100,7 @@
       clicksRef.on('value', (snapshot) => {
         const data = snapshot.val() || 0;
         const formatted = formatNumber(data);
-        countDiv.innerHTML = `everyone has clicked <a href="/epic-button/number" id="click-link">${formatted}</a> times, epic!`;
+        countDiv.innerHTML = `everyone has clicked <a href="/epic-button/number" target="_blank" id="click-link">${formatted}</a> times, epic!`;
       });
     }
 
