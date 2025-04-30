@@ -6,5 +6,13 @@
 </head>
 <body>
   <img src="/images/microwave.jpg" alt="microwave"/>
+  <audio autoplay id="microwave">
+    <source src="/images/microwave.mp3">
+  </audio>
+  
+  <script>
+    var audio = document.getElementById("microwave");
+    audio.volume = 0.05;
+  </script>  
 </body>
 </html>
