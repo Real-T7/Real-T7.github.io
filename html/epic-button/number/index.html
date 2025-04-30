@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Epic Button - Full Number</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-    #full-number {
-      margin-top: 20px;
-      font-size: 36px;
-      font-weight: bold;
-    }
-    a {
-      display: inline-block;
-      margin-top: 30px;
-      font-size: 18px;
-      color: #007bff;
-      text-decoration: underline;
-    }
-    a:hover {
-      color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  <h1>the epic button ™</h1>
-  <div id="full-number">loading...</div>
-  <a href="/html/epic-button/">← back to the button</a>
+  <head>
+    <meta charset="UTF-8">
+    <title>Epic Button - Full Number</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+      #full-number {
+        margin-top: 20px;
+        font-size: 36px;
+        font-weight: bold;
+      }
+      a {
+        display: inline-block;
+        margin-top: 30px;
+        font-size: 18px;
+        color: #007bff;
+        text-decoration: underline;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>the epic button ™</h1>
+    <div id="full-number">loading...</div>
+    <a href="/html/epic-button/">← back to the button</a>
 
-  <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
 
-  <!-- Firebase Realtime Database SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+    <!-- Firebase Realtime Database SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCuWHuy_J214rnn-KN8i83sbjIkIufZu2U",
-      authDomain: "github-epicbutton.firebaseapp.com",
-      databaseURL: "https://github-epicbutton-default-rtdb.firebaseio.com",
-      projectId: "github-epicbutton",
-      storageBucket: "github-epicbutton.firebasestorage.app",
-      messagingSenderId: "694293692094",
-      appId: "1:694293692094:web:50082c2152b26bf39428ef"
-    };
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCuWHuy_J214rnn-KN8i83sbjIkIufZu2U",
+        authDomain: "github-epicbutton.firebaseapp.com",
+        databaseURL: "https://github-epicbutton-default-rtdb.firebaseio.com",
+        projectId: "github-epicbutton",
+        storageBucket: "github-epicbutton.firebasestorage.app",
+        messagingSenderId: "694293692094",
+        appId: "1:694293692094:web:50082c2152b26bf39428ef"
+      };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-    const clicksRef = database.ref('clicks');
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+      const clicksRef = database.ref('clicks');
 
-    const fullNumberDiv = document.getElementById('full-number');
+      const fullNumberDiv = document.getElementById('full-number');
 
-    // Fetch and display the full click number
-    clicksRef.on('value', (snapshot) => {
-      const data = snapshot.val() || 0;
-      fullNumberDiv.textContent = `Everyone has clicked ${data.toLocaleString()} times!`;
-    });
-  </script>
-</body>
+      // Fetch and display the full click number
+      clicksRef.on('value', (snapshot) => {
+        const data = snapshot.val() || 0;
+        fullNumberDiv.textContent = `Everyone has clicked ${data.toLocaleString()} times!`;
+      });
+    </script>
+  </body>
 </html>

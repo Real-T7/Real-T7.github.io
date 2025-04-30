@@ -1,143 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Epic Button</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
-    }
-    button {
-      font-size: 20px;
-      padding: 10px 20px;
-    }
-    #count {
-      margin-top: 20px;
-      font-size: 24px;
-    }
-    #online {
-      margin-top: 10px;
-      font-size: 20px;
-      color: #555;
-    }
-    #about-link {
-      margin-top: 30px;
-      font-size: 16px;
-    }
-    #about-hyperlink {
-      color: #007bff;
-      text-decoration: underline;
-    }
-    #about-hyperlink:hover {
-      color: #0056b3;
-    }
-    #home-link {
-      margin-top: 40px;
-      font-size: 16px;
-    }
-    #home-hyperlink {
-      color: #007bff;
-      text-decoration: underline;
-    }
-    #home-hyperlink:hover {
-      color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  <h1>the epic button ™</h1>
-  <button id="epic-button">click</button>
-  <div id="count">loading...</div>
-  <div id="online">checking...</div>
-
-  <div id="home-link">
-    <a href="/" id="home-hyperlink">← back to homepage</a>
-  </div>
-
-  <div id="about-link">
-    <a href="/html/epic-button/about" id="about-hyperlink">why did i create this website?</a>
-  </div>
-
-  <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-
-  <!-- Firebase Realtime Database SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCuWHuy_J214rnn-KN8i83sbjIkIufZu2U",
-      authDomain: "github-epicbutton.firebaseapp.com",
-      databaseURL: "https://github-epicbutton-default-rtdb.firebaseio.com",
-      projectId: "github-epicbutton",
-      storageBucket: "github-epicbutton.firebasestorage.app",
-      messagingSenderId: "694293692094",
-      appId: "1:694293692094:web:50082c2152b26bf39428ef"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-    const clicksRef = database.ref('clicks');
-    const onlineUsersRef = database.ref('onlineUsers');
-
-    const countDiv = document.getElementById('count');
-    const onlineDiv = document.getElementById('online');
-    const button = document.getElementById('epic-button');
-
-    // Format numbers nicely (e.g., 1000 -> 1k)
-    function formatNumber(num) {
-      if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
-      if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
-      if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
-      return num;
-    }
-
-    // Fetch and display current click count
-    function fetchClicks() {
-      clicksRef.on('value', (snapshot) => {
-        const data = snapshot.val() || 0;
-        const formatted = formatNumber(data);
-        countDiv.innerHTML = `everyone has clicked <a href="/html/epic-button/number" target="_blank" id="click-link">${formatted}</a> times, epic!`;
-      });
-    }
-
-    // Increment click count
-    function incrementClicks() {
-      clicksRef.transaction(currentClicks => {
-        return (currentClicks || 0) + 1;
-      });
-    }
-
-    button.addEventListener('click', incrementClicks);
-
-    // Load clicks on page load
-    fetchClicks();
-
-    // Track online users
-    const myConnectionRef = database.ref('.info/connected');
-    myConnectionRef.on('value', (snapshot) => {
-      if (snapshot.val() === true) {
-        // User connected
-        const userRef = onlineUsersRef.push();
-        userRef.set(true);
-
-        // Remove when disconnected
-        userRef.onDisconnect().remove();
+  <head>
+    <meta charset="UTF-8">
+    <title>Epic Button</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 50px;
       }
-    });
-
-    // Display number of online users
-    onlineUsersRef.on('value', (snapshot) => {
-      const onlineCount = snapshot.numChildren();
-      if (onlineCount === 1) {
-        onlineDiv.textContent = `you are the only person here. bring some friends!`;
-      } else {
-        onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
+      button {
+        font-size: 20px;
+        padding: 10px 20px;
       }
-    });
-  </script>
-</body>
+      #count {
+        margin-top: 20px;
+        font-size: 24px;
+      }
+      #online {
+        margin-top: 10px;
+        font-size: 20px;
+        color: #555;
+      }
+      #about-link {
+        margin-top: 30px;
+        font-size: 16px;
+      }
+      #about-hyperlink {
+        color: #007bff;
+        text-decoration: underline;
+      }
+      #about-hyperlink:hover {
+        color: #0056b3;
+      }
+      #home-link {
+        margin-top: 40px;
+        font-size: 16px;
+      }
+      #home-hyperlink {
+        color: #007bff;
+        text-decoration: underline;
+      }
+      #home-hyperlink:hover {
+        color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>the epic button ™</h1>
+    <button id="epic-button">click</button>
+    <div id="count">loading...</div>
+    <div id="online">checking...</div>
+
+    <div id="home-link">
+      <a href="/" id="home-hyperlink">← back to homepage</a>
+    </div>
+
+    <div id="about-link">
+      <a href="/html/epic-button/about" id="about-hyperlink">why did i create this website?</a>
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+
+    <!-- Firebase Realtime Database SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-database-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCuWHuy_J214rnn-KN8i83sbjIkIufZu2U",
+        authDomain: "github-epicbutton.firebaseapp.com",
+        databaseURL: "https://github-epicbutton-default-rtdb.firebaseio.com",
+        projectId: "github-epicbutton",
+        storageBucket: "github-epicbutton.firebasestorage.app",
+        messagingSenderId: "694293692094",
+        appId: "1:694293692094:web:50082c2152b26bf39428ef"
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+      const clicksRef = database.ref('clicks');
+      const onlineUsersRef = database.ref('onlineUsers');
+
+      const countDiv = document.getElementById('count');
+      const onlineDiv = document.getElementById('online');
+      const button = document.getElementById('epic-button');
+
+      // Format numbers nicely (e.g., 1000 -> 1k)
+      function formatNumber(num) {
+        if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
+        if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
+        if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
+        return num;
+      }
+
+      // Fetch and display current click count
+      function fetchClicks() {
+        clicksRef.on('value', (snapshot) => {
+          const data = snapshot.val() || 0;
+          const formatted = formatNumber(data);
+          countDiv.innerHTML = `everyone has clicked <a href="/html/epic-button/number" target="_blank" id="click-link">${formatted}</a> times, epic!`;
+        });
+      }
+
+      // Increment click count
+      function incrementClicks() {
+        clicksRef.transaction(currentClicks => {
+          return (currentClicks || 0) + 1;
+        });
+      }
+
+      button.addEventListener('click', incrementClicks);
+
+      // Load clicks on page load
+      fetchClicks();
+
+      // Track online users
+      const myConnectionRef = database.ref('.info/connected');
+      myConnectionRef.on('value', (snapshot) => {
+        if (snapshot.val() === true) {
+          // User connected
+          const userRef = onlineUsersRef.push();
+          userRef.set(true);
+
+          // Remove when disconnected
+          userRef.onDisconnect().remove();
+        }
+      });
+
+      // Display number of online users
+      onlineUsersRef.on('value', (snapshot) => {
+        const onlineCount = snapshot.numChildren();
+        if (onlineCount === 1) {
+          onlineDiv.textContent = `you are the only person here. bring some friends!`;
+        } else {
+          onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
+        }
+      });
+    </script>
+  </body>
 </html>
