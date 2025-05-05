@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Rainbow Text</title>
   <style>
     .rainbow-text {
-      font-size: 48px;
-      font-weight: bold;
-      text-align: center;
-      animation: rainbow 5s linear infinite;
-      background: linear-gradient(
-        to right,
-        red, orange, yellow, green, blue, indigo, violet
-      );
-      -webkit-background-clip: text;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400%;
       color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 5s linear infinite;
     }
 
     @keyframes rainbow {
@@ -28,8 +24,6 @@
   </style>
 </head>
 <body>
-  <div class="rainbow-text">
-    Coming soon! (Next update)
-  </div>
+  <div class="rainbow-text">Coming soon!</div>
 </body>
 </html>
