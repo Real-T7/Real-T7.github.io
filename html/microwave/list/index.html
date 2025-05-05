@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>the microwave list</title>
-  </head>
-  <body>
-    <p>Coming soon!</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Rainbow Text</title>
+  <style>
+    .rainbow-text {
+      font-size: 48px;
+      font-weight: bold;
+      text-align: center;
+      animation: rainbow 5s linear infinite;
+      background: linear-gradient(
+        to right,
+        red, orange, yellow, green, blue, indigo, violet
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes rainbow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="rainbow-text">
+    Coming soon!
+  </div>
+</body>
 </html>
