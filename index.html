@@ -44,10 +44,38 @@
       .credits-link:hover {
         text-decoration: underline;
       }
+      .splashText {
+        color: #333
+      }
     </style>
   </head>
   <body>
     <h1>Welcome to T7's Website!</h1>
+
+    <div id="splashText">loading splash text...</div>
+
+    <script>
+      const links = [
+        "https://kubbi.bandcamp.com/",
+        "https://axoga.to/",
+      ];
+      const messages = [
+        "Subspace Tripmine",
+        "h, hru? i m a (n)xpd programr!",
+        "insane Robloxian with mental issues is here!",
+        "i eat dihydrogen monoxide",
+        "got some pizza?",
+        "pneumonoultramicroscopicsilicovolcanoconiosishippopotomonstrosesquipedaliophobiasupercalifragilisticexpialidociouspseudopseudohypoparathyroidismfloccinaucinihilipilificationantidisestablishmentarianismelectroencephalographicallyincomprehensibilitiesthyroparathyroidectomizedhonorificabilitudinitatibus is my second favorite word",
+        `<a href="${links[0]}" target="_blank">Kubbi</a>'s music is fire.`,
+        `<a href="${links[1]}" target="_blank">Chai</a> belongs in the microwave`,
+      ];
+
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      const chosenMessage = messages[randomIndex];
+
+      document.getElementById("splashText").textContent = chosenMessage;
+    </script>
+
     <p>
       This is a place where I build and share fun, creative, and <a href="/html/experiments/" class="normal-link">experimental</a> web projects.
       There are a lot of secrets here, you just need to find the right subdirectory or URL to find them ( for example, /microwave/ and /credits/ ).
