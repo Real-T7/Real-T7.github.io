@@ -60,20 +60,19 @@
         "https://axoga.to/",
       ];
       const messages = [
-        "Subspace Tripmine",
-        "h, hru? i m a (n)xpd programr!",
-        "insane Robloxian with mental issues is here!",
-        "i eat dihydrogen monoxide",
-        "got some pizza?",
-        "pneumonoultramicroscopicsilicovolcanoconiosishippopotomonstrosesquipedaliophobiasupercalifragilisticexpialidociouspseudopseudohypoparathyroidismfloccinaucinihilipilificationantidisestablishmentarianismelectroencephalographicallyincomprehensibilitiesthyroparathyroidectomizedhonorificabilitudinitatibus is my second favorite word",
-        `<a href="${links[0]}" target="_blank">Kubbi</a>'s music is fire.`,
-        `<a href="${links[1]}" target="_blank">Chai</a> belongs in the microwave`,
+        'Subspace Tripmine',
+        'h, hru? i m a (n)xpd programr!',
+        'insane Robloxian with mental issues is here!',
+        'i eat dihydrogen monoxide',
+        'got some pizza?',
+        'car',
+        '<a href="${links[0]}" target="_blank">Kubbi</a>\'s music is fire.',
+        '<a href="${links[1]}" target="_blank">Chai</a> belongs in the microwave',
       ];
 
       const randomIndex = Math.floor(Math.random() * messages.length);
-      const chosenMessage = messages[randomIndex];
 
-      document.getElementById("splashText").textContent = chosenMessage;
+      document.getElementById("splashText").innerHTML = messages[randomIndex];
     </script>
 
     <p>
