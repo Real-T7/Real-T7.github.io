@@ -1,16 +1,21 @@
 {
-    "links": [
-      "https://kubbi.bandcamp.com/",
-      "https://axoga.to/"
-    ],
-    "messages": [
-      "Subspace Tripmine",
-      "h, hru? i m a (n)xpd programr!",
-      "insane Robloxian with mental issues is here!",
-      "i eat dihydrogen monoxide",
-      "got some pizza?",
-      "car",
-      "<a href=\"${links[0]}\" target=\"_blank\" class=\"splashLink\">Kubbi</a>'s music is fire.",
-      "<a href=\"${links[1]}\" target=\"_blank\" class=\"splashLink\">Chai</a> belongs in the microwave"
-    ]
-}  
+  "links": [
+    "https://kubbi.bandcamp.com/",
+    "https://axoga.to/",
+    "https://discord.gg/SuZb3aJUCx"
+  ],
+  "messages": [
+    "Subspace Tripmine",
+    "h, hru? i m a (n)xpd programr!",
+    "insane Robloxian with mental issues is here!",
+    "i eat dihydrogen monoxide",
+    "got some pizza?",
+    "car",
+    "i suck at HTML, CSS, JS but im pretty good at Python, GameMaker, Roblox Studio (aka Lua)",
+    "i bring knives to school every day",
+    "microwave",
+    "<a href=\"${links[0]}\" target=\"_blank\" class=\"splashLink\">Kubbi</a>'s music is fire.",
+    "<a href=\"${links[1]}\" target=\"_blank\" class=\"splashLink\">Chai</a> belongs in the microwave!",
+    "<a href=\"${links[2]}\" target=\"_blank\" class=\"splashLink\">Axoga.to</a> is probably the best community ive ever joined"
+  ]
+}
