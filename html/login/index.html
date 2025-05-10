@@ -49,7 +49,7 @@
         const confirm = document.getElementById('confirm').value;
         const messageDiv = document.getElementById('message');
 
-        if (bannedNames.includes(username)) {
+        if (bannedNames.some(banned => username.includes(banned.toLowerCase()))) {
             messageDiv.textContent = "no u";
             messageDiv.className = "message error";
         } else if (password !== confirm) {
