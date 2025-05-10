@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Fake Login Prompt</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 50px;
-    }
-    .message {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    .error {
-      color: red;
-    }
-    .success {
-      color: green;
-    }
-  </style>
-</head>
-<body>
+    <head>
+    <meta charset="UTF-8">
+    <title>Fake Login Prompt</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+        }
+        .message {
+        margin-top: 10px;
+        font-weight: bold;
+        }
+        .error {
+        color: red;
+        }
+        .success {
+        color: green;
+        }
+    </style>
+    </head>
+    <body>
 
-  <h2>Login</h2>
-  <form id="loginForm">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
 
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
 
-    <label for="confirm">Confirm Password:</label><br>
-    <input type="password" id="confirm" name="confirm" required><br><br>
+        <label for="confirm">Confirm Password:</label><br>
+        <input type="password" id="confirm" name="confirm" required><br><br>
 
-    <input type="submit" value="Submit">
-  </form>
+        <input type="submit" value="Submit">
+    </form>
 
-  <div class="message" id="message"></div>
+    <div class="message" id="message"></div>
 
-  <script>
-    const bannedNames = ["T7", "Chai"];
+    <script>
+        const bannedNames = ["T7", "Chai"];
 
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Stop form from submitting
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Stop form from submitting
 
-      const username = document.getElementById('username').value.trim().toLowerCase();
-      const password = document.getElementById('password').value;
-      const confirm = document.getElementById('confirm').value;
-      const messageDiv = document.getElementById('message');
+        const username = document.getElementById('username').value.trim().toLowerCase();
+        const password = document.getElementById('password').value;
+        const confirm = document.getElementById('confirm').value;
+        const messageDiv = document.getElementById('message');
 
-      if (bannedNames.includes(username)) {
-        messageDiv.textContent = "no u";
-        messageDiv.className = "message error";
-      } else if (password !== confirm) {
-        messageDiv.textContent = "passwords do not match";
-        messageDiv.className = "message error";
-      } else {
-        messageDiv.textContent = "logged in";
-        messageDiv.className = "message success";
-      }
-    });
-  </script>
+        if (bannedNames.includes(username)) {
+            messageDiv.textContent = "no u";
+            messageDiv.className = "message error";
+        } else if (password !== confirm) {
+            messageDiv.textContent = "passwords do not match";
+            messageDiv.className = "message error";
+        } else {
+            messageDiv.textContent = "logged in";
+            messageDiv.className = "message success";
+        }
+        });
+    </script>
 
-</body>
+    </body>
 </html>
