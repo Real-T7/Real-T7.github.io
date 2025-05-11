@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+  <head>
     <meta charset="UTF-8">
     <title>Fake Login Prompt</title>
     <style>
@@ -18,10 +18,20 @@
         .success {
         color: green;
         }
+        .home-link {
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          text-decoration: none;
+          color: #000;
+          font-size: 18px;
+        }
+        .home-link:hover {
+          text-decoration: underline;
+        }
     </style>
-    </head>
-    <body>
-
+  </head>
+  <body>
     <h2>Login</h2>
     <form id="loginForm">
         <label for="username">Username:</label><br>
@@ -62,5 +72,6 @@
         });
     </script>
 
-    </body>
+    <a href="/" class="home-link">← back to homepage</a>
+  </body>
 </html>
