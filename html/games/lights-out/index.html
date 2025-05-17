@@ -67,7 +67,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
     const gridRef = db.ref("lightsOutGrid");
-    const presenceRef = db.ref("online_LightsOut");
+    const onlineUsersRef = db.ref("online/LightsOut");
 
     const rows = 20;
     const cols = 20;
@@ -152,18 +152,17 @@
     });
 
     // Handle online presence
-    const userId = "user_" + Math.random().toString(36).substring(2);
     const connectedRef = db.ref(".info/connected");
 
     connectedRef.on("value", (snap) => {
       if (snap.val() === true) {
-        const userRef = presenceRef.child(userId);
+        const userRef = onlineUsersRef.push();
         userRef.set(true);
         userRef.onDisconnect().remove();
       }
     });
 
-    presenceRef.on("value", (snapshot) => {
+    onlineUsersRef.on("value", (snapshot) => {
       const users = snapshot.val() || {};
       const onlineCount = Object.keys(users).length;
       userCountSpan.textContent = onlineCount;
