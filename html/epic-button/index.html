@@ -80,7 +80,7 @@
       firebase.initializeApp(firebaseConfig);
       const database = firebase.database();
       const clicksRef = database.ref('clicks');
-      const onlineUsersRef = database.ref('onlineUsers');
+      const onlineUsersRef = database.ref('online/EpicButton');
 
       const countDiv = document.getElementById('count');
       const onlineDiv = document.getElementById('online');

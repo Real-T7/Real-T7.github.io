@@ -67,7 +67,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
     const gridRef = db.ref("lightsOutGrid");
-    const presenceRef = db.ref("presence");
+    const presenceRef = db.ref("online_LightsOut");
 
     const rows = 20;
     const cols = 20;
