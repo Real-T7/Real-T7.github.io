@@ -91,33 +91,6 @@
         .catch(error => console.error("error loading messages:", error));
     </script>
 
-    <script>
-      let idleTime = 0;
-      const idleLimit = 60; // seconds before redirect
-      const redirectURL = '/html/screensaver/';
-
-      // Reset idle time on any activity
-      function resetIdleTimer() {
-        idleTime = 0;
-      }
-
-      // Increase idle time every second
-      setInterval(() => {
-        idleTime++;
-        if (idleTime >= idleLimit) {
-          window.location.href = redirectURL;
-        }
-      }, 1000);
-
-      // Listen for user interactions
-      window.onload = () => {
-        document.addEventListener('mousemove', resetIdleTimer);
-        document.addEventListener('keydown', resetIdleTimer);
-        document.addEventListener('mousedown', resetIdleTimer);
-        document.addEventListener('touchstart', resetIdleTimer);
-      };
-    </script>
-
     <br>
     <p>
       This is a place where I build and share fun, creative, and <a href="/html/experiments/" class="normal-link">experimental</a> web projects.
