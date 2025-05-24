@@ -91,6 +91,28 @@
         .catch(error => console.error("error loading messages:", error));
     </script>
 
+    <script>
+      let timeout;
+
+      function resetTimer() {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          window.location.href = "/html/screensaver/";
+        }, 60000);
+      }
+
+      function setupInactivityTimer() {
+        window.addEventListener("mousemove", resetTimer);
+        window.addEventListener("keydown", resetTimer);
+        window.addEventListener("scroll", resetTimer);
+        window.addEventListener("touchstart", resetTimer);
+
+        resetTimer();
+      }
+
+      window.onload = setupInactivityTimer;
+    </script>
+
     <br>
     <p>
       This is a place where I build and share fun, creative, and <a href="/html/experiments/" class="normal-link">experimental</a> web projects.
