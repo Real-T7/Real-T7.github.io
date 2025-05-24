@@ -33,8 +33,8 @@
       const logo = document.getElementById('dvd-logo');
       let posX = Math.random() * (window.innerWidth * 0.5);
       let posY = Math.random() * (window.innerHeight * 0.5);
-      let velX = 2;
-      let velY = 2;
+      let velX = Math.random() < 0.5 ? -2 : 2;
+      let velY = Math.random() < 0.5 ? -2 : 2;
       let logoWidth = 200;
       let logoHeight = 90;
 
