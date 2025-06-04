@@ -79,6 +79,7 @@
       let posY = Math.random() * (window.innerHeight * 0.5);
       let velX = Math.random() < 0.5 ? -2 : 2;
       let velY = Math.random() < 0.5 ? -2 : 2;
+      let speedMultiplier = 1;
       const logoWidth = 200;
       const logoHeight = 90;
 
@@ -124,6 +125,18 @@
         lastColor = newColor;
       }
 
+      window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') {
+          speedMultiplier = 2;
+        }
+      });
+
+      window.addEventListener('keyup', (e) => {
+        if (e.code === 'Space') {
+          speedMultiplier = 1;
+        }
+      });
+
       function updatePosition() {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
@@ -149,8 +162,8 @@
           changeColorAndHighlight(bouncedEdge);
         }
 
-        posX += velX;
-        posY += velY;
+        posX += velX * speedMultiplier;
+        posY += velY * speedMultiplier;
 
         logo.style.left = posX + 'px';
         logo.style.top = posY + 'px';
