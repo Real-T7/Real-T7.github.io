@@ -5,7 +5,8 @@
     <title>Keylogger</title>
     <style>
       body {
-        font-family: sans-serif;
+        font-family: Arial, sans-serif;
+        font-size: 18px;
         margin: 20px;
       }
       #warning {
@@ -20,10 +21,22 @@
         border: 1px solid #ccc;
         min-height: 100px;
       }
+      a {
+        display: inline-block;
+        margin-top: 30px;
+        font-size: 18px;
+        color: #007bff;
+        text-decoration: underline;
+      }
+      a:hover {
+        color: #0056b3;
+      }
     </style>
   </head>
   <body>
-    <div id="warning">⚠️ This page tracks and displays every key you press, but it does not store or transmit this data.</div>
+    <a href="../" id="home-hyperlink">← back to minigames</a>
+    <br>
+    <div id="warning">This page tracks and displays every key you press on your keyboard, but it does not store or transmit any data.</div>
     
     <h2>Keystrokes:</h2>
     <div id="keystrokes"></div>
