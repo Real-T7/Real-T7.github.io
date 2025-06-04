@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Keylogger</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+      }
+      #warning {
+        color: red;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      #keystrokes {
+        white-space: pre-wrap;
+        background: #f9f9f9;
+        padding: 10px;
+        border: 1px solid #ccc;
+        min-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="warning">⚠️ This page tracks and displays every key you press, but it does not store or transmit this data.</div>
+    
+    <h2>Keystrokes:</h2>
+    <div id="keystrokes"></div>
+
+    <script>
+      const display = document.getElementById('keystrokes');
+
+      document.addEventListener('keydown', (event) => {
+        const key = event.key === ' ' ? 'Space' : event.key;
+        display.textContent += key + ' ';
+      });
+    </script>
+  </body>
+</html>
