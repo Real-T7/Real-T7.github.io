@@ -98,23 +98,30 @@
 
       let lastEdge = null;
 
+      let lastColor = null;
+
       function changeColorAndHighlight(edge) {
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        logo.style.fill = randomColor;
+        let newColor;
+
+        // Keep selecting a random color until it's different from the last
+        do {
+          newColor = colors[Math.floor(Math.random() * colors.length)];
+        } while (newColor === lastColor && colors.length > 1);
+
+        // Apply the new color
+        logo.style.fill = newColor;
 
         if (edge !== lastEdge) {
-          // Clear previous edge
           if (lastEdge && edges[lastEdge]) {
             edges[lastEdge].style.backgroundColor = 'transparent';
           }
-
-          // Highlight new edge
           if (edge && edges[edge]) {
-            edges[edge].style.backgroundColor = randomColor;
+            edges[edge].style.backgroundColor = newColor;
           }
-
           lastEdge = edge;
         }
+
+        lastColor = newColor;
       }
 
       function updatePosition() {
