@@ -95,24 +95,24 @@
       }
 
       // Fetch and display current click count
+      let showingFull = false;
+
       function fetchClicks() {
         clicksRef.on('value', (snapshot) => {
           const data = snapshot.val() || 0;
-          const formatted = formatNumber(data);
+
+          const formatted = showingFull ? data.toLocaleString() : formatNumber(data);
 
           countDiv.innerHTML = `everyone has clicked <span id="click-number" style="color:#007bff; text-decoration:underline; cursor:pointer;">${formatted}</span> times, epic!`;
 
           const clickNumber = document.getElementById('click-number');
 
-          let showingFull = false;
-
           clickNumber.addEventListener('click', () => {
-            if (showingFull) {
-              clickNumber.textContent = formatNumber(data);
-            } else {
-              clickNumber.textContent = data.toLocaleString();
-            }
             showingFull = !showingFull;
+
+            // Re-render with the updated format
+            const updated = showingFull ? data.toLocaleString() : formatNumber(data);
+            clickNumber.textContent = updated;
           });
         });
       }
