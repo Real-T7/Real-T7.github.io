@@ -1,18 +1,19 @@
-// Enable/disable "Other" input based on selection
-const subdirRadios = document.getElementsByName("subdir");
+const otherRadio = document.getElementById("otherRadio");
 const otherInput = document.getElementById("otherInput");
+const subdirRadios = document.getElementsByName("subdir");
 
-subdirRadios.forEach(radio => {
+// Attach change listeners properly
+for (const radio of subdirRadios) {
   radio.addEventListener("change", () => {
-    if (radio.value === "other") {
+    if (otherRadio.checked) {
       otherInput.disabled = false;
       otherInput.focus();
     } else {
       otherInput.disabled = true;
-      otherInput.value = ""; // Optional: clear it
+      otherInput.value = "";
     }
   });
-});
+}
 
 function redirectToKeyword() {
   const keyword = document.getElementById("keywordInput").value.trim();
@@ -21,11 +22,9 @@ function redirectToKeyword() {
   let subdir = "";
   for (const radio of subdirRadios) {
     if (radio.checked) {
-      if (radio.value === "other") {
-        subdir = otherInput.value.trim().replace(/^\/+|\/+$/g, ""); // Trim leading/trailing slashes
-      } else {
-        subdir = radio.value;
-      }
+      subdir = (radio.value === "other")
+        ? otherInput.value.trim().replace(/^\/+|\/+$/g, "")
+        : radio.value;
       break;
     }
   }
