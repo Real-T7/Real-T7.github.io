@@ -77,41 +77,14 @@
 
     <div id="splashText">loading splash text...</div>
 
-    <script>
-      fetch('/data/messages.json')
-        .then(response => response.json())
-        .then(data => {
-          const links = data.links;
-          const messages = data.messages.map(msg =>
-            msg.replace(/\$\{links\[(\d+)\]\}/g, (_, i) => links[i])
-          );
-          const randomIndex = Math.floor(Math.random() * messages.length);
-          document.getElementById("splashText").innerHTML = messages[randomIndex];
-        })
-        .catch(error => console.error("error loading messages:", error));
-    </script>
+    <script src="/data/splash.js"></script>
 
-    <script>
-      let timeout;
+    <br>
+    <input type="text" id="keywordInput" placeholder="Enter keyword" />
+    <button onclick="redirectToKeyword()">Go</button>
+    <script src="/data/redirect.js"></script>
 
-      function resetTimer() {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          window.location.href = "/html/games/screensaver/";
-        }, 300000);
-      }
-
-      function setupInactivityTimer() {
-        window.addEventListener("mousemove", resetTimer);
-        window.addEventListener("keydown", resetTimer);
-        window.addEventListener("scroll", resetTimer);
-        window.addEventListener("touchstart", resetTimer);
-
-        resetTimer();
-      }
-
-      window.onload = setupInactivityTimer;
-    </script>
+    <script src="/data/screensaver.js"></script>
 
     <br>
     <p>
