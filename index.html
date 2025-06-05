@@ -70,6 +70,9 @@
         text-decoration: underline;
         color: #0056b3;
       }
+      #otherInput:not(:focus):not(.active) {
+        opacity: 0.5;
+      }
     </style>
   </head>
   <body>
@@ -88,7 +91,7 @@
       <label><input type="radio" name="subdir" value="games"> Minigames</label>
       <label>
         <input type="radio" name="subdir" value="other" id="otherRadio"> Other:
-        <input type="text" id="otherInput" placeholder="e.g. custom/path" disabled />
+        <input type="text" id="otherInput" placeholder="e.g. custom/path" />
       </label>
     </div>
 

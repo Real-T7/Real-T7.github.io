@@ -2,15 +2,13 @@ const otherRadio = document.getElementById("otherRadio");
 const otherInput = document.getElementById("otherInput");
 const subdirRadios = document.getElementsByName("subdir");
 
-// Attach change listeners properly
 for (const radio of subdirRadios) {
   radio.addEventListener("change", () => {
     if (otherRadio.checked) {
-      otherInput.disabled = false;
+      otherInput.classList.add("active");
       otherInput.focus();
     } else {
-      otherInput.disabled = true;
-      otherInput.value = "";
+      otherInput.classList.remove("active");
     }
   });
 }
