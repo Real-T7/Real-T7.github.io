@@ -82,6 +82,14 @@
     <br>
     <input type="text" id="keywordInput" placeholder="Enter keyword" />
     <button onclick="redirectToKeyword()">Go</button>
+    <div>
+      <label><input type="radio" name="subdir" value="" checked> Root &lpar;HTML&rpar;</label>
+      <label><input type="radio" name="subdir" value="games"> Minigames</label>
+      <label>
+        <input type="radio" name="subdir" value="other" id="otherRadio"> Other:
+        <input type="text" id="otherInput" placeholder="e.g. custom/path" disabled />
+      </label>
+    </div>
     <script src="/data/redirect.js"></script>
 
     <script src="/data/screensaver.js"></script>
