@@ -1,9 +1,3 @@
-// Firebase App (the core Firebase SDK)
-import {} from 'https://www.gstatic.com/firebasejs/11.9.0/firebase-app-compat.js'
-
-//Firebase Realtime Database SDK
-import {} from 'https://www.gstatic.com/firebasejs/11.9.0/firebase-database-compat.js'
-
 const firebaseConfig = {
   apiKey: "AIzaSyCiIQr2VpfkBgKNiJwiSQW8ivOSZ9t0lnw",
   authDomain: "t7-github.firebaseapp.com",
