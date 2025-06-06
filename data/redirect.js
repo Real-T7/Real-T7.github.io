@@ -21,7 +21,7 @@ function redirectToKeyword() {
   const match = idMap.find(entry => entry.ids.includes(keyword));
 
   if (match) {
-    window.location.href = window.location.origin + '/' + match.path;
+    window.location.href = `/${match.path}`;
   } else {
     window.location.href = `/${keyword}`
   }
