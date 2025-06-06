@@ -16,7 +16,7 @@
     "path": "html/games/"
   },
   {
-    "ids": ["epic-button", "button"],
+    "ids": ["epic-button", "button","epicbutton"],
     "path": "html/games/epic-button/"
   },
   {
