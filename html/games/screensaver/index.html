@@ -181,7 +181,7 @@
           bouncedEdge = 'top';
         }
 
-        if (bouncedEdge) {
+        if (bouncedEdge && bouncedEdge !== lastEdge) {
           changeColorAndHighlight(bouncedEdge);
         }
 
