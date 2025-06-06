@@ -137,6 +137,14 @@
         }
       });
 
+      window.addEventListener('touchstart', () => {
+        speedMultiplier = 2;
+      });
+
+      window.addEventListener('touchend', () => {
+        speedMultiplier = 1;
+      });
+
       function updatePosition() {
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
