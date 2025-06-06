@@ -4,7 +4,6 @@ function updateTime() {
     clockDiv.textContent = now.toLocaleTimeString();
 }
 
-// Create the clock div
 const clockDiv = document.createElement("div");
 clockDiv.id = "clock";
 clockDiv.style.position = "fixed";
