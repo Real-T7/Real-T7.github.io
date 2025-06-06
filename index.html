@@ -80,7 +80,7 @@
     <script src="/data/splash.js"></script>
 
     <br>
-    <input type="text" id="keywordInput" placeholder="Enter ID" />
+    <input type="text" id="keywordInput" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
     <button onclick="redirectToKeyword()">Go</button>
 
     <script src="/data/redirect.js"></script>
