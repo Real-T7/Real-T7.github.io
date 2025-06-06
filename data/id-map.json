@@ -1,42 +1,42 @@
 [
   {
     "ids": ["","home", "main", "index"],
-    "path": "/"
+    "path": ""
   },
   {
     "ids": ["subspace-tripmine","subspacetripmine","sstm","subspace","tripmine","sub","space","trip","mine"],
-    "path": "/"
+    "path": "html/subspace-tripmine"
   },
   {
     "ids": ["blank","empty","template"],
-    "path": "/data/blank.html"
+    "path": "data/blank.html"
   },
   {
     "ids": ["games","minigames","mini-games"],
-    "path": "/html/games/"
+    "path": "html/games/"
   },
   {
     "ids": ["epic-button", "button"],
-    "path": "/html/games/epic-button/"
+    "path": "html/games/epic-button/"
   },
   {
     "ids": ["keylogger","key-logger","keyboard","logger"],
-    "path": "/html/games/keylogger/"
+    "path": "html/games/keylogger/"
   },
   {
     "ids": ["dvd", "screensaver","dvd-screensaver"],
-    "path": "/html/games/screensaver/"
+    "path": "html/games/screensaver/"
   },
   {
     "ids": ["microwave", "html/microwave"],
-    "path": "/html/microwave/"
+    "path": "html/microwave/"
   },
   {
     "ids": ["credits","credit"],
-    "path": "/html/credits/"
+    "path": "html/credits/"
   },
   {
     "ids": ["login", "log-in","signup","sign-up","signin","sign-in"],
-    "path": "/html/login/"
+    "path": "html/login/"
   }
 ]
