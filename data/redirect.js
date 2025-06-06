@@ -23,6 +23,6 @@ function redirectToKeyword() {
   if (match) {
     window.location.href = window.location.origin + '/' + match.path;
   } else {
-    alert("Page not found. Please check your keyword.");
+    window.location.href = `/${keyword}`
   }
 }
