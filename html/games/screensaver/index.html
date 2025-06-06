@@ -129,6 +129,21 @@
         if (e.code === 'Space') {
           speedMultiplier = 2;
         }
+
+        switch (e.code) {
+          case 'ArrowUp':
+            velY = -Math.abs(velY); // Move up
+            break;
+          case 'ArrowDown':
+            velY = Math.abs(velY); // Move down
+            break;
+          case 'ArrowLeft':
+            velX = -Math.abs(velX); // Move left
+            break;
+          case 'ArrowRight':
+            velX = Math.abs(velX); // Move right
+            break;
+        }
       });
 
       window.addEventListener('keyup', (e) => {
