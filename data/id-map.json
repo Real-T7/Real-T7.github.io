@@ -12,6 +12,10 @@
     "path": "data/blank.html"
   },
   {
+    "ids": ["404","error-404","error404","error","page-not-found","pagenotfound"],
+    "path": "404.html"
+  },
+  {
     "ids": ["games","minigames","mini-games"],
     "path": "html/games/"
   },
