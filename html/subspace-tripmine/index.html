@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Subspace Tripmine</title>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <img id="sstm" src="/media/subspace-tripmine/SubspaceTripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" />
+    <script>
+      const audioFiles = [
+        '/media/subspace-tripmine/activate.mp3',
+        '/media/subspace-tripmine/pulse.mp3',
+        '/media/subspace-tripmine/explosion.mp3'
+      ];
+
+      let currentAudioIndex = 0;
+      let audio = new Audio();
+
+      const imageButton = document.getElementById('audioButton');
+
+      imageButton.addEventListener('click', () => {
+        if (!audio.paused) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+
+        audio.src = audioFiles[currentAudioIndex];
+        audio.volume = 0.5
+        audio.play();
+
+        currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
+      });
+    </script>
+  </body>
+</html>
