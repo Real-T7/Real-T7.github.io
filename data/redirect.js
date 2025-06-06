@@ -1,27 +1,28 @@
+let idMap = [];
+
+fetch("/data/id-map.json")
+  .then(response => response.json())
+  .then(data => {
+    idMap = data;
+  })
+  .catch(error => {
+    console.error("Failed to load ID map:", error);
+  });
+
 function redirectToKeyword() {
-const keyword = document.getElementById("keywordInput").value.trim();
-if (!keyword) return;
+  const keyword = document.getElementById("keywordInput").value.trim();
+  if (!keyword) return;
 
-const otherInput = document.getElementById("otherInput");
-const selectedRadio = document.querySelector('input[name="subdir"]:checked');
+  if (idMap.length === 0) {
+    alert("ID map not loaded yet. Please try again.");
+    return;
+  }
 
-let subdir = "";
+  const match = idMap.find(entry => entry.ids.includes(keyword));
 
-if (selectedRadio) {
-  if (selectedRadio.value === "other") {
-    subdir = otherInput.value.trim().replace(/^\/+|\/+$/g, "");
+  if (match) {
+    window.location.href = `/${match.path}`;
   } else {
-    subdir = selectedRadio.value;
+    alert("Page not found. Please check your keyword.");
   }
 }
-
-const fullPath = `/html/${subdir ? subdir + "/" : ""}${encodeURIComponent(keyword)}`;
-window.location.href = fullPath;
-}
-
-// Enable "Enter" to submit
-document.getElementById("keywordInput").addEventListener("keypress", function (event) {
-if (event.key === "Enter") {
-  redirectToKeyword();
-}
-});
