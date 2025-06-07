@@ -27,8 +27,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-window.db = firebase.database(); // Make globally available
+window.db = firebase.database();
 console.log("Firebase initialized.");
+
+document.dispatchEvent(new Event('firebase-ready'));
 };
 
 // Run it
