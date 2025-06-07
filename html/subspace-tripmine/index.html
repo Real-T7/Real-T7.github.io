@@ -29,7 +29,7 @@
           audio.currentTime = 0;
         }
 
-        audio.src = Math.floor(Math.random() * audioFiles.length);
+        audio.src = audioFiles[Math.floor(Math.random() * audioFiles.length)];
         audio.volume = 0.5
         audio.play();
 
