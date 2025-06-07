@@ -143,6 +143,8 @@
         const newsRef = db.ref("news/latest");
         const onlineUsersRef = db.ref('online/Main');
 
+        const onlineDiv = document.getElementById('online');
+
         // Update news
         newsRef.on("value", (snapshot) => {
           const newsText = snapshot.val();
