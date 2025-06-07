@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>T7's Website</title>
     <style>
+      html {
+        background-color: #000;
+      }
       body {
         font-family: Arial, sans-serif;
+        color: #fff;
         text-align: center;
         padding: 80px 20px;
         max-width: 800px;
@@ -30,7 +34,7 @@
         color: #0056b3;
       }
       .normal-link {
-        color: black;
+        color: #fff;
         text-decoration: none;
       }
       .credits-link {
@@ -38,7 +42,7 @@
         bottom: 10px;
         right: 10px;
         text-decoration: none;
-        color: #000;
+        color: #fff;
         font-size: 18px;
       }
       .credits-link:hover {
@@ -49,7 +53,7 @@
         top: 10px;
         right: 10px;
         text-decoration: none;
-        color: #000;
+        color: #fff;
         font-size: 18px;
       }
       .login-link:hover {
@@ -71,7 +75,7 @@
         color: #0056b3;
       }
       #news-section {
-        background-color: rgba(0, 0, 0, 0.25);
+        background-color: rgba(255, 255, 255, 0.125);
         color: #fff;
         font-family: Arial, sans-serif;
         padding: 10px 20px;
@@ -148,7 +152,9 @@
       const newsRef = db.ref("news/latest");
         newsRef.on("value", (snapshot) => {
         const newsText = snapshot.val();
-        document.getElementById("news-section").innerText = newsText || "No news currently.";
+        document.getElementById("news-section").innerHTML = newsText 
+          ? `<strong>Latest news:</strong> "${newsText}"`
+          : "No news at the moment.";
       });
     </script>
   </body>
