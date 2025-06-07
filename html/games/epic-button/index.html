@@ -26,17 +26,6 @@
         font-size: 20px;
         color: #555;
       }
-      #about-link {
-        margin-top: 30px;
-        font-size: 16px;
-      }
-      #about-hyperlink {
-        color: #007bff;
-        text-decoration: underline;
-      }
-      #about-hyperlink:hover {
-        color: #0056b3;
-      }
       #home-link {
         margin-top: 40px;
         font-size: 16px;
@@ -60,101 +49,81 @@
       <a href="../" id="home-hyperlink">← back to minigames</a>
     </div>
 
-    <div id="about-link">
-      <a href="about/" id="about-hyperlink">why did i create this website?</a>
-    </div>
-
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-app-compat.js"></script>
-
-    <!-- Firebase Realtime Database SDK -->
-    <script src="https://www.gstatic.com/firebasejs/11.9.0/firebase-database-compat.js"></script>
-    
+    <script src="/data/firebase-init.js"></script>
     <script>
-      const firebaseConfig = {
-        apiKey: "AIzaSyCiIQr2VpfkBgKNiJwiSQW8ivOSZ9t0lnw",
-        authDomain: "t7-github.firebaseapp.com",
-        databaseURL: "https://t7-github-default-rtdb.firebaseio.com",
-        projectId: "t7-github",
-        storageBucket: "t7-github.firebasestorage.app",
-        messagingSenderId: "560364753472",
-        appId: "1:560364753472:web:4d274d57c93643764785a5"
-      };
+      document.addEventListener("firebase-ready", () => {
+        const clicksRef = db.ref('clicks');
+        const onlineUsersRef = db.ref('online/EpicButton');
 
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.database();
-      const clicksRef = db.ref('clicks');
-      const onlineUsersRef = db.ref('online/EpicButton');
+        const countDiv = document.getElementById('count');
+        const onlineDiv = document.getElementById('online');
+        const button = document.getElementById('epic-button');
 
-      const countDiv = document.getElementById('count');
-      const onlineDiv = document.getElementById('online');
-      const button = document.getElementById('epic-button');
+        // Format numbers nicely (e.g., 1000 -> 1k)
+        function formatNumber(num) {
+          if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
+          if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
+          if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
+          return num;
+        }
 
-      // Format numbers nicely (e.g., 1000 -> 1k)
-      function formatNumber(num) {
-        if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
-        if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
-        if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
-        return num;
-      }
+        // Fetch and display current click count
+        let showingFull = false;
 
-      // Fetch and display current click count
-      let showingFull = false;
+        function fetchClicks() {
+          clicksRef.on('value', (snapshot) => {
+            const data = snapshot.val() || 0;
 
-      function fetchClicks() {
-        clicksRef.on('value', (snapshot) => {
-          const data = snapshot.val() || 0;
+            const formatted = showingFull ? data.toLocaleString() : formatNumber(data);
 
-          const formatted = showingFull ? data.toLocaleString() : formatNumber(data);
+            countDiv.innerHTML = `everyone has clicked <span id="click-number" style="color:#007bff; text-decoration:underline; cursor:pointer;">${formatted}</span> times, epic!`;
 
-          countDiv.innerHTML = `everyone has clicked <span id="click-number" style="color:#007bff; text-decoration:underline; cursor:pointer;">${formatted}</span> times, epic!`;
+            const clickNumber = document.getElementById('click-number');
 
-          const clickNumber = document.getElementById('click-number');
+            clickNumber.addEventListener('click', () => {
+              showingFull = !showingFull;
 
-          clickNumber.addEventListener('click', () => {
-            showingFull = !showingFull;
-
-            // Re-render with the updated format
-            const updated = showingFull ? data.toLocaleString() : formatNumber(data);
-            clickNumber.textContent = updated;
+              // Re-render with the updated format
+              const updated = showingFull ? data.toLocaleString() : formatNumber(data);
+              clickNumber.textContent = updated;
+            });
           });
-        });
-      }
-
-      // Increment click count
-      function incrementClicks() {
-        clicksRef.transaction(currentClicks => {
-          return (currentClicks || 0) + 1;
-        });
-      }
-
-      button.addEventListener('click', incrementClicks);
-
-      // Load clicks on page load
-      fetchClicks();
-
-      // Track online users
-      const myConnectionRef = db.ref('.info/connected');
-      myConnectionRef.on('value', (snapshot) => {
-        if (snapshot.val() === true) {
-          // User connected
-          const userRef = onlineUsersRef.push();
-          userRef.set(true);
-
-          // Remove when disconnected
-          userRef.onDisconnect().remove();
         }
-      });
 
-      // Display number of online users
-      onlineUsersRef.on('value', (snapshot) => {
-        const onlineCount = snapshot.numChildren();
-        if (onlineCount === 1) {
-          onlineDiv.textContent = `you are the only person here. bring some friends!`;
-        } else {
-          onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
+        // Increment click count
+        function incrementClicks() {
+          clicksRef.transaction(currentClicks => {
+            return (currentClicks || 0) + 1;
+          });
         }
+
+        button.addEventListener('click', incrementClicks);
+
+        // Load clicks on page load
+        fetchClicks();
+
+        // Track online users
+        const myConnectionRef = db.ref('.info/connected');
+        myConnectionRef.on('value', (snapshot) => {
+          if (snapshot.val() === true) {
+            // User connected
+            const userRef = onlineUsersRef.push();
+            userRef.set(true);
+
+            // Remove when disconnected
+            userRef.onDisconnect().remove();
+          }
+        });
+
+        // Display number of online users
+        onlineUsersRef.on('value', (snapshot) => {
+          const onlineCount = snapshot.numChildren();
+          if (onlineCount === 1) {
+            onlineDiv.textContent = `you are the only person here. bring some friends!`;
+          } else {
+            onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
+          }
+        });
       });
     </script>
   </body>
