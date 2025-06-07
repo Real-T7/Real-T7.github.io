@@ -24,9 +24,9 @@
       let currentAudioIndex = 0;
       let audio = new Audio();
 
-      const imageButton = document.getElementById('audioButton');
+      const image = document.getElementById('audioButton');
 
-      imageButton.addEventListener('click', () => {
+      image.addEventListener('click', () => {
         if (!audio.paused) {
           audio.pause();
           audio.currentTime = 0;
