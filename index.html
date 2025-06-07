@@ -86,6 +86,13 @@
         width: 100%;
         z-index: 1000;
       }
+      #online {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        color: #555;
+        font-size: 18px;
+      }
     </style>
   </head>
   <body>
@@ -133,11 +140,33 @@
     <script>
       document.addEventListener("firebase-ready", () => {
         const newsRef = db.ref("news/latest");
+        const onlineUsersRef = db.ref('online/Main');
+
+        // Update news
         newsRef.on("value", (snapshot) => {
           const newsText = snapshot.val();
           document.getElementById("news-section").innerHTML = newsText 
             ? `<strong>Latest news:</strong> "${newsText}"`
             : "No news at the moment.";
+        });
+
+        // Tracks online users
+        const myConnectionRef = db.ref('.info/connected');
+        myConnectionRef.on('value', (snapshot) => {
+          if (snapshot.val() === true) {
+            // User connected
+            const userRef = onlineUsersRef.push();
+            userRef.set(true);
+
+            // Remove when disconnected
+            userRef.onDisconnect().remove();
+          }
+        });
+
+        // Display number of online users
+        onlineUsersRef.on('value', (snapshot) => {
+          const onlineCount = snapshot.numChildren();
+          onlineDiv.textContent = `${onlineCount} online user${onlineCount === 1 ? '' : 's'}`;
         });
       });
     </script>
