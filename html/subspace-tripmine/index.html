@@ -13,7 +13,7 @@
     </style>
   </head>
   <body>
-    <img id="sstm" src="/media/subspace-tripmine/SubspaceTripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" />
+    <img id="sstm" src="/media/subspace-tripmine/SubspaceTripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="playAudio()" />
     <script>
       const audioFiles = [
         '/media/subspace-tripmine/activate.mp3',
@@ -24,9 +24,7 @@
       let currentAudioIndex = 0;
       let audio = new Audio();
 
-      const image = document.getElementById('audioButton');
-
-      image.addEventListener('click', () => {
+      function playAudio() {
         if (!audio.paused) {
           audio.pause();
           audio.currentTime = 0;
@@ -37,7 +35,7 @@
         audio.play();
 
         currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
-      });
+      };
     </script>
   </body>
 </html>
