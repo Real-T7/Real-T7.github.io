@@ -21,7 +21,6 @@
         '/media/subspace-tripmine/explosion.mp3'
       ];
 
-      let currentAudioIndex = 0;
       let audio = new Audio();
 
       function playAudio() {
@@ -30,11 +29,10 @@
           audio.currentTime = 0;
         }
 
-        audio.src = audioFiles[currentAudioIndex];
+        audio.src = Math.floor(Math.random() * audioFiles.length);
         audio.volume = 0.5
         audio.play();
 
-        currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
       };
     </script>
   </body>
