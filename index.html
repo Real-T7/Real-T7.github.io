@@ -131,14 +131,12 @@
 
     <script src="/data/firebase-init.js"></script>
     <script>
-      document.addEventListener("firebase-ready", () => {
-        const newsRef = db.ref("news/latest");
-        newsRef.on("value", (snapshot) => {
-          const newsText = snapshot.val();
-          document.getElementById("news-section").innerHTML = newsText 
-            ? `<strong>Latest news:</strong> "${newsText}"`
-            : "No news at the moment.";
-        });
+      const newsRef = db.ref("news/latest");
+      newsRef.on("value", (snapshot) => {
+        const newsText = snapshot.val();
+        document.getElementById("news-section").innerHTML = newsText 
+          ? `<strong>Latest news:</strong> "${newsText}"`
+          : "No news at the moment.";
       });
     </script>
   </body>
