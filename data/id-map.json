@@ -46,18 +46,18 @@
 
   {
     "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
-    "path": "https://watching-grass-grow.com"
+    "path": "https://watching-grass-grow.com/"
   },
   {
     "ids": ["undertale","ut"],
-    "path": "https://undertale.com"
+    "path": "https://undertale.com/"
   },
   {
     "ids": ["deltarune","dt"],
-    "path": "https://deltarune.com"
+    "path": "https://deltarune.com/"
   },
   {
     "ids": ["neal.fun","neal","neal-fun"],
-    "path": "https://neal.fun"
+    "path": "https://neal.fun/"
   }
 ]
