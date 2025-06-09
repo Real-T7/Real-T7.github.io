@@ -20,7 +20,7 @@
     "path": "html/games/"
   },
   {
-    "ids": ["epic-button", "button","epicbutton"],
+    "ids": ["epic-button","button","epicbutton"],
     "path": "html/games/epic-button/"
   },
   {
@@ -28,11 +28,11 @@
     "path": "html/games/keylogger/"
   },
   {
-    "ids": ["dvd", "screensaver","dvd-screensaver"],
+    "ids": ["dvd","screensaver","dvd-screensaver"],
     "path": "html/games/screensaver/"
   },
   {
-    "ids": ["microwave", "html/microwave"],
+    "ids": ["microwave","html/microwave"],
     "path": "html/microwave/"
   },
   {
@@ -40,7 +40,24 @@
     "path": "html/credits/"
   },
   {
-    "ids": ["login", "log-in","signup","sign-up","signin","sign-in"],
+    "ids": ["login","log-in","signup","sign-up","signin","sign-in"],
     "path": "html/login/"
+  },
+
+  {
+    "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
+    "path": "https://watching-grass-grow.com"
+  },
+  {
+    "ids": ["undertale","ut"],
+    "path": "https://undertale.com"
+  },
+  {
+    "ids": ["deltarune","dt"],
+    "path": "https://deltarune.com"
+  },
+  {
+    "ids": ["neal.fun","neal","neal-fun"],
+    "path": "https://neal.fun"
   }
 ]
