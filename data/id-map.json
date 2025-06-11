@@ -1,6 +1,6 @@
 [
   {
-    "ids": ["","home", "main", "index"],
+    "ids": ["","home","main","index"],
     "path": ""
   },
   {
@@ -29,6 +29,10 @@
   },
   {
     "ids": ["dvd","screensaver","dvd-screensaver"],
+    "path": "html/games/screensaver/"
+  },
+  {
+    "ids": ["rng","random-number-generator","randomnumbergenerator"],
     "path": "html/games/screensaver/"
   },
   {
