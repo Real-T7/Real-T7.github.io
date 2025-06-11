@@ -33,7 +33,7 @@
   },
   {
     "ids": ["rng","random-number-generator","randomnumbergenerator"],
-    "path": "html/games/screensaver/"
+    "path": "html/games/rng/"
   },
   {
     "ids": ["microwave","html/microwave"],
