@@ -1,67 +1,67 @@
 [
   {
     "ids": ["","home","main","index"],
-    "path": ""
+    "path": "/"
   },
   {
     "ids": ["subspace-tripmine","subspacetripmine","sstm","subspace","tripmine","sub","space","trip","mine"],
-    "path": "html/subspace-tripmine"
+    "path": "/html/subspace-tripmine/"
   },
   {
     "ids": ["blank","empty","template"],
-    "path": "data/blank.html"
+    "path": "/data/blank.html"
   },
   {
     "ids": ["404","error-404","error404","error","page-not-found","pagenotfound"],
-    "path": "404.html"
+    "path": "/404.html"
   },
   {
     "ids": ["games","minigames","mini-games"],
-    "path": "html/games/"
+    "path": "/html/games/"
   },
   {
     "ids": ["epic-button","button","epicbutton"],
-    "path": "html/games/epic-button/"
+    "path": "/html/games/epic-button/"
   },
   {
     "ids": ["keylogger","key-logger","keyboard","logger"],
-    "path": "html/games/keylogger/"
+    "path": "/html/games/keylogger/"
   },
   {
     "ids": ["dvd","screensaver","dvd-screensaver"],
-    "path": "html/games/screensaver/"
+    "path": "/html/games/screensaver/"
   },
   {
     "ids": ["rng","random-number-generator","randomnumbergenerator"],
-    "path": "html/games/rng/"
+    "path": "/html/games/rng/"
   },
   {
     "ids": ["microwave","html/microwave"],
-    "path": "html/microwave/"
+    "path": "/html/microwave/"
   },
   {
     "ids": ["credits","credit"],
-    "path": "html/credits/"
+    "path": "/html/credits/"
   },
   {
     "ids": ["login","log-in","signup","sign-up","signin","sign-in"],
-    "path": "html/login/"
+    "path": "/html/login/"
   },
 
   {
     "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
-    "path": "/watching-grass-grow.com/"
+    "path": "//watching-grass-grow.com/"
   },
   {
     "ids": ["undertale","ut"],
-    "path": "/undertale.com/"
+    "path": "//undertale.com/"
   },
   {
     "ids": ["deltarune","dt"],
-    "path": "/deltarune.com/"
+    "path": "//deltarune.com/"
   },
   {
     "ids": ["neal.fun","neal","neal-fun"],
-    "path": "/neal.fun/"
+    "path": "//neal.fun/"
   }
 ]
