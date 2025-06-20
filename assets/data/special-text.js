@@ -7,7 +7,8 @@ const colors = [
 
 const span = document.getElementById('special-text');
 
-const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-span.style.fontWeight = "bold";
-span.style.color = randomColor;
+setInterval(() => {
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  span.style.fontWeight = "bold";
+  span.style.color = randomColor;
+}, 1000);
