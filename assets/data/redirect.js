@@ -1,6 +1,6 @@
 let idMap = [];
 
-fetch("/data/id-map.json")
+fetch("/assets/data/id-map.json")
   .then(response => response.json())
   .then(data => {
     idMap = data;

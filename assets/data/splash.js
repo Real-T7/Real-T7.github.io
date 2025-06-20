@@ -1,4 +1,4 @@
-fetch('/data/messages.json')
+fetch('/assets/data/messages.json')
 .then(response => response.json())
 .then(data => {
   const links = data.links;
