@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>T7's Website</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/data/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="data/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="data/favicon/favicon-16x16.png">
-    <link rel="manifest" href="data/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/data/site.webmanifest">
 
     <style>
       body {
@@ -104,7 +104,7 @@
 
     <div id="splashText">loading splash text...</div>
 
-    <script src="/data/splash.js"></script>
+    <script src="/assets/data/splash.js"></script>
 
     <div id="news-section">Loading news...</div>
 
@@ -112,9 +112,9 @@
     <input type="text" id="keywordInput" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
     <button onclick="redirectToKeyword()">Go</button>
 
-    <script src="/data/redirect.js"></script>
+    <script src="/assets/data/redirect.js"></script>
 
-    <script src="/data/screensaver.js"></script>
+    <script src="/assets/data/screensaver.js"></script>
 
     <br>
     <p>
@@ -141,7 +141,7 @@
     <a href="/html/login/" class="login-link">login</a>
     <div id="online">loading...</div>
 
-    <script src="/data/firebase-init.js"></script>
+    <script src="/assets/data/firebase-init.js"></script>
     <script>
       document.addEventListener("firebase-ready", () => {
         const newsRef = db.ref("news/latest");
