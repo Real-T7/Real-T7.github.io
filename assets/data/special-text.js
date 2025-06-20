@@ -6,9 +6,16 @@ const colors = [
 ];
 
 const span = document.getElementById('special-text');
+let previousColor = null;
 
 setInterval(() => {
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  let randomColor;
+
+  do {
+    randomColor = colors[Math.floor(Math.random() * colors.length)];
+  } while (randomColor === previousColor);
+
+  previousColor = randomColor;
   span.style.fontWeight = "bold";
   span.style.color = randomColor;
 }, 1000);
