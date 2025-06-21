@@ -2,6 +2,7 @@ let target = 404;
 let clicks = 0;
 
 const clicker = document.getElementById("404");
+const pageNotFound = document.getElementById("pageNotFound");
 
 const colors = [
   '#26de81', '#fc5c65', '#fd9644', '#fed330',
@@ -27,6 +28,8 @@ function handleClick() {
 
   if (clicks === target) {
     console.log(`Page Found! ( x${clicks} )`);
+
+    pageNotFound.textContent = "Page Found :)"
 
     clicker.removeEventListener("click", handleClick);
 
