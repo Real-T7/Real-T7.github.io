@@ -5,7 +5,7 @@ const colors = [
   '#d291bc', '#fa744f'
 ];
 
-const span = document.getElementById('special-text');
+const texts = document.querySelectorAll('.special-text');
 let previousColor = null;
 
 setInterval(() => {
@@ -16,6 +16,9 @@ setInterval(() => {
   } while (randomColor === previousColor);
 
   previousColor = randomColor;
-  span.style.fontWeight = "bold";
-  span.style.color = randomColor;
+
+  texts.forEach(text => {
+    text.style.fontWeight = "bold";
+    text.style.color = randomColor;
+  });
 }, 1000);
