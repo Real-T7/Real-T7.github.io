@@ -38,9 +38,19 @@
     </style>
   </head>
   <body>
-    <h1>404</h1>
+    <h1 id="404" style="cursor: pointer; display: inline;">404</h1>
+
+    <script src="/assets/data/404-clicker.js"></script>
+
     <br>
     <h2>Page not found &colon;&lpar;</h2>
+    <br>
+
+    <input type="text" id="keywordInput" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
+    <button onclick="redirectToKeyword()">Go</button>
+
+    <script src="/assets/data/redirect.js"></script>
+
     <br>
     <a href="/" id="home-hyperlink">← back to homepage</a>
   </body>
