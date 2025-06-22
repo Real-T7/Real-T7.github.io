@@ -37,7 +37,7 @@
       a:hover {
         color: #0056b3;
       }
-      .credits-link {
+      #credits-link {
         position: fixed;
         bottom: 10px;
         right: 10px;
@@ -45,10 +45,11 @@
         color: #fff;
         font-size: 18px;
       }
-      .credits-link:hover {
+      #credits-link:hover {
+        color: #007bff;
         text-decoration: underline;
       }
-      .login-link {
+      #login-link {
         position: fixed;
         top: 10px;
         right: 10px;
@@ -56,14 +57,14 @@
         color: #fff;
         font-size: 18px;
       }
-      .login-link:hover {
+      #login-link:hover {
+        color: #007bff;
         text-decoration: underline;
       }
-      .splashText {
+      #splash-text {
         font-size: 18px;
-        color: #004d4d;
       }
-      .splashLink {
+      #splash-link {
         display: inline;
         margin-top: 0px;
         font-size: 18px;
@@ -93,12 +94,25 @@
         color: #555;
         font-size: 18px;
       }
+      #screensaver-toggle {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        margin-top: 40px;
+      }
+      #screensaver-label {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        margin-top: 40px;
+        margin-left: 30px;
+      }
     </style>
   </head>
   <body>
     <h1>Welcome to <span class="special-text">T7</span>'s Website!</h1>
 
-    <div id="splashText">loading splash text...</div>
+    <div id="splash-text">loading splash text...</div>
 
     <script src="/assets/data/splash.js"></script>
 
@@ -134,10 +148,11 @@
     <a href="https://www.watching-grass-grow.com/" target="_blank"><img style="border:2px solid green;" src="https://www.watching-grass-grow.com/watching-grass-grow.gif" alt="watching grass grow" title="watching grass grow"></a>
     <br>
 
-    <a href="/html/credits/" class="credits-link">→ credits</a>
-    <a href="/html/login/" class="login-link">login</a>
+    <a href="/html/credits/" id="credits-link">→ credits</a>
+    <a href="/html/login/" id="login-link">→ login</a>
     <div id="online">loading...</div>
-
+    <input type="checkbox" id="screensaver-toggle" name="Screensaver" checked>
+    <label for="screensaver-toggle" id="screensaver-label">Enable Screensaver</label>
     <script src="assets/data/special-text.js"></script>
 
     <script src="/assets/data/firebase-init.js"></script>

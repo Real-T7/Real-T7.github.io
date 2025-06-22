@@ -6,6 +6,6 @@ fetch('/assets/data/messages.json')
     msg.replace(/\$\{links\[(\d+)\]\}/g, (_, i) => links[i])
   );
   const randomIndex = Math.floor(Math.random() * messages.length);
-  document.getElementById("splashText").innerHTML = messages[randomIndex];
+  document.getElementById("splash-text").innerHTML = messages[randomIndex];
 })
 .catch(error => console.error("error loading messages:", error));

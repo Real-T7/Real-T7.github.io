@@ -26,8 +26,8 @@
     "theres a chance youll get a hint or an ID when refreshing the page!",
     "leave this page open and do absolutely nothing for 5 minutes for a surprise!",
     "S-762 and S-575 are my friends!",
-    "you should join my <a href=\"${links[0]}\" target=\"_blank\" class=\"splashLink\">Discord server</a> now!",
-    "🥚 ← This is my chicken Paul. He hasn't hatched yet. Please put him in your <a href=\"${links[1]}\" target=\"_blank\" class=\"splashLink\">password</a> and keep him safe",
-    "<a href=\"${links[2]}\" target=\"_blank\" class=\"splashLink\">Blame John!</a>"
+    "you should join my <a href=\"${links[0]}\" target=\"_blank\" id=\"splashLink\">Discord server</a> now!",
+    "🥚 ← This is my chicken Paul. He hasn't hatched yet. Please put him in your <a href=\"${links[1]}\" target=\"_blank\" id=\"splashLink\">password</a> and keep him safe",
+    "<a href=\"${links[2]}\" target=\"_blank\" id=\"splashLink\">Blame John!</a>"
   ]
 }
