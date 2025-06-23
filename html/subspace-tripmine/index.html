@@ -11,7 +11,7 @@
     </style>
   </head>
   <body>
-    <img id="sstm" src="/assets/images/subspace-tripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="playAudio()" />
+    <img id="sstm" src="/assets/images/subspace-tripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="playAudio(); logMessage()" />
     <script>
       const audioFiles = [
         '/assets/audio/activate.mp3',
@@ -32,6 +32,22 @@
         audio.play();
 
       };
+    </script>
+
+    <script>
+      const messages = [
+        "subspace tripmine",
+        "subspac trimine",
+        "sub, space, trip, mine",
+        "AAEEOEEOOAOOEOEOOAEHOAOH",
+        "subspace",
+        "tripmine"
+      ];
+
+      function logMessage() {
+        let randomMessage = messages[Math.floor(Math.random() * messages.length)]
+        console.log(randomMessage)
+      }
     </script>
   </body>
 </html>
