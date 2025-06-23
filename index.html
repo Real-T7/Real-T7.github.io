@@ -107,6 +107,17 @@
         margin-top: 40px;
         margin-left: 30px;
       }
+      .space {
+        height: 3000px;
+      }
+      .message {
+        color: #555;
+        top: 0px;
+        right: 0px;
+        text-align: right;
+        cursor: pointer;
+        user-select: none;
+      }
     </style>
   </head>
   <body>
@@ -153,6 +164,10 @@
     <div id="online">loading...</div>
     <input type="checkbox" id="screensaver-toggle" name="Screensaver" checked>
     <label for="screensaver-toggle" id="screensaver-label">Enable Screensaver</label>
+
+    <div class="space"></div>
+    <div class="message" href="/" onclick="window.location.href = `/`">?</a>
+
     <script src="assets/data/special-text.js"></script>
 
     <script src="/assets/data/firebase-init.js"></script>
