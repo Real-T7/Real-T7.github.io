@@ -51,6 +51,10 @@
     "ids": ["tree", "plant", "seed", "spread", "rochas313", "rochas"],
     "path": "/html/tree/"
   },
+  {
+    "ids": ["tv","static","noise","signal"],
+    "path": "/html/static/"
+  },
 
   {
     "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
