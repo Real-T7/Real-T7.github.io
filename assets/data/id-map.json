@@ -47,6 +47,10 @@
     "ids": ["login","log-in","signup","sign-up","signin","sign-in"],
     "path": "/html/login/"
   },
+  {
+    "ids": ["tree", "plant", "seed", "spread", "rochas313", "rochas"],
+    "path": "/html/tree/"
+  },
 
   {
     "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
