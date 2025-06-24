@@ -71,7 +71,7 @@
         color: #007bff;
         text-decoration: none;
       }
-      .splashLink:hover {
+      #splashLink:hover {
         text-decoration: underline;
         color: #0056b3;
       }
@@ -107,10 +107,17 @@
         margin-top: 40px;
         margin-left: 30px;
       }
+      #visits {
+        position: fixed;
+        bottom: 40px;
+        left: 10px;
+        color: #555;
+        font-size: 18px;
+      }
       .space {
         height: 10000px;
       }
-      .message {
+      #secret-message {
         color: #555;
         display: inline;
         cursor: pointer;
@@ -125,7 +132,7 @@
 
     <script src="/assets/data/splash.js"></script>
 
-    <div id="news-section" style="user-select: none;">Loading news...</div>
+    <div id="news-section" style="user-select: none;">loading news...</div>
 
     <br>
     <input type="text" id="keywordInput" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
@@ -134,6 +141,9 @@
     <script src="/assets/data/redirect.js"></script>
 
     <script src="/assets/data/screensaver.js"></script>
+
+    <input type="checkbox" id="screensaver-toggle" name="Screensaver" checked>
+    <label for="screensaver-toggle" id="screensaver-label">Enable Screensaver</label>
 
     <br>
     <p>
@@ -159,12 +169,11 @@
 
     <a href="/html/credits/" id="credits-link">→ credits</a>
     <a href="/html/login/" id="login-link">→ login</a>
-    <div id="online">loading...</div>
-    <input type="checkbox" id="screensaver-toggle" name="Screensaver" checked>
-    <label for="screensaver-toggle" id="screensaver-label">Enable Screensaver</label>
+    <div id="online">loading online count...</div>
+    <div id="visits">loading visits...</div>
 
     <div class="space"></div>
-    <div class="message" href="/" onclick="window.location.href = `/`">?</a>
+    <div class="secret-message" href="/" onclick="window.location.href = `/`">?</a>
 
     <script src="assets/data/special-text.js"></script>
 
@@ -173,8 +182,10 @@
       document.addEventListener("firebase-ready", () => {
         const newsRef = db.ref("news/latest");
         const onlineUsersRef = db.ref('online/main');
+        const visitRef = db.ref('visits');
 
         const onlineDiv = document.getElementById('online');
+        const visitDiv = document.getElementById('visits');
 
         // Update news
         newsRef.on("value", (snapshot) => {
@@ -201,6 +212,19 @@
         onlineUsersRef.on('value', (snapshot) => {
           const onlineCount = snapshot.numChildren();
           onlineDiv.textContent = `${onlineCount} online user${onlineCount === 1 ? '' : 's'}`;
+        });
+
+        // Update visit count
+        visitRef.transaction(function (currentValue) {
+          return (currentValue || 0) + 1;
+        }, function (error, committed, snapshot) {
+          if (error) {
+            console.error("Transaction failed: ", error);
+          } else if (!committed) {
+            console.warn("Transaction not committed.");
+          } else {
+            visitDiv.textContent = `you are visitor #${snapshot.val()}`;
+          }
         });
       });
     </script>

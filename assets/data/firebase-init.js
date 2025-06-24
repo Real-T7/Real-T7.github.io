@@ -32,5 +32,5 @@ window.db = firebase.database();
 document.dispatchEvent(new Event('firebase-ready'));
 };
 
-// Run it
+// Run
 loadFirebaseScripts().catch(console.error);
