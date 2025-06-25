@@ -6,12 +6,16 @@ let isPlaying = false;
 music.volume = 0.25;
 
 musicPlayer.addEventListener('click', () => {
-  if (isPlaying) {
-    music.pause();
-    musicPlayer.textContent = "▶";
+  if (Math.floor(Math.random() * 100) === 100) {
+    window.location.href = "/html/piano/"
   } else {
-    music.play();
-    musicPlayer.textContent = "⏸";
+    if (isPlaying) {
+      music.pause();
+      musicPlayer.textContent = "▶";
+    } else {
+      music.play();
+      musicPlayer.textContent = "⏸";
+    }
   }
 
   isPlaying = !isPlaying
