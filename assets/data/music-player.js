@@ -3,7 +3,7 @@ const musicPlayer = document.getElementById('music-player');
 
 let isPlaying = false;
 
-music.volume = 0.05;
+music.volume = 0.25;
 
 musicPlayer.addEventListener('click', () => {
   if (isPlaying) {
