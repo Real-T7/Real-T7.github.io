@@ -114,6 +114,13 @@
         color: #555;
         font-size: 18px;
       }
+      #music-player {
+        position: fixed;
+        top: 40px;
+        left: 10px;
+        cursor: pointer;
+        margin-top: 40px;
+      }
       .space {
         height: 10000px;
       }
@@ -144,6 +151,10 @@
 
     <input type="checkbox" id="screensaver-toggle" name="Screensaver" checked>
     <label for="screensaver-toggle" id="screensaver-label">Enable Screensaver</label>
+
+    <audio id="background-music" src="/assets/audio/background.mp3" preload="auto"></audio>
+    <button id="music-player">▶</button>
+    <script src="/assets/data/music-player.js"></script>
 
     <br>
     <p>
