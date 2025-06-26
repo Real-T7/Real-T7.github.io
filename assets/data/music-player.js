@@ -12,9 +12,11 @@ musicPlayer.addEventListener('click', () => {
     if (isPlaying) {
       music.pause();
       musicPlayer.textContent = "▶";
+      musicPlayer.title = "Play Background Music"
     } else {
       music.play();
       musicPlayer.textContent = "⏸";
+      musicPlayer.title = "Pause Background Music"
     }
   }
 

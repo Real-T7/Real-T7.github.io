@@ -23,7 +23,16 @@ function setupInactivityTimer() {
 
   const toggle = document.getElementById("screensaver-toggle");
   if (toggle) {
+    const screensaverEnabled = localStorage.getItem("screensaverEnabled")
+    if (screensaverEnabled !== null) {
+      toggle.checked = screensaverEnabled === "true";
+    }
+
+
     toggle.addEventListener("change", resetTimer);
+    toggle.addEventListener("change", function () {
+      localStorage.setItem("screensaverEnabled", toggle.checked);
+    });
   }
 
   resetTimer();
