@@ -6,7 +6,7 @@ let isPlaying = false;
 music.volume = 0.25;
 
 musicPlayer.addEventListener('click', () => {
-  if (Math.floor(Math.random()) < 0.01) {
+  if (Math.random() < 0.01) {
     window.location.href = "/html/piano/"
   } else {
     if (isPlaying) {
