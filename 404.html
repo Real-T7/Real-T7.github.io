@@ -35,6 +35,12 @@
       a:hover {
         color: #0056b3;
       }
+      #music-player {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -50,6 +56,10 @@
     <button onclick="redirectToKeyword()">Go</button>
 
     <script src="/assets/data/redirect.js"></script>
+
+    <audio id="background-music" src="/assets/audio/background.mp3" loop preload="auto"></audio>
+    <button id="music-player" title="Play Background Music">▶</button>
+    <script src="/assets/data/music-player.js"></script>
 
     <br>
     <a href="/" id="home-hyperlink">← back to homepage</a>
