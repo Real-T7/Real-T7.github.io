@@ -47,12 +47,12 @@
     <h1 id="404" style="cursor: pointer; display: inline; user-select: none;">404</h1>
 
     <br>
-    <h2 id="pageNotFound">Page Not Found &colon;&lpar;</h2>
+    <h2 id="page-not-found" style="display: inline; user-select: none;">Page Not Found <span id="face" style="cursor: pointer;">&colon;&lpar;</span></h2>
     <br>
 
     <script src="/assets/data/404-clicker.js"></script>
 
-    <input type="text" id="keywordInput" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
+    <input type="text" id="idInput" style="margin-top: 20px;" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
     <button onclick="redirectToKeyword()">Go</button>
 
     <script src="/assets/data/redirect.js"></script>

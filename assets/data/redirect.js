@@ -10,19 +10,19 @@ fetch("/assets/data/id-map.json")
   });
 
 function redirectToKeyword() {
-  const keyword = document.getElementById("keywordInput").value.trim();
-  if (!keyword) return;
+  const id = document.getElementById("idInput").value.trim();
+  if (!id) return;
 
   if (idMap.length === 0) {
     alert("ID map not loaded yet. Please try again.");
     return;
   }
 
-  const match = idMap.find(entry => entry.ids.includes(keyword));
+  const match = idMap.find(entry => entry.ids.includes(id));
 
   if (match) {
     window.location.href = match.path;
   } else {
-    window.location.href = "/" + keyword
+    window.location.href = "/" + id;
   }
 }
