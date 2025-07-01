@@ -53,7 +53,7 @@ function clickPNF() {
 
   previousPage = randomPage;
 
-  NotFound.textContent = `${randomPage}`;
+  notFound.textContent = `${randomPage}`;
 }
 
 function click404() {
