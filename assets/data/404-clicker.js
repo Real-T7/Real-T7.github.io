@@ -72,7 +72,7 @@ function click404() {
   if (clicks === target) {
     console.log(`Page Found! ( x${clicks} )`);
 
-    if (pageNotFound.textContent === "Page Was Subspaced" && face.textContent === ":3") {
+    if (notFound.textContent === "Was Subspaced" && face.textContent === ":3") {
       pageNotFound.textContent = `Page Found...? ${face.textContent}`;
       href404 = "/html/cats";
     }
