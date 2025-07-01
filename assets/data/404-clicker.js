@@ -4,6 +4,7 @@ let clicks = 0;
 const clicker = document.getElementById("404");
 const pageNotFound = document.getElementById("page-not-found");
 const face = document.getElementById("404-face");
+const notFound = document.getElementById("404-not");
 
 const colors = [
   '#26de81', '#fc5c65', '#fd9644', '#fed330',
@@ -52,7 +53,7 @@ function clickPNF() {
 
   previousPage = randomPage;
 
-  pageNotFound.textContent = `Page ${randomPage} ${face.textContent}`;
+  NotFound.textContent = `${randomPage}`;
 }
 
 function click404() {
@@ -89,4 +90,4 @@ function click404() {
 
 clicker.addEventListener("click", click404);
 face.addEventListener("click", clickFace);
-pageNotFound.addEventListener("click", clickPNF);
+notFound.addEventListener("click", clickPNF);
