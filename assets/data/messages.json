@@ -2,7 +2,8 @@
   "links": [
     "//discord.gg/sRss8M5jhM",
     "//neal.fun/password-game",
-    "//roblox.fandom.com/wiki/Blame_John"
+    "//roblox.fandom.com/wiki/Blame_John",
+    "/assets/images/camel-eating-a-cactus.gif"
   ],
   "messages": [
     "Subspace Tripmine",
@@ -28,9 +29,24 @@
     "since 2025!",
     "9 + 10 = 21",
     "i honestly dont know what im doing",
-    "S-762 and S-575 are my friends!",
+    "-200% bug free!",
+    "made by T7!",
+    "Rule #4: it's never my fault",
+    "I need more context.",
+    "Home-made!",
+    "I'm glad you're here!",
+    "So. You read splash texts.",
+    "Change my mind.",
+    "Made with HTML5!",
+    "<PLAYER> IS YOU",
+    "[ERROR: \"Text not found\"]",
+    "[this splash text has been delayed until the next update]",
+    "<PLAYER> used <SWORD>!",
+    "There's <<a cat on ,my keyboard!~",
     "you should join my <a href=\"${links[0]}\" target=\"_blank\" id=\"splashLink\">Discord server</a> now!",
     "🥚 ← This is my chicken Paul. He hasn't hatched yet. Please put him in your <a href=\"${links[1]}\" target=\"_blank\" id=\"splashLink\">password</a> and keep him safe",
-    "<a href=\"${links[2]}\" target=\"_blank\" id=\"splashLink\">Blame John!</a>"
+    "<a href=\"${links[2]}\" target=\"_blank\" id=\"splashLink\">Blame John!</a>",
+    "<a href=\"${links[3]}\" target=\"_blank\" id=\"splashLink\">[camel-eating-a-cactus.gif]</a>",
+    "S-762 and S-575 are my friends!"
   ]
 }
