@@ -18,6 +18,7 @@ p {
 }
 a {
   display: inline-block;
+  margin-top: 30px;
   font-size: 18px;
   color: #007bff;
   text-decoration: underline;

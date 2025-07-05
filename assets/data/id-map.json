@@ -16,6 +16,10 @@
     "path": "/404.html"
   },
   {
+    "ids": ["information","info","about"],
+    "path": "/information/"
+  },
+  {
     "ids": ["games","minigames","mini-games"],
     "path": "/html/games/"
   },
