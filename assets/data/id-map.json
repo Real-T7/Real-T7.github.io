@@ -63,6 +63,10 @@
     "ids": ["conversation","converse","talk","talking","talks","conversation.mp3"],
     "path": "/html/conversation/"
   },
+  {
+    "ids": ["camel","cactus","camel-eating-a-cactus.gif"],
+    "path": "/html/camel/"
+  },
 
   {
     "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
