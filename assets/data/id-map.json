@@ -59,6 +59,10 @@
     "ids": ["tv","static","noise","signal"],
     "path": "/html/static/"
   },
+  {
+    "ids": ["conversation","converse","talk","talking","talks","conversation.mp3"],
+    "path": "/html/conversation/"
+  },
 
   {
     "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
