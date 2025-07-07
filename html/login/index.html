@@ -55,7 +55,7 @@
         const bannedNames = ["T7","S-762","S-575"];
 
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Stop form from submitting
+        event.preventDefault();
 
         const username = document.getElementById('username').value.trim().toLowerCase();
         const password = document.getElementById('password').value;
