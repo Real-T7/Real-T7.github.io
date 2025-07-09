@@ -52,6 +52,10 @@
     "path": "/html/login/"
   },
   {
+    "ids": ["camel","cactus","camel-eating-a-cactus.gif"],
+    "path": "/html/camel/"
+  },
+  {
     "ids": ["tree", "plant", "seed", "spread", "rochas313", "rochas"],
     "path": "/html/tree/"
   },
@@ -63,9 +67,10 @@
     "ids": ["conversation","converse","talk","talking","talks","conversation.mp3"],
     "path": "/html/conversation/"
   },
+
   {
-    "ids": ["camel","cactus","camel-eating-a-cactus.gif"],
-    "path": "/html/camel/"
+    "ids": ["github","git-hub","source","source-code"],
+    "path": "//github.com/Real-T7/Real-T7.github.io"
   },
 
   {
