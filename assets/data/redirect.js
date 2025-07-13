@@ -1,12 +1,12 @@
 let idMap = [];
 
-fetch("/assets/data/id-map.json")
+fetch("/assets/data/id.json")
   .then(response => response.json())
   .then(data => {
     idMap = data;
   })
   .catch(error => {
-    console.error("Failed to load ID map:", error);
+    console.error("failed to load IDs:", error);
   });
 
 function redirectToKeyword() {
@@ -14,7 +14,7 @@ function redirectToKeyword() {
   if (!id) return;
 
   if (idMap.length === 0) {
-    alert("ID map not loaded yet. Please try again.");
+    alert("IDs not loaded yet. please try again.");
     return;
   }
 
@@ -22,13 +22,13 @@ function redirectToKeyword() {
     entry.ids.some(entryId => entryId.toLowerCase() === id)
   );
 
-  if (Math.random() >= 0.01) {
+  if (Math.random() < 0.01) {
+    window.location.href = "/loading.html";
+  } else {
     if (match) {
       window.location.href = match.path;
     } else {
       window.location.href = "/" + id;
     }
-  } else {
-    window.location.href = "/loading.html";
   }
 }

@@ -16,15 +16,11 @@
     "path": "/404.html"
   },
   {
-    "ids": ["information","info","about"],
-    "path": "/information/"
-  },
-  {
-    "ids": ["games","minigames","mini-games"],
+    "ids": ["games","minigames","mini-games","fun"],
     "path": "/html/games/"
   },
   {
-    "ids": ["epic-button","button","epicbutton"],
+    "ids": ["epic-button","button","epicbutton","click"],
     "path": "/html/games/epic-button/"
   },
   {
@@ -36,7 +32,7 @@
     "path": "/html/games/screensaver/"
   },
   {
-    "ids": ["rng","random-number-generator","randomnumbergenerator"],
+    "ids": ["rng","random-number-generator","randomnumbergenerator","random"],
     "path": "/html/games/rng/"
   },
   {
@@ -44,7 +40,7 @@
     "path": "/html/microwave/"
   },
   {
-    "ids": ["credits","credit"],
+    "ids": ["credits","credit","contributors","creator"],
     "path": "/html/credits/"
   },
   {
@@ -54,10 +50,6 @@
   {
     "ids": ["camel","cactus","camel-eating-a-cactus.gif"],
     "path": "/html/camel/"
-  },
-  {
-    "ids": ["cats","meow","cat","uwu","owo",":3","S-762","762"],
-    "path": "/html/cats/"
   },
   {
     "ids": ["tree","plant","seed","spread","rochas313","rochas"],
@@ -71,26 +63,13 @@
     "ids": ["conversation","converse","talk","talking","talks","conversation.mp3"],
     "path": "/html/conversation/"
   },
+  {
+    "ids": ["spawn","respawn","revive","spawnlocation","spawnpoint","spawn-location","spawn-point"],
+    "path": "/html/spawn/"
+  },
 
   {
-    "ids": ["github","git-hub","source","source-code"],
+    "ids": ["github","git-hub","source","source-code","code","repo","repository"],
     "path": "//github.com/Real-T7/Real-T7.github.io"
-  },
-
-  {
-    "ids": ["watching-grass-grow","watchinggrassgrow","watch-grass-grow","watchgrassgrow","grass"],
-    "path": "//watching-grass-grow.com/"
-  },
-  {
-    "ids": ["undertale","ut"],
-    "path": "//undertale.com/"
-  },
-  {
-    "ids": ["deltarune","dt"],
-    "path": "//deltarune.com/"
-  },
-  {
-    "ids": ["neal.fun","neal","neal-fun"],
-    "path": "//neal.fun/"
   }
 ]
