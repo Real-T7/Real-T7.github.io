@@ -1,36 +1,58 @@
-// Load Firebase compat SDKs dynamically
-const loadFirebaseScripts = async () => {
-const loadScript = (src) => {
-  return new Promise((resolve, reject) => {
-  const script = document.createElement('script');
-  script.src = src;
-  script.onload = resolve;
-  script.onerror = reject;
-  document.head.appendChild(script);
+const isDev = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+if (!isDev) {
+  const loadFirebaseScripts = async () => {
+    const loadScript = (src) => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    };
+
+    // Load Firebase SDKs
+    await loadScript('https://www.gstatic.com/firebasejs/11.9.0/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/11.9.0/firebase-database-compat.js');
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCiIQr2VpfkBgKNiJwiSQW8ivOSZ9t0lnw",
+      authDomain: "t7-github.firebaseapp.com",
+      databaseURL: "https://t7-github-default-rtdb.firebaseio.com",
+      projectId: "t7-github",
+      storageBucket: "t7-github.firebasestorage.app",
+      messagingSenderId: "560364753472",
+      appId: "1:560364753472:web:4d274d57c93643764785a5"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.database();
+
+    // Signal that Firebase is ready
+    document.dispatchEvent(new Event("firebase-ready"));
+  };
+
+  loadFirebaseScripts().catch((err) => {
+    console.error("Failed to load Firebase scripts:", err);
   });
-};
+} else {
+  console.warn("Firebase disabled in development mode.");
+  // Mock `db` so other code doesn't crash
+  window.db = {
+    ref: () => ({
+      on: () => {},
+      set: () => Promise.resolve(),
+      transaction: (fn, cb) => cb(null, false, { val: () => 0 }),
+      onDisconnect: () => ({ remove: () => {} }),
+      push: () => ({
+        set: () => {},
+        onDisconnect: () => ({ remove: () => {} }),
+      }),
+    }),
+  };
 
-// Load core and database SDKs
-await loadScript('https://www.gstatic.com/firebasejs/11.9.0/firebase-app-compat.js');
-await loadScript('https://www.gstatic.com/firebasejs/11.9.0/firebase-database-compat.js');
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyCiIQr2VpfkBgKNiJwiSQW8ivOSZ9t0lnw",
-  authDomain: "t7-github.firebaseapp.com",
-  databaseURL: "https://t7-github-default-rtdb.firebaseio.com",
-  projectId: "t7-github",
-  storageBucket: "t7-github.firebasestorage.app",
-  messagingSenderId: "560364753472",
-  appId: "1:560364753472:web:4d274d57c93643764785a5"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-window.db = firebase.database();
-
-document.dispatchEvent(new Event('firebase-ready'));
-};
-
-// Run
-loadFirebaseScripts().catch(console.error);
+  // Still fire the event so code continues
+  document.dispatchEvent(new Event("firebase-ready"));
+}

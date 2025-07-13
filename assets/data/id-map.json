@@ -56,7 +56,11 @@
     "path": "/html/camel/"
   },
   {
-    "ids": ["tree", "plant", "seed", "spread", "rochas313", "rochas"],
+    "ids": ["cats","meow","cat","uwu","owo",":3","S-762","762"],
+    "path": "/html/cats/"
+  },
+  {
+    "ids": ["tree","plant","seed","spread","rochas313","rochas"],
     "path": "/html/tree/"
   },
   {

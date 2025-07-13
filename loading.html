@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+        text-align: center;
+        padding: 80px 20px;
+        max-width: 800px;
+        user-select: none;
+      }
+      #music-player {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+      }
+      #loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        margin: -76px 0 0 -76px;
+        border: 16px solid #000;
+        border-radius: 50%;
+        border-top: 16px solid #fff;
+        border-bottom: 16px solid #fff;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+      }
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .dots::after {
+        content: "";
+        animation: dots 2s steps(4, end) infinite;
+      }
+      @keyframes dots {
+        0% {content: "";}
+        25% {content: ".";}
+        50% {content: "..";}
+        75% {content: "...";}
+        100% {content: "";}
+      }
+      #smile {
+        font-family: 'Wingdings';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 100px;
+        z-index: 2;
+        cursor: pointer;
+      }
+      #click-count {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 14px;
+        color: #555;
+        font-family: monospace;
+      }
+      #timer {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        font-size: 14px;
+        color: #555;
+        font-family: monospace;
+      }
+      #online {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        color: #555;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Loading<span class="dots"></span></h1>
+    <p>sorry were having a bit of a traffic jam going on here pls wait</p>
+    <div id="loader"></div>
+    <div id="timer">0</div>
+    <div id="click-count">0</div>
+    <div id="online">0</div>
+    <div id="smile">&#74;</div>
+
+    <audio id="background-music" src="/assets/audio/elevator.mp3" autoplay loop preload="auto"></audio>
+    <button id="music-player" data-song-title="&quot;Local Forecast - Elevator&quot; by Kevin MacLeod" title="Play Background Music">▶</button>
+    <script src="/assets/data/music-player.js"></script>
+
+    <script>
+      let time = 0;
+      const timer = document.getElementById("timer");
+
+      const timerInterval = setInterval(() => {
+        time++;
+        timer.textContent = `${time}s`;
+      }, 1000);
+    </script>
+
+    <script>
+      let clicks = 0;
+      const clicker = document.getElementById("smile");
+      const clickCount = document.getElementById("click-count");
+
+      const colors = [
+        '#26de81', '#fc5c65', '#fd9644', '#fed330',
+        '#2bcbba', '#45aaf2', '#4b7bec', '#a55eea',
+        '#ffc1f3', '#76ead7', '#ff9c71', '#32e0c4',
+        '#d291bc', '#fa744f'
+      ];
+
+      let previousColor = null;
+
+      function clickSmile() {
+
+        clicks++;
+        clickCount.textContent = `${clicks} clicks`;
+
+        do {
+          randomColor = colors[Math.floor(Math.random() * colors.length)];
+        } while (randomColor === previousColor);
+
+        previousColor = randomColor;
+
+        clicker.style.color = randomColor;
+      }
+
+      clicker.addEventListener("click", clickSmile);
+    </script>
+
+    <script src="/assets/data/firebase-init.js"></script>
+    <script>
+      document.addEventListener("firebase-ready", () => {
+        const onlineUsersRef = db.ref('online/loading');
+
+        const onlineDiv = document.getElementById('online');
+
+        // Tracks online users
+        const myConnectionRef = db.ref('.info/connected');
+        myConnectionRef.on('value', (snapshot) => {
+          if (snapshot.val() === true) {
+            // User connected
+            const userRef = onlineUsersRef.push();
+            userRef.set(true);
+
+            // Remove when disconnected
+            userRef.onDisconnect().remove();
+          }
+        });
+
+        // Display number of online users
+        onlineUsersRef.on('value', (snapshot) => {
+          const onlineCount = snapshot.numChildren();
+          onlineDiv.textContent = `${onlineCount} ${onlineCount === 1 ? 'person' : 'people'} in queue`;
+        });
+      });
+    </script>
+  </body>
+</html>

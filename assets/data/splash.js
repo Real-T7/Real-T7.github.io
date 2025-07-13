@@ -1,4 +1,4 @@
-fetch('/assets/data/messages.json')
+fetch('/assets/data/splash.json')
 .then(response => response.json())
 .then(data => {
   const links = data.links;
@@ -8,4 +8,4 @@ fetch('/assets/data/messages.json')
   const randomIndex = Math.floor(Math.random() * messages.length);
   document.getElementById("splash-text").innerHTML = messages[randomIndex];
 })
-.catch(error => console.error("error loading messages:", error));
+.catch(error => console.error("error loading splash text:", error));

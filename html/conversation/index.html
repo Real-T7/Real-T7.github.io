@@ -24,6 +24,12 @@
         font-variation-settings:
           "wdth" 100;
         font-size: 40px;
+        user-select: none;
+      }
+      .redacted {
+        color: #000;
+        -webkit-text-stroke: 0.1em #000;
+        paint-order: stroke fill;
       }
       .dialogue-t {
         color: #000;
@@ -54,19 +60,20 @@
     </style>
   </head>
   <body>
-    <p class="status">[ APRIL 17 202X 7:31 AM ]</p>
-    <p class="dialogue-m">...are you serious? going back there for the second time?</p>
-    <p class="dialogue-t">yeah, of course. i will there tonight.</p>
+    <p class="status">[ APRIL 17 202<span style="color: #f00">X</span> 7:31 AM ]</p>
+    <p class="dialogue-m">...are you serious? going back to the <span class="redacted">[REDACTED]</span> for the second time?</p>
+    <p class="dialogue-t">yeah, of course. i will be there tonight. we NEED to do something about this situation.</p>
     <p class="dialogue-m">that place is insanely dangerous, dont you know that?</p>
     <p class="dialogue-t">i mean, come on, what are we gonna do then? leave <span class="dialogue-j">her</span> in there forever and do nothing about it?</p>
     <p class="dialogue-m">of course not, but...</p>
+    <p class="dialogue-t">nobody else is supposed to know about this, and if you cant return, then im the only one who can.</p>
     <p class="dialogue-m">fine, be careful tho.</p>
     <p class="dialogue-t">dont worry, ive dealt with <span class="dialogue-unknown">them</span> multiple times.</p>
     <p class="dialogue-m">alright. im counting on you.</p>
 
     <div class="space"></div>
-    <p class="status"><span style="color: #f00;">ERROR</span>: FILE NOT LOADED <span style="color: #0ff;">PROPERLY</span>.</p>
-    <p class="status"><span style="color: #0f0;">RECOVERING</span> FILE... <span style="color: #f0f;">50%</span></p>
+    <p class="status"><span style="color: #f00;">ERROR</span>: FILE <span style="color: #0ff;">CORRUPTED</span>.</p>
+    <p class="status"><span style="color: #0f0;">RECOVERY</span> IN PROGRESS... <span style="color: #f0f;">57.5%</span></p>
     <progress></progress>
     <p class="status"><span style="color: #00f">CHECK</span> BACK <span style="color: #ff0;">LATER</span>.</p>
   </body>

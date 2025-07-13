@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>SpawnLocation</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+      body, html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to { 
+          transform: rotate(360deg);
+        }
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #spawn {
+        opacity: 0;
+        transition: opacity 10s ease-in-out;
+        animation: rotate 5s infinite linear;
+        height: 100vh;
+        max-width: 256px;
+        filter:
+          blur(5px)
+          invert(100%) 
+          sepia(97%) 
+          saturate(13%) 
+          hue-rotate(237deg) 
+          brightness(104%)
+          contrast(104%);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="wind" src="/assets/audio/sfx/wind.wav" autoplay loop preload="auto"></audio>
+    <div class="container">
+      <img id="spawn" src="/assets/images/spawn.svg" alt="SpawnLocation" onclick="window.location.href = `/404.html`">
+    </div>
+    <script>
+      window.onload = function () {
+        const img = document.getElementById("spawn");
+        const audio = document.getElementById("wind");
+
+        setTimeout(() => {
+          img.style.opacity = 0.25;
+        }, 100);
+
+        audio.volume = 0.75;
+      };
+    </script>
+  </body>
+</html>

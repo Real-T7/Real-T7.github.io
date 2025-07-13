@@ -10,7 +10,7 @@ fetch("/assets/data/id-map.json")
   });
 
 function redirectToKeyword() {
-  const id = document.getElementById("idInput").value.trim();
+  const id = document.getElementById("idInput").value.trim().toLowerCase();
   if (!id) return;
 
   if (idMap.length === 0) {
@@ -18,11 +18,17 @@ function redirectToKeyword() {
     return;
   }
 
-  const match = idMap.find(entry => entry.ids.includes(id));
+  const match = idMap.find(entry =>
+    entry.ids.some(entryId => entryId.toLowerCase() === id)
+  );
 
-  if (match) {
-    window.location.href = match.path;
+  if (Math.random() >= 0.01) {
+    if (match) {
+      window.location.href = match.path;
+    } else {
+      window.location.href = "/" + id;
+    }
   } else {
-    window.location.href = "/" + id;
+    window.location.href = "/loading.html";
   }
 }

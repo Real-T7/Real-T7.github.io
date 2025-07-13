@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>404 Page Not Found</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <style>
       body {
         text-align: center;
@@ -25,18 +26,111 @@
     <h2 id="page-not-found" style="display: inline; user-select: none;">Page <span id="404-not" style="cursor: pointer;">Not Found</span> <span id="404-face" style="cursor: pointer;">&colon;&lpar;</span></h2>
     <br>
 
-    <script src="/assets/data/404-clicker.js"></script>
-
     <input type="text" id="idInput" style="margin-top: 20px;" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
     <button onclick="redirectToKeyword()">Go</button>
-
     <script src="/assets/data/redirect.js"></script>
 
-    <audio id="background-music" src="/assets/audio/background.mp3" loop preload="auto"></audio>
-    <button id="music-player" title="Play Background Music">▶</button>
+    <audio id="background-music" src="/assets/audio/pagenotfound.mp3" loop preload="auto"></audio>
+    <button id="music-player" data-song-title="??? by Toby Fox" title="Play Background Music">▶</button>
     <script src="/assets/data/music-player.js"></script>
 
     <br>
     <a href="/" id="home-hyperlink">← back to homepage</a>
+
+    <script>
+      let target = 404;
+      let clicks = 0;
+
+      const clicker = document.getElementById("404");
+      const pageNotFound = document.getElementById("page-not-found");
+      const face = document.getElementById("404-face");
+      const notFound = document.getElementById("404-not");
+
+      const colors = [
+        '#26de81', '#fc5c65', '#fd9644', '#fed330',
+        '#2bcbba', '#45aaf2', '#4b7bec', '#a55eea',
+        '#ffc1f3', '#76ead7', '#ff9c71', '#32e0c4',
+        '#d291bc', '#fa744f'
+      ];
+
+      const faces = [
+        ':(', ':)', '>:)', '>:(',
+        ':D', 'D:', ':3', '3:',
+        '>:D', ';)', ';(', '>:3',
+        ';3',':-)', ':-(', '._.',
+        ';-;', 'XD', '>_>', '<_<',
+        '@_@', '3:<', '.-.', ':P',
+        'owo', 'uwu', 'T_T', '*-*',
+        ':O',':]', ':/', ':|'
+      ]
+
+      const pages = [
+        'Not Found', 'Couldn\'t Be Found', 'Gone Fishing', '[REDACTED]',
+        'Was Banned', 'Was Burned', 'Was Subspaced', 'Went To Hell',
+        'Was Shredded', 'Was Eaten', 'Stolen', 'Lost',
+      ]
+
+      let previousColor = null;
+      let previousFace = null;
+      let previousPage = null;
+
+      let href404 = "//deltarune.com/lancer/";
+
+      function clickFace() {
+        do {
+          randomFace = faces[Math.floor(Math.random() * faces.length)];
+        } while (randomFace === previousFace);
+
+        previousFace = randomFace;
+
+        face.textContent = randomFace;
+      }
+
+      function clickPNF() {
+        do {
+          randomPage = pages[Math.floor(Math.random() * pages.length)];
+        } while (randomPage === previousPage);
+
+        previousPage = randomPage;
+
+        notFound.textContent = `${randomPage}`;
+      }
+
+      function click404() {
+        if (clicks >= target) return;
+
+        clicks++;
+
+        do {
+          randomColor = colors[Math.floor(Math.random() * colors.length)];
+        } while (randomColor === previousColor);
+
+        previousColor = randomColor;
+
+        clicker.style.color = randomColor;
+
+        if (clicks === target) {
+          console.log(`Page Found! ( x${clicks} )`);
+
+          if (notFound.textContent === "Was Eaten" && face.textContent === ":3") {
+            pageNotFound.textContent = `Page Found...? ${face.textContent}`;
+            href404 = "/html/cats";
+          }
+          else pageNotFound.textContent = `Page Found ${face.textContent}`;
+
+          clicker.removeEventListener("click", click404);
+
+          setTimeout(() => {
+            window.location.href = href404;
+          }, 1000);
+        } else {
+            console.log(`Page Not Found ( x${clicks} )`);
+        }
+      }
+
+      clicker.addEventListener("click", click404);
+      face.addEventListener("click", clickFace);
+      notFound.addEventListener("click", clickPNF);
+    </script>
   </body>
 </html>

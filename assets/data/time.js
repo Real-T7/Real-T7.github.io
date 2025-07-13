@@ -1,7 +1,7 @@
 function updateTime() {
-    const clockDiv = document.getElementById("clock");
-    const now = new Date();
-    clockDiv.textContent = now.toLocaleTimeString();
+  const clockDiv = document.getElementById("clock");
+  const now = new Date();
+  clockDiv.textContent = now.toLocaleTimeString();
 }
 
 const clockDiv = document.createElement("div");
