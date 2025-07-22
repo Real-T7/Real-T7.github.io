@@ -31,11 +31,12 @@
         <button onclick="proceed()">proceed</button>
       </div>
     </div>
-
     <script>
       function proceed() {
         if (document.getElementById('opt-out').checked) {
           localStorage.setItem('hideMobileWarning', 'true');
+        } else {
+          sessionStorage.setItem('skipMobileWarning', 'true');
         }
 
         const returnUrl = sessionStorage.getItem('previousUrl') || '/';
