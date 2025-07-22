@@ -24,8 +24,9 @@ a {
   margin-top: 20px;
   font-size: 18px;
   color: #007bff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: #0056b3;
+  text-decoration: underline;
 }

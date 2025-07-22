@@ -39,7 +39,7 @@ if (!isDev) {
   });
 } else {
   console.warn("Firebase disabled in development mode.");
-  // Mock `db` so other code doesn't crash
+  // Mock `db` so other code doesnt crash
   window.db = {
     ref: () => ({
       on: () => {},

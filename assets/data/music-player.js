@@ -1,37 +1,33 @@
 const music = document.getElementById('background-music');
-const musicPlayer = document.getElementById('music-player');
-const songTitle = musicPlayer.getAttribute('data-song-title');
+const player = document.getElementById('music-player');
+const songTitle = player.dataset.songTitle;
+
+let hovering = false;
 
 music.volume = 0.5;
 
-function updateMusicTitle() {
-  const action = music.paused ? 'Play Background Music' : 'Pause Background Music';
-  musicPlayer.title = `${action}\n🎵 ${songTitle}`;
-}
+const updateUI = () => {
+  player.title = `${music.paused ? 'Play' : 'Pause'} Background Music\n🎵 ${songTitle}`;
+  player.textContent = hovering ? (music.paused ? "▶" : "⏸") : "♫";
+};
 
-musicPlayer.addEventListener('click', () => {
-  if (Math.random() < 0.01) {
-    window.location.href = "/html/piano/";
-    return;
-  }
-
-  if (music.paused) {
-    music.play();
-    musicPlayer.textContent = "⏸";
-  } else {
-    music.pause();
-    musicPlayer.textContent = "▶";
-  }
-
-  updateMusicTitle();
+player.addEventListener('mouseenter', () => {
+  hovering = true;
+  updateUI();
 });
 
-music.addEventListener('play', () => {
-  musicPlayer.textContent = "⏸";
-  updateMusicTitle();
+player.addEventListener('mouseleave', () => {
+  hovering = false;
+  updateUI();
 });
 
-music.addEventListener('pause', () => {
-  musicPlayer.textContent = "▶";
-  updateMusicTitle();
+player.addEventListener('click', () => {
+  if (Math.random() < 0.01) return location.href = "/html/piano/";
+  music.paused ? music.play() : music.pause();
+  updateUI();
 });
+
+music.addEventListener('play', updateUI);
+music.addEventListener('pause', updateUI);
+
+updateUI();

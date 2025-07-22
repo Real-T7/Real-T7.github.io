@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <title>Cats</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
     <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <style>
       body {
         background-color: pink;
       }
-      p {
-        margin-left: 10px;
-      }
       .container {
         margin-top: 40px;
-        margin-left: 10px;
+        margin-left: 20px;
         background-color: lightpink;
         color: palevioletred;
         max-width: 800px;
+        padding: 20px;
+      }
+      .container p {
+        margin-left: 20px;
       }
       #credit {
         position: fixed;
@@ -33,18 +35,24 @@
         top: 10px;
         left: 10px;
         cursor: pointer;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
     </style>
   </head>
   <body>
     <audio id="background-music" src="/assets/audio/meow.mp3" autoplay loop preload="auto"></audio>
-    <button id="music-player" data-song-title="&quot;:3&quot; by Tangermusic" title="Play Background Music">▶</button>
+    <button id="music-player" data-song-title="&quot;:3&quot; by Tangermusic" title="Play Background Music"></button>
     <script src="/assets/data/music-player.js"></script>
 
     <div class="container">
       <p>Hai~!</p>
-      <p>im still learning about HTML, this page is not completed yet</p>
-      <p>dont tell T7, hes not supposed to know about this ;3</p>
+      <p>this page is unfinished. check back later!</p>
+      <p>and dont tell T7, hes not supposed to know about this... &semi;&rpar;</p>
       <p>meow</p>
       <p>meow</p>
       <p>meow</p>
@@ -57,6 +65,6 @@
       <p>meow</p>
     </div>
 
-    <div id="credit">made by <span style="color: #fff; -webkit-text-stroke: 0.1em #ff1212; paint-order: stroke fill;">Jennifer</span> :3</div>
+    <div id="credit">made by <span style="color: #fff; -webkit-text-stroke: 0.1em #ff1212; paint-order: stroke fill;">575</span> :3</div>
   </body>
 </html>

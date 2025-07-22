@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>shop</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+        padding: 20px;
+      }
+      #music-player {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      #shopkeeper {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .shop-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+        max-width: 800px;
+        margin: auto;
+        margin-top: 300px;
+      }
+
+      .shop-item {
+        background-color: #333;
+        border: 2px solid #555;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 1.2em;
+        cursor: pointer;
+        user-select: none;
+      }
+      .shop-item:hover {
+        background-color: #555;
+      }
+      .shop-container p {
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%);
+        font-size: 50px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/assets/images/shopkeeper-smile.gif" id="shopkeeper">
+
+    <audio id="background-music" src="/assets/audio/spamton.mp3" autoplay loop preload="auto"></audio>
+    <button id="music-player" data-song-title="&quot;HEY EVERY !&quot; by Toby Fox" title="Play Background Music"></button>
+    <script src="/assets/data/music-player.js"></script>
+
+    <div class="shop-container">
+      <!--
+      <div class="shop-item">Item1</div>
+      <div class="shop-item">Item2</div>
+      <div class="shop-item">Item3</div>
+      <div class="shop-item">Item4</div>
+      <div class="shop-item">Item5</div>
+      <div class="shop-item">Item6</div>
+      <div class="shop-item">Item7</div>
+      <div class="shop-item">Item8</div>
+      <div class="shop-item">Item9</div>
+      <div class="shop-item">Item10</div>
+      <div class="shop-item">Item11</div>
+      <div class="shop-item">Item12</div>
+      <div class="shop-item">Item13</div>
+      <div class="shop-item">Item14</div>
+      <div class="shop-item">Item15</div>
+      <div class="shop-item">Item16</div>
+      <div class="shop-item">Item17</div>
+      <div class="shop-item">Item18</div>
+      <div class="shop-item">Item19</div>
+      <div class="shop-item">Item20</div>
+      <div class="shop-item">Item21</div>
+      -->
+      <p>out of stock, check back later</p>
+    </div>
+  </body>
+</html>

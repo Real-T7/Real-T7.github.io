@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Epic Button</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
     <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <style>
-      body {text-align: center;}
-      a {margin-top: 30px;}
+      body { text-align: center; }
       button {
         font-size: 20px;
         padding: 10px 20px;
@@ -22,15 +22,7 @@
         color: #555;
       }
       #home-link {
-        margin-top: 40px;
-        font-size: 16px;
-      }
-      #home-hyperlink {
-        color: #007bff;
-        text-decoration: underline;
-      }
-      #home-hyperlink:hover {
-        color: #0056b3;
+        margin-top: 30px;
       }
     </style>
   </head>
@@ -40,9 +32,7 @@
     <div id="count">loading...</div>
     <div id="online">checking...</div>
 
-    <div id="home-link">
-      <a href="../" id="home-hyperlink">← back to minigames</a>
-    </div>
+    <a href="../" id="home-link">← back to minigames</a>
 
     <script src="/assets/data/firebase-init.js"></script>
     <script>
@@ -71,7 +61,7 @@
 
             const formatted = showingFull ? data.toLocaleString() : formatNumber(data);
 
-            countDiv.innerHTML = `everyone has clicked <span id="click-number" style="color:#007bff; text-decoration:underline; cursor:pointer;">${formatted}</span> times, epic!`;
+            countDiv.innerHTML = `everyone has clicked <span id="click-number" style="color:#007bff; text-decoration:underline; cursor:pointer;">${formatted}</span> times!`;
 
             const clickNumber = document.getElementById('click-number');
 
@@ -116,7 +106,7 @@
           if (onlineCount === 1) {
             onlineDiv.textContent = `you are the only person here. bring some friends!`;
           } else {
-            onlineDiv.textContent = `there are ${onlineCount} cool people clicking the button!`;
+            onlineDiv.textContent = `there are ${onlineCount} cool online users!`;
           }
         });
       });

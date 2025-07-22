@@ -23,25 +23,10 @@
         position: fixed;
         top: 10px;
         right: 10px;
-        text-decoration: none;
-        color: #fff;
         font-size: 18px;
         margin-top: 30px;
       }
-      #credits-link {
-        top: 40px;
-      }
-      #credits-link:hover, #login-link:hover {
-        color: #007bff;
-        text-decoration: underline;
-      }
-      #version {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        color: #555;
-        font-size: 18px;
-      }
+      #credits-link { top: 40px; }
       #splash-text {
         font-size: 18px;
         color: #ff0;
@@ -50,12 +35,6 @@
         display: inline;
         margin-top: 0px;
         font-size: 18px;
-        color: #007bff;
-        text-decoration: none;
-      }
-      #splashLink:hover {
-        text-decoration: underline;
-        color: #0056b3;
       }
       #news-section {
         background-color: rgba(255, 255, 255, 0.125);
@@ -69,53 +48,35 @@
         width: 100%;
         z-index: 1000;
       }
-      #online {
+      #online, #visits, #version {
         position: fixed;
-        bottom: 10px;
-        left: 10px;
         color: #555;
         font-size: 18px;
+        bottom: 10px;
+        left: 10px;
       }
-      #screensaver-toggle {
+      #visits { bottom: 40px; }
+      #version {
+        left: unset;
+        right: 10px;
+      }
+      #screensaver-toggle, #music-player {
         position: fixed;
         top: 10px;
         left: 10px;
+        cursor: pointer;
         margin-top: 40px;
-      }
-      #visits {
-        position: fixed;
-        bottom: 40px;
-        left: 10px;
-        color: #555;
-        font-size: 18px;
       }
       #music-player {
-        position: fixed;
         top: 40px;
-        left: 10px;
-        cursor: pointer;
-        margin-top: 40px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
-      #caterpillar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        height: 10px;
-        transition: transform 0.05s;
-        cursor: pointer;
-        animation: squish 0.6s ease-in-out infinite;
-        transform-origin: center bottom;
-      }
-      @keyframes squish {
-        0%   { transform: scaleX(1) scaleY(1); }
-        25%  { transform: scaleX(1.2) scaleY(0.9); }
-        50%  { transform: scaleX(1) scaleY(1); }
-        75%  { transform: scaleX(0.8) scaleY(1.1); }
-        100% { transform: scaleX(1) scaleY(1); }
-      }
-      .space {
-        height: 10000px;
-      }
+      .space { height: 10000px; }
     </style>
   </head>
   <body>
@@ -131,13 +92,14 @@
     <button onclick="redirectToKeyword()">Go</button>
     <script src="/assets/data/redirect.js"></script>
 
+    <input type="checkbox" id="screensaver-toggle" title="Screensaver" checked>
     <script src="/assets/data/screensaver.js"></script>
 
-    <input type="checkbox" id="screensaver-toggle" title="Enable Screensaver" checked>
-
     <audio id="background-music" src="/assets/audio/greenroom.mp3" autoplay loop preload="auto"></audio>
-    <button id="music-player" data-song-title="&quot;Deltarune OST - Welcome to the Green Room&quot; by Toby Fox" title="Play Background Music">▶</button>
+    <button id="music-player" data-song-title="&quot;Deltarune OST - Welcome to the Green Room&quot; by Toby Fox" title="Play Background Music"></button>
     <script src="/assets/data/music-player.js"></script>
+
+    <script src="/assets/data/time.js"></script>
 
     <br>
     <p>
@@ -147,11 +109,11 @@
       <br>
       This website is in development and will recieve regular updates.
       <br>
-      Have a question? Contact me on Discord <a href="//discordapp.com/users/878845118369636433" draggable="false" target="_blank">@real_t7</a>
+      Have a question? Contact me on Discord: <a href="//discordapp.com/users/878845118369636433" draggable="false" target="_blank">@real_t7</a>
     </p>
-    <a href="//linktr.ee/TheReal_T7/" draggable="false" target="_blank">→ my contacts</a>
+    <a href="//linktr.ee/TheReal_T7/" draggable="false" target="_blank">→ other contacts</a>
     <br>
-    <a href="/html/games/" draggable="false">→ my minigames</a>
+    <a href="/html/games/" draggable="false">→ minigames</a>
     <br>
     <br><span style="display: inline-block; margin-top: 50px;">got nothing else better to do?</span><br>
     <a href="https://www.watching-grass-grow.com/" draggable="false" target="_blank"><img style="border: 2px solid green; margin-bottom: 50px;" draggable="false" src="https://www.watching-grass-grow.com/watching-grass-grow.gif" alt="watching grass grow" title="watching grass grow"></a>
@@ -164,9 +126,6 @@
     <div id="version">loading version...</div>
 
     <script src="/assets/data/version.js"></script>
-
-    <img src="assets/images/caterpillar.jpg" id="caterpillar" draggable="false" alt="caterpillar">
-    <script src="/assets/data/caterpillar.js"></script>
 
     <script src="assets/data/special-text.js"></script>
 
@@ -184,8 +143,8 @@
         newsRef.on("value", (snapshot) => {
           const newsText = snapshot.val();
           document.getElementById("news-section").innerHTML = newsText 
-            ? `<strong>Latest news:</strong> "${newsText}"`
-            : "No news at the moment.";
+            ? `<strong>Latest News:</strong> "${newsText}"`
+            : "no news at the moment";
         });
 
         // Tracks online users
@@ -212,9 +171,9 @@
           return (currentValue || 0) + 1;
         }, function (error, committed, snapshot) {
           if (error) {
-            console.error("Transaction failed: ", error);
+            console.error("transaction failed: ", error);
           } else if (!committed) {
-            console.warn("Transaction not committed.");
+            console.warn("transaction not committed");
           } else {
             visitDiv.textContent = `you are visitor #${snapshot.val()}`;
           }

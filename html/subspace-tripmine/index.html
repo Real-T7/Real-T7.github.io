@@ -3,15 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Subspace Tripmine</title>
-    <style>
-      body {
-        background-color: #000;
-        color: #fff;
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <img id="sstm" src="/assets/images/subspace-tripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="playAudio(); logMessage()">
+    <img id="sstm" src="/assets/images/subspace-tripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="playAudio()">
     <script>
       const audioFiles = [
         '/assets/audio/sfx/sstm/activate.mp3',
@@ -34,20 +31,6 @@
       };
     </script>
 
-    <script>
-      const messages = [
-        "subspace tripmine",
-        "subspac trimine",
-        "sub, space, trip, mine",
-        "AAEEOEEOOAOOEOEOOAEHOAOH",
-        "subspace",
-        "tripmine"
-      ];
-
-      function logMessage() {
-        let randomMessage = messages[Math.floor(Math.random() * messages.length)]
-        console.log(randomMessage)
-      }
-    </script>
+    <p>this page will be revamped soon. check back later!</p>
   </body>
 </html>

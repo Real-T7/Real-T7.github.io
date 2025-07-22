@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+      body { margin-left: 20px; }
+      a { margin-bottom: 30px; }
+      textarea {
+        width: 90%;
+        height: 400px;
+        font-size: 16px;
+        font-family: monospace;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+        background-color: #000;
+        color: #fff;
+      }
+      button {
+        margin-right: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .buttons { margin-top: 10px; }
+      #file-name {
+        font-size: 14px;
+        color: #555;
+        margin-left: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../" id="home-hyperlink">← back to minigames</a>
+    <h1>Text Editor</h1>
+    <h5>don't ask me why it's in the games category</h5>
+
+    <textarea id="editor" placeholder="type something..."></textarea>
+    
+    <div class="buttons">
+      <button onclick="saveText('txt')">💾 save as .txt</button>
+      <button onclick="saveText('md')">💾 save as .md</button>
+      <input type="file" id="fileInput" accept=".txt,.md" hidden onchange="loadText()" />
+      <button onclick="fileInput.click()">📂 load</button>
+      <span id="file-name"></span>
+    </div>
+
+    <script>
+      const editor = document.getElementById('editor');
+      const fileInput = document.getElementById('fileInput');
+      const fileNameDisplay = document.getElementById('file-name');
+      let fileName = "text.txt";
+      let isDirty = false;
+
+      editor.addEventListener('input', () => isDirty = true);
+
+      function saveText(ext) {
+        const base = fileName.replace(/\.\w+$/, '');
+        const finalName = `${base}.${ext}`;
+        const blob = new Blob([editor.value], { type: 'text/plain' });
+        const a = Object.assign(document.createElement('a'), {
+          href: URL.createObjectURL(blob),
+          download: finalName
+        });
+        a.click();
+        URL.revokeObjectURL(a.href);
+        isDirty = false;
+      }
+
+      function loadText() {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = e => {
+          editor.value = e.target.result;
+          fileName = file.name;
+          fileNameDisplay.textContent = `📄 ${fileName}`;
+          isDirty = false;
+        };
+        reader.readAsText(file);
+      }
+
+      window.addEventListener('beforeunload', e => {
+        if (isDirty) {
+          e.preventDefault();
+          e.returnValue = '';
+        }
+      });
+    </script>
+  </body>
+</html>

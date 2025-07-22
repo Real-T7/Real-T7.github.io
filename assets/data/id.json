@@ -9,11 +9,11 @@
   },
   {
     "ids": ["blank","empty","template"],
-    "path": "/data/blank.html"
+    "path": "/data/assets/blank/"
   },
   {
     "ids": ["404","error-404","error404","error","page-not-found","pagenotfound"],
-    "path": "/404.html"
+    "path": "/404/"
   },
   {
     "ids": ["games","minigames","mini-games","fun"],
@@ -34,6 +34,10 @@
   {
     "ids": ["rng","random-number-generator","randomnumbergenerator","random"],
     "path": "/html/games/rng/"
+  },
+  {
+    "ids": ["text-editor","text","edit","editor","txt"],
+    "path": "/html/games/text-editor/"
   },
   {
     "ids": ["microwave","html/microwave"],
@@ -69,7 +73,7 @@
   },
 
   {
-    "ids": ["github","git-hub","source","source-code","code","repo","repository"],
+    "ids": ["github","git-hub","git","source","source-code","code","repo","repository"],
     "path": "//github.com/Real-T7/Real-T7.github.io"
   }
 ]

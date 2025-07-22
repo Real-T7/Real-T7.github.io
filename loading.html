@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
     <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <style>
       body {
@@ -17,6 +18,12 @@
         top: 10px;
         left: 10px;
         cursor: pointer;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
       #loader {
         position: absolute;
@@ -98,7 +105,7 @@
     <div id="smile">&#74;</div>
 
     <audio id="background-music" src="/assets/audio/elevator.mp3" autoplay loop preload="auto"></audio>
-    <button id="music-player" data-song-title="&quot;Local Forecast - Elevator&quot; by Kevin MacLeod" title="Play Background Music">▶</button>
+    <button id="music-player" data-song-title="&quot;Local Forecast - Elevator&quot; by Kevin MacLeod" title="Play Background Music"></button>
     <script src="/assets/data/music-player.js"></script>
 
     <script>
