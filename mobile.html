@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mobile Detected</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <style>
+      body {
+        text-align: center;
+        padding: 80px 20px;
+        max-width: 800px;
+        user-select: none;
+      }
+      p { line-height: 1; }
+      button { margin-top: 30px; }
+      #opt-out { margin-top: 50px; }
+    </style>
+  </head>
+  <body>
+    <div class="warning">
+      <h2>⚠️ Mobile Device Detected</h2>
+      <p>some pages might not function correctly on a mobile device</p>
+      <p>its highly recommended to use a computer instead</p>
+      <div class="actions">
+        <label>
+          <input type="checkbox" id="opt-out">
+          do not show me again
+        </label>
+        <br>
+        <button onclick="proceed()">proceed</button>
+      </div>
+    </div>
+
+    <script>
+      function proceed() {
+        if (document.getElementById('opt-out').checked) {
+          localStorage.setItem('hideMobileWarning', 'true');
+        }
+
+        const returnUrl = sessionStorage.getItem('previousUrl') || '/';
+        window.location.href = returnUrl;
+      }
+    </script>
+  </body>
+</html>
