@@ -5,7 +5,6 @@
     <title>T7's Website</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
     <script src="/assets/data/mobile.js"></script>
-    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
@@ -19,14 +18,16 @@
         max-width: 800px;
         user-select: none;
       }
-      #credits-link, #login-link {
+      #login-link, #credits-link, .current-account {
         position: fixed;
         top: 10px;
         right: 10px;
         font-size: 18px;
         margin-top: 30px;
       }
-      #credits-link { top: 40px; }
+      .current-username { color: #3FCF8E }
+      #login-link { top: 40px; }
+      #credits-link { top: 70px; }
       #splash-text {
         font-size: 18px;
         color: #ff0;
@@ -119,12 +120,15 @@
     <a href="https://www.watching-grass-grow.com/" draggable="false" target="_blank"><img style="border: 2px solid green; margin-bottom: 50px;" draggable="false" src="https://www.watching-grass-grow.com/watching-grass-grow.gif" alt="watching grass grow" title="watching grass grow"></a>
     <br>
 
-    <a href="/html/credits/" id="credits-link" draggable="false">→ credits</a>
+    <div class="current-account">hi, <span class="current-username">stranger</span>!</div>
     <a href="/html/login/" id="login-link" draggable="false">→ login</a>
-    <div id="online">loading online count...</div>
+    <a href="/html/credits/" id="credits-link" draggable="false">→ credits</a>
     <div id="visits">loading visits...</div>
+    <div id="online">loading online count...</div>
     <div id="version">loading version...</div>
 
+    <script src="/assets/data/username.js"></script>
+    
     <script src="/assets/data/version.js"></script>
 
     <script src="assets/data/special-text.js"></script>

@@ -5,14 +5,15 @@
     <title>Login</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
     <script src="/assets/data/mobile.js"></script>
-    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <style>
       body { margin: 50px; }
       a { margin-top: 0px; }
-      .message {
-      margin-top: 10px;
-      font-weight: bold;
+      .submit-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
+      .message { font-weight: bold; }
       .error { color: red; }
       .success { color: green; }
       .home-link {
@@ -21,12 +22,29 @@
         left: 10px;
         font-size: 18px;
       }
+      .logout-container {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+      }
+      .logout-container {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+      }
+      .logout-message {
+        margin-top: 8px;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <h2>Login</h2>
-    <h6>this does nothing yet lol</h6>
-    <form id="loginForm">
+    <form id="login-form">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username" required><br><br>
 
@@ -38,33 +56,57 @@
 
         <a href="//deltarune.com/lancer">forgot password?</a><br><br>
 
-        <input type="submit" value="Submit">
+        <div class="submit-container">
+          <input type="submit" value="Submit">
+          <div class="message" id="message"></div>
+        </div>
     </form>
 
-    <div class="message" id="message"></div>
+    <div class="logout-container">
+      <span>already logged in?</span>
+      <button type="button" id="logout-button">log out</button>
+    </div>
+    <div class="logout-message" id="logout-message"></div>
 
     <script>
-        const bannedNames = ["T7","S-762","S-575"];
+      const bannedNames = ["T7", "S-762", "S-575"];
 
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+      const setMessage = (id, text, type) => {
+        const el = document.getElementById(id);
+        el.textContent = text;
+        el.className = `${id} ${type}`;
+      };
 
-        const username = document.getElementById('username').value.trim().toLowerCase();
+      document.getElementById('login-form').addEventListener('submit', e => {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
         const confirm = document.getElementById('confirm').value;
-        const messageDiv = document.getElementById('message');
 
-        if (bannedNames.some(banned => username.includes(banned.toLowerCase()))) {
-            messageDiv.textContent = "no u";
-            messageDiv.className = "message error";
+        const isBanned = bannedNames.some(name => username.toLowerCase().includes(name.toLowerCase()));
+
+        if (isBanned) {
+          setMessage('message', 'no u', 'error');
         } else if (password !== confirm) {
-            messageDiv.textContent = "passwords do not match";
-            messageDiv.className = "message error";
+          setMessage('message', 'passwords do not match', 'error');
         } else {
-            messageDiv.textContent = "logged in";
-            messageDiv.className = "message success";
+          localStorage.setItem('account-username', username);
+          setMessage('message', 'logged in', 'success');
         }
-        });
+      });
+
+      document.getElementById('logout-button').addEventListener('click', () => {
+        const username = localStorage.getItem('account-username');
+
+        if (username) {
+          localStorage.removeItem('account-username');
+          document.getElementById('login-form').reset();
+          setMessage('logout-message', 'logged out', 'success');
+        } else {
+          setMessage('logout-message', 'you are not logged in', 'error');
+        }
+      });
     </script>
 
     <a href="/" class="home-link">← back to homepage</a>
