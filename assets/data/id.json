@@ -9,11 +9,11 @@
   },
   {
     "ids": ["blank","empty","template"],
-    "path": "/data/assets/blank/"
+    "path": "/assets/data/blank.html"
   },
   {
     "ids": ["404","error-404","error404","error","page-not-found","pagenotfound"],
-    "path": "/404/"
+    "path": "/404.html"
   },
   {
     "ids": ["games","minigames","mini-games","fun"],
@@ -40,6 +40,10 @@
     "path": "/html/games/text-editor/"
   },
   {
+    "ids": ["reaction-time","reaction","react","react-time","reaction-time-tester"],
+    "path": "/html/games/reaction-time/"
+  },
+  {
     "ids": ["microwave","html/microwave"],
     "path": "/html/microwave/"
   },
@@ -53,7 +57,11 @@
   },
   {
     "ids": ["camel","cactus","camel-eating-a-cactus.gif"],
-    "path": "/html/camel/"
+    "path": "/assets/images/camel-eating-a-cactus.gif"
+  },
+  {
+    "ids": ["vault","safe","pass"],
+    "path": "/html/vault/"
   },
   {
     "ids": ["tree","plant","seed","spread","rochas313","rochas"],
