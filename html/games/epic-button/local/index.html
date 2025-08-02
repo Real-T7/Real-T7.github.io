@@ -1,12 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Epic Button - Local Edition</title>
-    <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
-  </head>
-  <body>
-    <p>this page is under development. check back later!</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Epic Button - Local Edition</title>
+  <link rel="stylesheet" href="/assets/data/styles.css">
+  <script src="/assets/data/mobile.js"></script>
+  <style>
+    body { text-align: center; }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+    }
+    #count {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    #online {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #555;
+    }
+    #home-link, #online-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      margin: 0;
+    }
+    #online-link { top: 40px; }
+  </style>
+</head>
+<body>
+  <h1>the epic button ™</h1>
+  <button id="epic-button">click</button>
+  <div id="count">loading...</div>
+  <div id="online">you are offline (local mode)</div>
+
+  <a href="../../" id="home-link">← back to minigames</a>
+  <a href="../" id="online-link">← back to online mode</a>
+
+  <script>
+    const countDiv = document.getElementById('count');
+    const button = document.getElementById('epic-button');
+
+    let showingFull = false;
+
+    function formatNumber(num) {
+      if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
+      if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
+      if (num >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
+      return num;
+    }
+
+    function getClickCount() {
+      return parseInt(localStorage.getItem('epicClicks') || '0', 10);
+    }
+
+    function setClickCount(count) {
+      localStorage.setItem('epicClicks', count);
+    }
+
+    function renderClickCount() {
+      const count = getClickCount();
+      const formatted = showingFull ? count.toLocaleString() : formatNumber(count);
+
+      countDiv.innerHTML = `you have clicked <span id="click-number" style="color:#007bff; text-decoration:underline; cursor:pointer;">${formatted}</span> times!`;
+
+      const clickNumber = document.getElementById('click-number');
+      clickNumber.addEventListener('click', () => {
+        showingFull = !showingFull;
+        renderClickCount();
+      });
+    }
+
+    function incrementClicks() {
+      let current = getClickCount();
+      current++;
+      setClickCount(current);
+      renderClickCount();
+    }
+
+    button.addEventListener('click', () => {
+      incrementClicks();
+      console.log('epic!');
+    });
+
+    // Initialize on load
+    renderClickCount();
+  </script>
+</body>
 </html>

@@ -33,12 +33,12 @@
     <script>
       function proceed() {
         if (document.getElementById('opt-out').checked) {
-          localStorage.setItem('hideMobileWarning', 'true');
+          localStorage.setItem('hide-mobile-warning', 'true');
         } else {
-          sessionStorage.setItem('skipMobileWarning', 'true');
+          sessionStorage.setItem('skip-mobile-warning', 'true');
         }
 
-        const returnUrl = sessionStorage.getItem('previousUrl') || '/';
+        const returnUrl = sessionStorage.getItem('previous-url') || '/';
         window.location.href = returnUrl;
       }
     </script>

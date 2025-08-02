@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>The Vault</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
+    <style>
+      body { margin-left: 20px; }
+    </style>
+  </head>
+  <body>
+    <div id="solved-content" hidden>
+      <p>so...</p>
+      <p>you cracked the code.</p>
+      <p>congrats.</p>
+      <p>unfortunately, i have bad news for you.</p>
+      <p>there's nothing here.</p>
+      <p>you wasted your time.</p>
+    </div>
+
+    <script>
+      const code = new URLSearchParams(location.search).get('code');
+
+      if (code) {
+        if (code === 'b2f7d6i3') {
+          document.getElementById('solved-content').hidden = false;
+        } else {
+          alert('incorrect.');
+        }
+      }
+    </script>
+  </body>
+</html>

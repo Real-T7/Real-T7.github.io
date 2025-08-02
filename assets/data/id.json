@@ -64,8 +64,8 @@
     "path": "/html/static/"
   },
   {
-    "ids": ["conversation","converse","talk","talking","talks","conversation.mp3"],
-    "path": "/html/conversation/"
+    "ids": ["recordings","conversation","record","archive","archived"],
+    "path": "/html/recordings/"
   },
   {
     "ids": ["spawn","respawn","revive","spawnlocation","spawnpoint","spawn-location","spawn-point"],

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Reaction Time Tester</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
+    <style>
+      #reaction-box {
+        width: 320px;
+        height: 200px;
+        background: #222;
+        margin: 50px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 10px;
+        text-align: center;
+        padding: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .green { background: #2ecc71 !important; }
+      .red { background: #e74c3c !important; }
+    </style>
+  </head>
+  <body>
+    <h1>Reaction Time Tester</h1>
+    <p>click the box and wait for it to turn green, then click as fast as you can!</p>
+    <div id="reaction-box">click to start</div>
+
+    <script>
+      const box = document.getElementById('reaction-box');
+      let startTime, timeoutId;
+      let state = 'idle';
+
+      const setBox = (classes = [], html = '') => {
+        box.className = classes.join(' ');
+        box.innerHTML = html;
+      };
+
+      const getBestTime = () => {
+        return parseInt(localStorage.getItem('best-reaction-time')) || null;
+      };
+
+      const setBestTime = (time) => {
+        localStorage.setItem('best-reaction-time', time);
+      };
+
+      const startGame = () => {
+        setBox([], 'wait for it...');
+        state = 'waiting';
+        timeoutId = setTimeout(() => {
+          setBox(['green'], 'CLICK!');
+          startTime = Date.now();
+          state = 'ready';
+        }, Math.random() * 3000 + 2000);
+      };
+
+      box.onclick = () => {
+        if (state === 'idle' || state === 'done') return startGame();
+
+        if (state === 'waiting') {
+          clearTimeout(timeoutId);
+          setBox(['red'], 'too early<br>click to retry');
+          state = 'done';
+        }
+
+        if (state === 'ready') {
+          const time = Date.now() - startTime;
+          const bestTime = getBestTime();
+
+          if (!bestTime || time < bestTime) {
+            setBestTime(time);
+            setBox([], `your time: ${time}ms<br>new best!<br>click to retry`);
+          } else {
+            setBox([], `your time: ${time}ms<br>best: ${bestTime}ms<br>click to retry`);
+          }
+
+          state = 'done';
+        }
+      };
+    </script>
+  </body>
+</html>

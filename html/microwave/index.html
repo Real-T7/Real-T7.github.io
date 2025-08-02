@@ -22,13 +22,9 @@
     <audio autoplay loop id="microwave" src="/assets/audio/microwave.mp3"></audio>
     
     <script>
-      var audio = document.getElementById("microwave");
-      audio.volume = 0.01;
-    </script>
+      document.getElementById("microwave").volume = 0.01;
 
-    <script>
       let m = ""
-
       setInterval(() => {
         m += "M"
         console.log(m);

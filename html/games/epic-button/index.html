@@ -20,9 +20,13 @@
         font-size: 20px;
         color: #555;
       }
-      #home-link {
-        margin-top: 30px;
+      #home-link, #offline-link {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        margin: 0;
       }
+      #offline-link { top: 40px; }
     </style>
   </head>
   <body>
@@ -32,6 +36,7 @@
     <div id="online">checking...</div>
 
     <a href="../" id="home-link">← back to minigames</a>
+    <a href="local/" id="offline-link">→ go to offline mode</a>
 
     <script src="/assets/data/firebase-init.js"></script>
     <script>
@@ -43,7 +48,6 @@
         const onlineDiv = document.getElementById('online');
         const button = document.getElementById('epic-button');
 
-        // Format numbers nicely (e.g., 1000 -> 1k)
         function formatNumber(num) {
           if (num >= 1e9) return (num / 1e9).toFixed(1).replace(/\.0$/, '') + 'b';
           if (num >= 1e6) return (num / 1e6).toFixed(1).replace(/\.0$/, '') + 'm';
@@ -51,7 +55,6 @@
           return num;
         }
 
-        // Fetch and display current click count
         let showingFull = false;
 
         function fetchClicks() {
@@ -67,14 +70,12 @@
             clickNumber.addEventListener('click', () => {
               showingFull = !showingFull;
 
-              // Re-render with the updated format
               const updated = showingFull ? data.toLocaleString() : formatNumber(data);
               clickNumber.textContent = updated;
             });
           });
         }
 
-        // Increment click count
         function incrementClicks() {
           clicksRef.transaction(currentClicks => {
             return (currentClicks || 0) + 1;
@@ -83,23 +84,17 @@
 
         button.addEventListener('click', incrementClicks);
 
-        // Load clicks on page load
         fetchClicks();
 
-        // Track online users
         const myConnectionRef = db.ref('.info/connected');
         myConnectionRef.on('value', (snapshot) => {
           if (snapshot.val() === true) {
-            // User connected
             const userRef = onlineUsersRef.push();
             userRef.set(true);
 
-            // Remove when disconnected
             userRef.onDisconnect().remove();
           }
         });
-
-        // Display number of online users
         onlineUsersRef.on('value', (snapshot) => {
           const onlineCount = snapshot.numChildren();
           if (onlineCount === 1) {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>conversation.mp3</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    <script src="/assets/data/mobile.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        margin-left: 24px;
+      }
+      progress {
+        font-size: 40px;
+      }
+      p {
+        font-family: "Fredoka", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-style: normal;
+        font-variation-settings:
+          "wdth" 100;
+        font-size: 40px;
+        user-select: none;
+      }
+      .redacted {
+        color: #000;
+        -webkit-text-stroke: 0.1em #000;
+        paint-order: stroke fill;
+      }
+      .dialogue-t {
+        color: #000;
+        -webkit-text-stroke: 0.1em #fff;
+        paint-order: stroke fill;
+      }
+      .dialogue-m {
+        color: #fff;
+        -webkit-text-stroke: 0.1em #1447ff;
+        paint-order: stroke fill;
+      }
+      .dialogue-j {
+        color: #fff;
+        -webkit-text-stroke: 0.1em #ff1212;
+        paint-order: stroke fill;
+      }
+      .dialogue-unknown {
+        color: #fff;
+        -webkit-text-stroke: 0.1em #000;
+        paint-order: stroke fill;
+      }
+      .status {
+        font-family: Arial, sans-serif;
+      }
+      .space {
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="status"><span style="color: #f00;">ERROR</span>: FILE <span style="color: #0ff;">CORRUPTED</span>.</p>
+    <p class="status"><span style="color: #0f0;">RECOVERY</span> IN PROGRESS... <span style="color: #f0f;">0%</span></p>
+    <progress></progress>
+    <p class="status"><span style="color: #00f">CHECK</span> BACK <span style="color: #ff0;">LATER</span>.</p>
+    <p class="status">&lowast; FILE IS NOT 100% ACCURATE</p>
+  </body>
+</html>

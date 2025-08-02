@@ -35,7 +35,7 @@ if (!isDev) {
   };
 
   loadFirebaseScripts().catch((err) => {
-    console.error("Failed to load Firebase scripts:", err);
+    console.error("failed to load Firebase scripts:", err);
   });
 } else {
   console.warn("Firebase disabled in development mode.");

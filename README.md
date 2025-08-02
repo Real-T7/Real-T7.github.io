@@ -1,4 +1,4 @@
-## WARNING: Please avoid looking at the source code of this website as it contains spoilers of the ARG.
+## WARNING: the source code of this website contains spoilers of the ARG. please avoid checking the source code unless the website explicitly tells you to.
 
 *https://real-t7.github.io/*
 
