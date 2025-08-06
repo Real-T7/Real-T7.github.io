@@ -52,15 +52,14 @@
     <p>keep going.</p>
     <p>don't give up.</p>
     <a href="qr" id="qr-code">
-      <img src="/assets/images/qr-code-transparent.png" style="cursor: pointer; opacity: 0;">
+      <img src="/assets/images/qr-code.png" style="cursor: pointer; opacity: 0;">
     </a>
 
 
     <audio loop autoplay id="static-noise" src="/assets/audio/static.mp3"></audio>
 
     <script>
-      var audio = document.getElementById("static-noise");
-      audio.volume = 0.1;
+      document.getElementById("static-noise").volume = 0.1;
     </script>
   </body>
 </html>

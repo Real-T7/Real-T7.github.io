@@ -5,9 +5,10 @@
     <title>Subspace Tripmine</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
     <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/hunt.js" defer></script>
   </head>
   <body>
-    <img id="sstm" src="/assets/images/subspace-tripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="playAudio()">
+    <img id="sstm" src="/assets/images/subspace-tripmine.png" alt="Subspace Tripmine" style="cursor: pointer;" onclick="collectItem(1,1)">
     <script>
       const audioFiles = [
         '/assets/audio/sfx/sstm/activate.mp3',
@@ -17,17 +18,16 @@
 
       let audio = new Audio();
 
-      function playAudio() {
+      document.getElementById('sstm').addEventListener('click', () => {
         if (!audio.paused) {
           audio.pause();
           audio.currentTime = 0;
         }
-
         audio.src = audioFiles[Math.floor(Math.random() * audioFiles.length)];
-        audio.volume = 0.5
+        audio.volume = 0.25;
         audio.play();
 
-      };
+      });
     </script>
 
     <p>this page will be revamped soon. check back later!</p>

@@ -142,17 +142,9 @@
     <div id="online">loading online count...</div>
     <div id="version">loading version...</div>
 
-    <script src="/assets/data/username.js"></script>
+    <script src="/assets/data/account.js"></script>
     <script src="/assets/data/version.js"></script>
-    <script>
-      function deleteAllData() {
-        if (confirm("are you sure you want to delete all data on this browser?")) {
-          localStorage.clear();
-          sessionStorage.clear();
-          location.reload();
-        }
-      }
-    </script>
+    <script src="/assets/data/delete-data.js"></script>
 
     <script src="assets/data/special-text.js"></script>
 

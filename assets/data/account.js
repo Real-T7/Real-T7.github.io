@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', function() {
   const bannedNames = ["T7", "S-762", "S-575"];
   const username = localStorage.getItem("account-username");
 
