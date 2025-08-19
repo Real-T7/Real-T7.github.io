@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <title>The Vault</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+
     <style>
       body { margin-left: 20px; }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/hunt.js" defer></script>
   </head>
   <body>
     <div id="solved-content" hidden>
-      <p>so...</p>
       <p>you cracked the code.</p>
       <p>congrats.</p>
       <p>unfortunately, i have bad news for you.</p>
       <p>there's nothing here.</p>
-      <p>you wasted your time.</p>
+      <p>...</p>
+      <p>or is there?</p>
+
+      <input type="text" id="code-input" onkeydown="if (event.key==='Enter' && document.getElementById('code-input').value.trim() === '2763') window.location.href='/'">
     </div>
 
     <script>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DVD Screensaver</title>
-    <script src="/assets/data/mobile.js"></script>
+
     <style>
       html, body {
         margin: 0;
@@ -14,7 +14,6 @@
         height: 100%;
         width: 100%;
       }
-
       #dvd-logo {
         position: absolute;
         width: 200px;
@@ -22,7 +21,6 @@
         fill: white;
         transition: filter 0.2s ease, fill 0.2s ease;
       }
-
       .edge-highlight {
         position: fixed;
         background-color: transparent;
@@ -30,28 +28,24 @@
         pointer-events: none;
         transition: background-color 0.2s ease;
       }
-
       #top-edge {
         top: 0;
         left: 0;
         width: 100%;
         height: 4px;
       }
-
       #bottom-edge {
         bottom: 0;
         left: 0;
         width: 100%;
         height: 4px;
       }
-
       #left-edge {
         top: 0;
         left: 0;
         width: 4px;
         height: 100%;
       }
-
       #right-edge {
         top: 0;
         right: 0;
@@ -59,6 +53,8 @@
         height: 100%;
       }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
     <div id="top-edge" class="edge-highlight"></div>

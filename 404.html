@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Error 404 - Page Not Found</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+    
     <style>
       body {
         text-align: center;
@@ -31,6 +31,11 @@
         right: 10px;
       }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/redirect.js" defer></script>
+    <script src="/assets/data/music-player.js" defer></script>
+    <script src="/assets/data/version.js" defer></script>
   </head>
   <body>
     <h1 id="404" style="cursor: pointer; display: inline; user-select: none;">404</h1>
@@ -39,16 +44,13 @@
     <h2 id="page-not-found" style="display: inline; user-select: none;">Page <span id="404-not" style="cursor: pointer;">Not Found</span> <span id="404-face" style="cursor: pointer;">&colon;&lpar;</span></h2>
     <br>
 
-    <input type="text" id="idInput" style="margin-top: 20px;" onkeydown="if(event.key==='Enter'){redirectToKeyword();}" placeholder="Enter ID" />
+    <input type="text" id="id-input" style="margin-top: 20px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
     <button onclick="redirectToKeyword()">Go</button>
-    <script src="/assets/data/redirect.js"></script>
 
     <audio id="background-music" src="/assets/audio/pagenotfound.mp3" loop preload="auto"></audio>
     <button id="music-player" data-song-title="??? by Toby Fox" title="Play Background Music"></button>
-    <script src="/assets/data/music-player.js"></script>
 
     <div id="version">loading version...</div>
-    <script src="/assets/data/version.js"></script>
 
     <br>
     <a href="/" id="home-hyperlink">← back to homepage</a>

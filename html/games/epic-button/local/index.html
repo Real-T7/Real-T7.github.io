@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Epic Button - Local Edition</title>
   <link rel="stylesheet" href="/assets/data/styles.css">
-  <script src="/assets/data/mobile.js"></script>
+
   <style>
     body { text-align: center; }
     button {
@@ -28,6 +28,8 @@
     }
     #online-link { top: 40px; }
   </style>
+
+  <script src="/assets/data/mobile.js"></script>
 </head>
 <body>
   <h1>the epic button ™</h1>
@@ -52,11 +54,11 @@
     }
 
     function getClickCount() {
-      return parseInt(localStorage.getItem('epicClicks') || '0', 10);
+      return parseInt(localStorage.getItem('clicks') || '0', 10);
     }
 
     function setClickCount(count) {
-      localStorage.setItem('epicClicks', count);
+      localStorage.setItem('clicks', count);
     }
 
     function renderClickCount() {

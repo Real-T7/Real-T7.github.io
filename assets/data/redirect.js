@@ -10,7 +10,7 @@ fetch("/assets/data/id.json")
   });
 
 function redirectToKeyword() {
-  const id = document.getElementById("idInput").value.trim().toLowerCase();
+  const id = document.getElementById("id-input").value.trim().toLowerCase();
   if (!id) return;
 
   if (idMap.length === 0) {

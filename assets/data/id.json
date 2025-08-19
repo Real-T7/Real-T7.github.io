@@ -9,7 +9,7 @@
   },
   {
     "ids": ["blank","empty","template"],
-    "path": "/assets/data/blank.html"
+    "path": "/assets/data/templates/blank.html"
   },
   {
     "ids": ["404","error-404","error404","error","page-not-found","pagenotfound"],
@@ -78,6 +78,10 @@
   {
     "ids": ["spawn","respawn","revive","spawnlocation","spawnpoint","spawn-location","spawn-point"],
     "path": "/html/spawn/"
+  },
+  {
+    "ids": ["time","clock","watch","analog-clock","what-time-is-it","current-time","timer"],
+    "path": "/html/time/"
   },
 
   {

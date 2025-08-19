@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+    
     <style>
       body {
         text-align: center;
@@ -92,6 +92,9 @@
         font-family: monospace;
       }
     </style>
+    
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/music-player.js" defer></script>
   </head>
   <body>
     <h1>Loading<span class="dots"></span></h1>
@@ -104,7 +107,6 @@
 
     <audio id="background-music" src="/assets/audio/elevator.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;Local Forecast - Elevator&quot; by Kevin MacLeod" title="Play Background Music"></button>
-    <script src="/assets/data/music-player.js"></script>
 
     <script>
       let time = 0;

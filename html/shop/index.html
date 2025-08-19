@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <title>shop</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+    
     <style>
-      body {
-        padding: 20px;
-      }
+      body { padding: 20px; }
       #music-player {
         position: fixed;
         top: 10px;
@@ -34,7 +32,6 @@
         margin: auto;
         margin-top: 300px;
       }
-
       .shop-item {
         background-color: #333;
         border: 2px solid #555;
@@ -47,15 +44,13 @@
         cursor: pointer;
         user-select: none;
         overflow: hidden;
-        background-image: url("/assets/images/shopkeeper-smile.gif");
+        background-image: url("/assets/images/smile.gif");
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
       }
-      .shop-item:hover {
-        background-color: #555;
-      }
+      .shop-item:hover { background-color: #555; }
       .shop-container p {
         position: fixed;
         left: 50%;
@@ -64,12 +59,14 @@
         text-align: center;
       }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
-    <img src="/assets/images/shopkeeper-smile.gif" id="shopkeeper">
+    <img src="/assets/images/smile.gif" id="shopkeeper">
 
     <audio id="background-music" src="/assets/audio/spamton.mp3" autoplay loop preload="auto"></audio>
-    <button id="music-player" data-song-title="&quot;HEY EVERY !&quot; by Toby Fox" title="Play Background Music"></button>
+    <button id="music-player" data-song-title="&quot;Deltarune OST - HEY EVERY !&quot; by Toby Fox" title="Play Background Music"></button>
     <script src="/assets/data/music-player.js"></script>
 
     <div class="shop-container">

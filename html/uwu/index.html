@@ -2,13 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Cats</title>
+    <title>≽^•⩊•^≼ ᵐᵉᵒʷ</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+    
     <style>
-      body {
-        background-color: pink;
-      }
+      body { background-color: pink; }
       .container {
         margin-top: 40px;
         margin-left: 20px;
@@ -17,9 +15,7 @@
         max-width: 800px;
         padding: 20px;
       }
-      .container p {
-        margin-left: 20px;
-      }
+      .container p { margin-left: 20px; }
       #credit {
         position: fixed;
         bottom: 10px;
@@ -42,6 +38,8 @@
         text-align: center;
       }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
     <audio id="background-music" src="/assets/audio/meow.mp3" autoplay loop preload="auto"></audio>
@@ -50,28 +48,25 @@
 
     <div class="container">
       <p>Hai~!</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
-      <p>meow</p>
     </div>
 
     <div id="credit">made by <span style="color: #fff; -webkit-text-stroke: 0.1em #ff1212; paint-order: stroke fill;">575</span> :3</div>
+
+      <script>
+        const container = document.querySelector('.container');
+        const chunkSize = 100;
+        const text = '<p>meow</p>';
+
+        function addLines() {
+          let chunk = '';
+          for (let i = 0; i < chunkSize; i++) {
+            chunk += text;
+          }
+          container.insertAdjacentHTML('beforeend', chunk);
+          requestAnimationFrame(addLines);
+        }
+
+        addLines();
+        </script>
   </body>
 </html>

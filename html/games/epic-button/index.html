@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Epic Button</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+
     <style>
       body { text-align: center; }
       button {
@@ -28,6 +28,9 @@
       }
       #offline-link { top: 40px; }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/firebase-init.js"></script>
   </head>
   <body>
     <h1>the epic button ™</h1>
@@ -38,7 +41,6 @@
     <a href="../" id="home-link">← back to minigames</a>
     <a href="local/" id="offline-link">→ go to offline mode</a>
 
-    <script src="/assets/data/firebase-init.js"></script>
     <script>
       document.addEventListener("firebase-ready", () => {
         const clicksRef = db.ref('clicks');

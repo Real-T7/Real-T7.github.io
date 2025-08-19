@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>SpawnLocation</title>
     <link rel="stylesheet" href="/assets/data/styles.css">
-    <script src="/assets/data/mobile.js"></script>
+    
     <style>
       body, html {
         height: 100%;
@@ -12,12 +12,8 @@
         overflow: hidden;
       }
       @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to { 
-          transform: rotate(360deg);
-        }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
       .container {
         display: flex;
@@ -41,6 +37,8 @@
         cursor: pointer;
       }
     </style>
+
+    <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
     <audio id="wind" src="/assets/audio/sfx/wind.wav" autoplay loop preload="auto"></audio>
@@ -50,13 +48,11 @@
     <script>
       window.onload = function () {
         const img = document.getElementById("spawn");
-        const audio = document.getElementById("wind");
 
+        document.getElementById("wind").volume = 0.75;
         setTimeout(() => {
           img.style.opacity = 0.25;
         }, 100);
-
-        audio.volume = 0.75;
       };
     </script>
   </body>

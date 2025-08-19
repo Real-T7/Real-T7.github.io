@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Time</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: monospace;
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        border: 5px solid #fff;
+        border-radius: 50%;
+        position: relative;
+      }
+      .hand {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-weight: bold;
+      }
+      .hour {font-size: 22px; color:#fff;}
+      .minute {font-size: 18px; color:#0ff;}
+      .second {font-size: 14px; color:#f00;}
+    </style>
+
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/time.js"></script>
+  </head>
+  <body>
+    <div class="clock">
+      <div id="hour" class="hand hour"></div>
+      <div id="minute" class="hand minute"></div>
+      <div id="second" class="hand second"></div>
+    </div>
+
+    <script>
+      const radius = 150, hands = {
+        hour: { el: document.getElementById("hour"), r: radius*0.55, step: 30 },
+        minute: { el: document.getElementById("minute"), r: radius*0.72, step: 6 },
+        second: { el: document.getElementById("second"), r: radius*0.80, step: 6 },
+      };
+
+      function place(el, angle, r) {
+        const w = el.offsetWidth;
+        el.style.transform = `rotate(${angle}deg) translate(${-w/2}px,-${r}px) rotate(${-angle}deg)`;
+      }
+
+      function tick(){
+        const t = new Date(), ms = t.getMilliseconds();
+        const s = t.getSeconds() + ms/1000;
+        const m = t.getMinutes() + s/60;
+        const h = (t.getHours()%12||12) + m/60;
+
+        hands.hour.el.textContent = Math.floor(h);
+        hands.minute.el.textContent = String(Math.floor(m)).padStart(2,"0");
+        hands.second.el.textContent = String(Math.floor(s)).padStart(2,"0");
+
+        place(hands.hour.el, h*hands.hour.step, hands.hour.r);
+        place(hands.minute.el, m*hands.minute.step, hands.minute.r);
+        place(hands.second.el, s*hands.second.step, hands.second.r);
+
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    </script>
+  </body>
+</html>
