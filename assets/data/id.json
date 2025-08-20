@@ -8,7 +8,7 @@
     "path": "/html/subspace-tripmine/"
   },
   {
-    "ids": ["blank","empty","template"],
+    "ids": ["blank","empty","template","nothing","nonexisty"],
     "path": "/assets/data/templates/blank.html"
   },
   {
@@ -64,7 +64,7 @@
     "path": "/html/vault/"
   },
   {
-    "ids": ["tree","plant","seed","spread","rochas313","rochas"],
+    "ids": ["tree","plant","seed"],
     "path": "/html/tree/"
   },
   {

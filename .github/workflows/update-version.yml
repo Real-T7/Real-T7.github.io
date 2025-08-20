@@ -1,0 +1,29 @@
+name: Update Version
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update version.json
+        run: |
+          COUNT=$(git rev-list --count HEAD)
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "{\"count\": $COUNT, \"date\": \"$DATE\"}" > assets/data/version.json
+
+      - name: Commit changes
+        run: |
+          git add assets/data/version.json
+          git commit -m "chore: update version.json" || echo "No changes to commit"
+          git push
