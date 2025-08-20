@@ -10,23 +10,39 @@ permissions:
 
 jobs:
   update-version:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Update version.json
+      - name: Update version.js
         run: |
           COUNT=$(git rev-list --count HEAD)
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "{\"count\": $COUNT, \"date\": \"$DATE\"}" > assets/data/version.json
+          SHA=$(git rev-parse --short=7 HEAD)
+          VERSION="v$(printf "%03d" $COUNT)_$(date -u +"%b%d" | tr '[:upper:]' '[:lower:]')"
+
+          mkdir -p assets/data
+          {
+            echo "window.appVersion = {"
+            echo "  \"count\": $COUNT,"
+            echo "  \"date\": \"$DATE\","
+            echo "  \"sha\": \"$SHA\","
+            echo "  \"version\": \"$VERSION\""
+            echo "};"
+          } > assets/data/version.js
 
       - name: Commit changes
         run: |
-          git add assets/data/version.json
-          git commit -m "chore: update version.json" || echo "No changes to commit"
-          git push
+          git add assets/data/version.js
+          git diff --cached --quiet && echo "No changes to commit" || (
+            git commit -m "chore: update version.js"
+            git push
+          )

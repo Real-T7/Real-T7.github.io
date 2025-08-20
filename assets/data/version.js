@@ -1,80 +1,49 @@
-const el = document.getElementById("version");
+async function checkVersion() {
+  const versionElement = document.getElementById("version");
+  const infoElement = document.getElementById("latest-commit-info");
 
-const isDevEnvironment = () => {
-  const isLocalhost = location.hostname === "127.0.0.1" || location.hostname === "localhost";
-  const isVSCode = navigator.userAgent.includes("vscode");
-  return isLocalhost || isVSCode;
-};
-
-const formatVersion = (count, isoDate) => {
-  const date = new Date(isoDate);
-  const month = date.toLocaleString("en-us", { month: "short" }).toLowerCase();
-  const day = date.getDate();
-  return `v${count.toString().padStart(3, "0")}_${month}${day}`;
-};
-
-const fetchLatestCommitCount = async () => {
-  const CACHE_KEY = "latest-commit-info";
-  const now = Date.now();
-
-  const cached = localStorage.getItem(CACHE_KEY);
-  if (cached) {
-    const { count, timestamp } = JSON.parse(cached);
-    if (now - timestamp < 60 * 1000) {
-      return count;
-    }
-  }
-
-  const commitsUrl = "https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1";
-  const res = await fetch(commitsUrl);
-  const link = res.headers.get("Link");
-  const lastPageMatch = link?.match(/&page=(\d+)>; rel="last"/);
-  const latestCount = lastPageMatch ? +lastPageMatch[1] : (await res.json()).length;
-
-  localStorage.setItem(CACHE_KEY, JSON.stringify({ count: latestCount, timestamp: now }));
-  return latestCount;
-};
-
-const updateVersion = async () => {
-  if (isDevEnvironment()) {
-    el.textContent = "v000 (⚙ dev)";
-    el.style.color = "#555";
-    el.title = "running in local dev environment";
+  if (!window.appVersion) {
+    versionElement.textContent = "(error: version.js missing)";
+    versionElement.style.color = "#8b0000";
+    versionElement.title = "version file (version.js) not found";
     return;
   }
 
+  const { version, sha } = window.appVersion;
+
+  versionElement.textContent = version;
+  versionElement.style.color = "#555";
+  versionElement.title = "checking for updates…";
+
   try {
-    const res = await fetch("/assets/data/version.json");
-    const { count, date } = await res.json();
-    const version = formatVersion(count, date);
+    const response = await fetch("https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1");
+    if (!response.ok) throw new Error("GitHub API request failed");
 
-    let tag = "(✓ latest)";
-    let color = "#006400";
-    let tooltip = "This is the latest deployed version.";
+    const commit = (await response.json())[0];
+    const latestSha = commit.sha.substring(0, 7);
+    const latestMsg = commit.commit.message;
+    const latestDate = new Date(commit.commit.committer.date);
+    const latestUrl = commit.html_url;
 
-    try {
-      const latestCount = await fetchLatestCommitCount();
-      if (latestCount > count) {
-        tag = "(⚠ outdated)";
-        color = "#8b0000";
-        tooltip = "this version is outdated, refresh to update";
-      }
-    } catch {
-      tag = "(⚠ check failed)";
-      color = "#8b0000";
-      tooltip = "could not check GitHub for updates (rate limit or offline)";
+    infoElement.innerHTML = `<a href="${latestUrl}" target="_blank">${latestSha}</a> — ${latestMsg}`;
+    infoElement.title = `latest commit on ${latestDate.toUTCString()}`;
+
+    // Compare SHAs
+    if (sha !== latestSha) {
+      versionElement.style.color = "#8b0000";
+      versionElement.textContent = `${version} (⚠ outdated)`;
+      versionElement.title = "your version is behind the latest commit";
+    } else {
+      versionElement.style.color = "#006400";
+      versionElement.textContent = `${version} (✓ latest)`;
+      versionElement.title = "ur on the latest version";
     }
-
-    el.textContent = `${version} ${tag}`;
-    el.style.color = color;
-    el.title = tooltip;
-  } catch (error) {
-    console.error("version fetch error:", error);
-    el.textContent = "v000 (⚠ error)";
-    el.style.color = "#8b0000";
-    el.title = "failed to load version info (json file missing or invalid)";
+  } catch (err) {
+    versionElement.textContent = `${version} (check failed)`;
+    versionElement.style.color = "#d2691e";
+    versionElement.title = `error checking updates: ${err.message}`;
   }
-};
+}
 
-updateVersion();
-setInterval(updateVersion, 60000);
+checkVersion();
+setInterval(checkVersion, 60 * 1000);
