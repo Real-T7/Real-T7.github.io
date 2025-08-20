@@ -18,8 +18,8 @@ const getCommitCount = async () => {
   return link?.match(/&page=(\d+)>; rel="last"/)?.[1] || (await res.json()).length;
 };
 
-const getCommitDate = async (count) =>
-  (await (await fetch(`https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1&page=${count}`)).json())[0]?.commit?.committer?.date;
+const getLatestCommitDate = async () =>
+  (await (await fetch("https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1&page=1")).json())[0]?.commit?.committer?.date;
 
 const updateVer = async () => {
   if (isDevEnv()) {
@@ -31,7 +31,7 @@ const updateVer = async () => {
   try {
     if (!clientCount) {
       clientCount = await getCommitCount();
-      clientDate = await getCommitDate(clientCount);
+      clientDate = await getLatestCommitDate();
     }
     const latest = await getCommitCount();
     const isLatest = latest == clientCount;
