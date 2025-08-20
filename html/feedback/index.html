@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Feedback Center</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+
+    <style>
+      body {
+        text-align: center;
+        padding: 80px 20px;
+        max-width: 800px;
+        user-select: none;
+        overflow: hidden;
+      }
+      #home-link {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        margin: 0;
+      }
+      input, textarea {
+        width: 100%;
+        max-width: 600px;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 6px;
+        border: none;
+        margin-top: 15px;
+      }
+      textarea {
+        height: 150px;
+        resize: none;
+      }
+      button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #status {
+        margin-top: 20px;
+        font-size: 16px;
+      }
+    </style>
+
+    <script src="/assets/data/mobile.js"></script>
+  </head>
+  <body>
+    <a href="../" id="home-link">← back to homepage</a>
+    <h1>The Feedback Center</h1>
+    <p>want to report a bug, suggest an idea or spam gibberish but dont have a Discord account? send a feedback!</p>
+
+    <input type="text" id="name" placeholder="enter your name (or leave blank for anonymous)">
+    <br>
+    <textarea id="feedback" placeholder="type your feedback here"></textarea>
+    <br>
+    <button onclick="sendFeedback()">send feedback</button>
+    <p id="status"></p>
+
+    <script>
+      async function sendFeedback() {
+        const nameInput = document.getElementById("name").value.trim();
+        const feedback = document.getElementById("feedback").value.trim();
+        const status = document.getElementById("status");
+
+        if (!feedback) {
+          status.textContent = "⚠️ please enter some feedback vro";
+          status.style.color = "orange";
+          return;
+        }
+
+        const sender = nameInput || "someone";
+        const message = `📩 feedback from **${sender}**:\n${feedback}`;
+
+        try {
+          const response = await fetch("https://discord.com/api/webhooks/1407697096815022120/E9C9M11XoG3lLyuCYQzxkv5vUBn7VIOZRZ97V4XG_a6xZCfAgN0qgWnIE64Q-fEZnoY_", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: message })
+          });
+
+          if (response.ok) {
+            status.textContent = "✅ feedback sent successfully";
+            status.style.color = "lightgreen";
+            document.getElementById("feedback").value = "";
+            document.getElementById("name").value = "";
+          } else {
+            status.textContent = "❌ failed to send feedback. try again later";
+            status.style.color = "red";
+          }
+        } catch (err) {
+          status.textContent = "❌ error sending feedback. check your connection";
+          status.style.color = "red";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -78,7 +78,7 @@
         bottom: 10px;
         left: 10px;
       }
-      #visits { bottom: 40px; }
+      #visits, #version { bottom: 40px; }
       #version {
         left: unset;
         right: 10px;
@@ -90,6 +90,22 @@
         cursor: pointer;
         margin-top: 40px;
       }
+      #music-player {
+        top: 40px;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      #feedback-link {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        font-size: 18px;
+        margin-top: 30px;
+      }
       .current-account {
         position: fixed;
         bottom: 70px;
@@ -99,7 +115,7 @@
       .current-username { color: #3FCF8E; }
       #ad {
         position: fixed;
-        bottom: 40px;
+        bottom: 70px;
         right: -300px;
         text-align: right;
         animation: spawn-ad 1s ease-in-out forwards;
@@ -129,18 +145,9 @@
       #close-ad:hover {
         background: #8b0000;
       }
-      #music-player {
-        top: 40px;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
       #black-hole {
         position: absolute;
-        bottom: 40px;
+        bottom: 70px;
         right: -300px;
         cursor: grab;
         width: 128px;
@@ -186,6 +193,8 @@
     <p>
       A fun ARG project created on April 28th 2025 using HTML, CSS and JavaScript.
       <br>
+      <span style="color: #dc143c">WARNING</span>: this website may contain flashing lights, loud sounds, blood and disturbing imagery. <span style="color: #dc143c">Proceed with caution.</span>
+      <br>
       <span class="special-text">Good Luck &amp; Have Fun&excl;</span>
       <br>
       This website is in development and will recieve regular updates.
@@ -205,6 +214,7 @@
     <div class="current-account">welcome, <span class="current-username">stranger</span>!</div>
     <a href="/html/login/" id="login-link" draggable="false">→ login</a>
     <a href="/html/credits/" id="credits-link" draggable="false">→ credits</a>
+    <a href="/html/feedback/" id="feedback-link" draggable="false">→ send a feedback</a>
     <div id="delete-data" onclick="deleteAllData()">→ delete data</div>
     <div id="visits">loading visits...</div>
     <div id="online">loading online count...</div>
