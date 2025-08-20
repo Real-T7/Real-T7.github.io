@@ -18,7 +18,6 @@ window.addEventListener("DOMContentLoaded", function() {
     if (div) {
       if (!hasVisited) {
         div.innerHTML = `welcome, <span class="current-username">${usernameToDisplay}</span>!`;
-        localStorage.setItem("visited", "true");
       } else {
         div.innerHTML = `welcome back, <span class="current-username">${usernameToDisplay}</span>!`;
       }

@@ -218,7 +218,7 @@
         const onlineDiv = document.getElementById("online");
         const visitDiv = document.getElementById("visits");
 
-        // Update news ticker
+        // update news ticker
         dbRef("news").on("value", snap => {
           const val = snap.val();
           newsTicker.innerHTML = val
@@ -226,7 +226,7 @@
             : "nothing here at the moment";
         });
 
-        // Track online users
+        // track online users
         const onlineUsersRef = dbRef("online/main");
         const myConnectionRef = dbRef(".info/connected");
 
@@ -238,12 +238,13 @@
           }
         });
 
-        // Display online count
+        // display online count
         onlineUsersRef.on("value", snap => {
           const count = snap.numChildren();
           onlineDiv.textContent = `${count} online user${count === 1 ? "" : "s"}`;
         });
 
+        // visit system
         const hasVisited = localStorage.getItem("visited");
 
         if (!hasVisited) {
