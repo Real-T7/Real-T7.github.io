@@ -1,6 +1,6 @@
 const el = document.getElementById("version");
 
-const isDev = () =>
+const isDevEnv = () =>
   ["127.0.0.1", "localhost"].includes(location.hostname) ||
   navigator.userAgent.includes("vscode");
 
@@ -22,7 +22,7 @@ const getCommitDate = async (count) =>
   (await (await fetch(`https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1&page=${count}`)).json())[0]?.commit?.committer?.date;
 
 const updateVer = async () => {
-  if (isDev()) {
+  if (isDevEnv()) {
     el.textContent = "v000 (⚙ dev)";
     el.style.color = "#555";
     return;
