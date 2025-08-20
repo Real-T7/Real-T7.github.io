@@ -12,13 +12,12 @@ window.addEventListener("DOMContentLoaded", function() {
   const isMainPage = (path === "/" || path.endsWith("/index.html"));
 
   if (isMainPage) {
-    const hasVisited = localStorage.getItem("visited");
+    const hasVisited = localStorage.getItem("visited") === "true";
     const div = document.querySelector(".current-account");
 
     if (div) {
       if (!hasVisited) {
         div.innerHTML = `welcome, <span class="current-username">${usernameToDisplay}</span>!`;
-        localStorage.setItem("visited", "true");
       } else {
         div.innerHTML = `welcome back, <span class="current-username">${usernameToDisplay}</span>!`;
       }
