@@ -12,15 +12,17 @@ window.addEventListener("DOMContentLoaded", function() {
   const isMainPage = (path === "/" || path.endsWith("/index.html"));
 
   if (isMainPage) {
-    const hasVisited = localStorage.getItem("visited");
     const div = document.querySelector(".current-account");
 
     if (div) {
-      if (!hasVisited) {
-        div.innerHTML = `welcome, <span class="current-username">${usernameToDisplay}</span>!`;
-      } else {
-        div.innerHTML = `welcome back, <span class="current-username">${usernameToDisplay}</span>!`;
-      }
+      document.addEventListener("visit-ready", () => {
+        const hasVisited = localStorage.getItem("visited");
+        if (!hasVisited) {
+          div.innerHTML = `welcome, <span class="current-username">${usernameToDisplay}</span>!`;
+        } else {
+          div.innerHTML = `welcome back, <span class="current-username">${usernameToDisplay}</span>!`;
+        }
+      });
     }
   } else {
     const usernameElements = document.querySelectorAll(".current-username");

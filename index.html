@@ -254,6 +254,7 @@
               if (committed && snap.exists()) {
                 visitDiv.textContent = `you are visitor #${snap.val()}`;
                 localStorage.setItem("visited", "true");
+                document.dispatchEvent(new Event("visit-ready"));
               }
             }
           );
@@ -264,6 +265,7 @@
             } else {
               visitDiv.textContent = "no visitors yet";
             }
+            document.dispatchEvent(new Event("visit-ready"));
           });
         }
       });
