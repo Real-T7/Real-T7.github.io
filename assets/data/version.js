@@ -1,49 +1,57 @@
-async function checkVersion() {
-  const versionElement = document.getElementById("version");
-  const infoElement = document.getElementById("latest-commit-info");
+const el = document.getElementById("version");
 
-  if (!window.appVersion) {
-    versionElement.textContent = "(error: version.js missing)";
-    versionElement.style.color = "#8b0000";
-    versionElement.title = "version file (version.js) not found";
+const isDevEnvironment = () => {
+  const isLocalhost = location.hostname === "127.0.0.1" || location.hostname === "localhost";
+  const isVSCode = navigator.userAgent.includes("vscode");
+  return isLocalhost || isVSCode;
+};
+
+let cachedCommitCount = null;
+let cachedCommitDate = null;
+
+const formatVersion = (count, isoDate) => {
+  const date = new Date(isoDate);
+  const month = date.toLocaleString("en-us", { month: "short" }).toLowerCase();
+  const day = date.getDate();
+  return `v${count.toString().padStart(3, "0")}_${month}${day}`;
+};
+
+const fetchLatestCommitInfo = async () => {
+  const commitsUrl = "https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1";
+  const res = await fetch(commitsUrl);
+  const link = res.headers.get("Link");
+  const lastPageMatch = link?.match(/&page=(\d+)>; rel="last"/);
+  const totalCommits = lastPageMatch ? +lastPageMatch[1] : (await res.json()).length;
+
+  const commitRes = await fetch(`${commitsUrl}&page=${totalCommits}`);
+  const commit = (await commitRes.json())[0];
+  const date = commit?.commit?.committer?.date;
+
+  return { totalCommits, date };
+};
+
+const updateVersion = async () => {
+  if (isDevEnvironment()) {
+    el.textContent = "v000 (dev)";
     return;
   }
 
-  const { version, sha } = window.appVersion;
-
-  versionElement.textContent = version;
-  versionElement.style.color = "#555";
-  versionElement.title = "checking for updates…";
-
   try {
-    const response = await fetch("https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1");
-    if (!response.ok) throw new Error("GitHub API request failed");
+    const { totalCommits, date } = await fetchLatestCommitInfo();
 
-    const commit = (await response.json())[0];
-    const latestSha = commit.sha.substring(0, 7);
-    const latestMsg = commit.commit.message;
-    const latestDate = new Date(commit.commit.committer.date);
-    const latestUrl = commit.html_url;
-
-    infoElement.innerHTML = `<a href="${latestUrl}" target="_blank">${latestSha}</a> — ${latestMsg}`;
-    infoElement.title = `latest commit on ${latestDate.toUTCString()}`;
-
-    // Compare SHAs
-    if (sha !== latestSha) {
-      versionElement.style.color = "#8b0000";
-      versionElement.textContent = `${version} (⚠ outdated)`;
-      versionElement.title = "your version is behind the latest commit";
-    } else {
-      versionElement.style.color = "#006400";
-      versionElement.textContent = `${version} (✓ latest)`;
-      versionElement.title = "ur on the latest version";
+    if (cachedCommitCount === null) {
+      cachedCommitCount = totalCommits;
+      cachedCommitDate = date;
     }
-  } catch (err) {
-    versionElement.textContent = `${version} (check failed)`;
-    versionElement.style.color = "#d2691e";
-    versionElement.title = `error checking updates: ${err.message}`;
-  }
-}
 
-checkVersion();
-setInterval(checkVersion, 60 * 1000);
+    const version = formatVersion(cachedCommitCount, cachedCommitDate);
+    const tag = totalCommits === cachedCommitCount ? "(latest)" : "(outdated)";
+    el.textContent = `${version} ${tag}`;
+  } catch (error) {
+    console.error("Version fetch error:", error);
+    el.textContent = "v000 (error)";
+  }
+};
+
+updateVersion();
+setInterval(updateVersion, 60000);
