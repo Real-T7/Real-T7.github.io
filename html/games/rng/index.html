@@ -1,87 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Random Number Generator</title>
-  <link rel="stylesheet" href="/assets/data/styles.css">
-  
-  <style>
-    input, button {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 5px;
-      font-size: 1em;
-    }
-  </style>
+  <head>
+    <meta charset="UTF-8">
+    <title>Random Number Generator</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+    
+    <style>
+      body { 
+        margin-left: 20px;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+      }
+      .input-group label {
+        width: 50px;
+      }
+      .input-group input {
+        flex: 1;
+        padding: 5px;
+        font-size: 1em;
+      }
+      button {
+        margin-top: 10px;
+        padding: 6px 12px;
+        font-size: 1em;
+        cursor: pointer;
+      }
+      h3 {
+        margin-top: 15px;
+      }
+    </style>
 
-  <script src="/assets/data/mobile.js"></script>
-</head>
-<body>
-  <a href="../">← back to minigames</a>
+    <script src="/assets/data/mobile.js"></script>
+  </head>
+  <body>
+    <a href="../">← back to minigames</a>
 
-  <br>
+    <br>
 
-  <h2>Random Number Generator</h2>
+    <h2>Random Number Generator</h2>
 
-  <label for="min">min:</label>
-  <input type="text" id="min" placeholder="0"><br>
+    <div class="input-group">
+      <label for="min">min:</label>
+      <input type="text" id="min" placeholder="0">
+    </div>
 
-  <label for="max">max:</label>
-  <input type="text" id="max" placeholder="0"><br>
+    <div class="input-group">
+      <label for="max">max:</label>
+      <input type="text" id="max" placeholder="0">
+    </div>
 
-  <button onclick="generateRandomNumber()">generate</button>
+    <button onclick="generateRandomNumber()">generate</button>
 
-  <h3 id="result"></h3>
+    <h3 id="result"></h3>
 
-  <script>
-    function forceInt(inputElement) {
-      inputElement.addEventListener('input', () => {
-        let value = inputElement.value;
-        value = value.replace(/[^\d-]/g, '');
-        value = value.replace(/(?!^)-/g, '');
-        inputElement.value = value;
-      });
-    }
-
-    forceInt(document.getElementById('min'));
-    forceInt(document.getElementById('max'));
-
-    function generateRandomNumber() {
-      const minVal = document.getElementById('min').value.trim();
-      const maxVal = document.getElementById('max').value.trim();
-      const resultEl = document.getElementById('result');
-
-      if (minVal === '' && maxVal === '') {
-        resultEl.textContent = "min and max values are missing";
-        return;
+    <script>
+      function forceInt(input) {
+        input.addEventListener('input', () => {
+          input.value = input.value
+            .replace(/[^\d-]/g, '')
+            .replace(/(?!^)-/g, '');
+        });
       }
 
-      if (minVal === '') {
-        resultEl.textContent = "a minimum value is missing";
-        return;
+      ["min", "max"].forEach(id => forceInt(document.getElementById(id)));
+
+      function generateRandomNumber() {
+        const minInput = document.getElementById('min').value.trim();
+        const maxInput = document.getElementById('max').value.trim();
+        const resultEl = document.getElementById('result');
+
+        if (!minInput && !maxInput) return resultEl.textContent = "min and max values are missing";
+        if (!minInput) return resultEl.textContent = "a minimum value is missing";
+        if (!maxInput) return resultEl.textContent = "a maximum value is missing";
+
+        let min = parseInt(minInput, 10);
+        let max = parseInt(maxInput, 10);
+
+        if (isNaN(min) || isNaN(max)) {
+          return resultEl.textContent = "invalid value(s). only integers are allowed";
+        }
+
+        if (min > max) [min, max] = [max, min];
+
+        const random = Math.floor(Math.random() * (max - min + 1)) + min;
+        resultEl.textContent = `random number: ${random}`;
       }
-
-      if (maxVal === '') {
-        resultEl.textContent = "a maximum value is missing";
-        return;
-      }
-
-      const min = parseInt(minVal, 10);
-      const max = parseInt(maxVal, 10);
-
-      if (isNaN(min) || isNaN(max)) {
-        resultEl.textContent = "invalid value(s). only integers are allowed";
-        return;
-      }
-
-      if (min > max) {
-        resultEl.textContent = "min < max is nearly impossible. try swapping the values";
-        return;
-      }
-
-      const random = Math.floor(Math.random() * (max - min + 1)) + min;
-      resultEl.textContent = `random number: ${random}`;
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
