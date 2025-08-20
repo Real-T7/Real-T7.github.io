@@ -1,57 +1,48 @@
 const el = document.getElementById("version");
 
-const isDevEnvironment = () => {
-  const isLocalhost = location.hostname === "127.0.0.1" || location.hostname === "localhost";
-  const isVSCode = navigator.userAgent.includes("vscode");
-  return isLocalhost || isVSCode;
+const isDev = () =>
+  ["127.0.0.1", "localhost"].includes(location.hostname) ||
+  navigator.userAgent.includes("vscode");
+
+let clientCount, clientDate;
+
+const formatVer = (count, isoDate) => {
+  const d = new Date(isoDate);
+  return `v${String(count).padStart(3, "0")}_${d.toLocaleString("en-us", { month: "short" }).toLowerCase()}${d.getDate()}`;
 };
 
-let cachedCommitCount = null;
-let cachedCommitDate = null;
-
-const formatVersion = (count, isoDate) => {
-  const date = new Date(isoDate);
-  const month = date.toLocaleString("en-us", { month: "short" }).toLowerCase();
-  const day = date.getDate();
-  return `v${count.toString().padStart(3, "0")}_${month}${day}`;
-};
-
-const fetchLatestCommitInfo = async () => {
-  const commitsUrl = "https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1";
-  const res = await fetch(commitsUrl);
+const getCommitCount = async () => {
+  const url = "https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1";
+  const res = await fetch(url);
   const link = res.headers.get("Link");
-  const lastPageMatch = link?.match(/&page=(\d+)>; rel="last"/);
-  const totalCommits = lastPageMatch ? +lastPageMatch[1] : (await res.json()).length;
-
-  const commitRes = await fetch(`${commitsUrl}&page=${totalCommits}`);
-  const commit = (await commitRes.json())[0];
-  const date = commit?.commit?.committer?.date;
-
-  return { totalCommits, date };
+  return link?.match(/&page=(\d+)>; rel="last"/)?.[1] || (await res.json()).length;
 };
 
-const updateVersion = async () => {
-  if (isDevEnvironment()) {
-    el.textContent = "v000 (dev)";
+const getCommitDate = async (count) =>
+  (await (await fetch(`https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1&page=${count}`)).json())[0]?.commit?.committer?.date;
+
+const updateVer = async () => {
+  if (isDev()) {
+    el.textContent = "v000 (⚙ dev)";
+    el.style.color = "#555";
     return;
   }
 
   try {
-    const { totalCommits, date } = await fetchLatestCommitInfo();
-
-    if (cachedCommitCount === null) {
-      cachedCommitCount = totalCommits;
-      cachedCommitDate = date;
+    if (!clientCount) {
+      clientCount = await getCommitCount();
+      clientDate = await getCommitDate(clientCount);
     }
+    const latest = await getCommitCount();
+    const isLatest = latest == clientCount;
 
-    const version = formatVersion(cachedCommitCount, cachedCommitDate);
-    const tag = totalCommits === cachedCommitCount ? "(latest)" : "(outdated)";
-    el.textContent = `${version} ${tag}`;
-  } catch (error) {
-    console.error("Version fetch error:", error);
-    el.textContent = "v000 (error)";
+    el.textContent = `${formatVer(clientCount, clientDate)} ${isLatest ? "(✓ latest)" : "(⚠ outdated)"}`;
+    el.style.color = isLatest ? "#006400" : "#8b0000";
+  } catch {
+    el.textContent = "v000 (⚠ error)";
+    el.style.color = "#8b0000";
   }
 };
 
-updateVersion();
-setInterval(updateVersion, 60000);
+updateVer();
+setInterval(updateVer, 60000);
