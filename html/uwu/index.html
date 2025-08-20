@@ -26,7 +26,7 @@
         font-size: 18px;
       }
       #music-player {
-        position: fixed;
+        position: absolute;
         top: 10px;
         left: 10px;
         cursor: pointer;
@@ -40,11 +40,11 @@
     </style>
 
     <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/music-player.js" defer></script>
   </head>
   <body>
     <audio id="background-music" src="/assets/audio/meow.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;:3&quot; by Tangermusic" title="Play Background Music"></button>
-    <script src="/assets/data/music-player.js"></script>
 
     <div class="container">
       <p>Hai~!</p>
@@ -52,21 +52,16 @@
 
     <div id="credit">made by <span style="color: #fff; -webkit-text-stroke: 0.1em #ff1212; paint-order: stroke fill;">575</span> :3</div>
 
-      <script>
-        const container = document.querySelector('.container');
-        const chunkSize = 100;
-        const text = '<p>meow</p>';
+    <script>
+      const container = document.querySelector('.container');
+      const chunkSize = 100;
+      const text = '<p>meow</p>';
 
-        function addLines() {
-          let chunk = '';
-          for (let i = 0; i < chunkSize; i++) {
-            chunk += text;
-          }
-          container.insertAdjacentHTML('beforeend', chunk);
-          requestAnimationFrame(addLines);
-        }
-
-        addLines();
-        </script>
+      let chunk = '';
+      for (let i = 0; i < chunkSize; i ++)
+        chunk += text;
+      container.insertAdjacentHTML('beforeend', chunk);
+      requestAnimationFrame(addLines);
+    </script>
   </body>
 </html>

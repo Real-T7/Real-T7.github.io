@@ -16,6 +16,7 @@
         padding: 80px 20px;
         max-width: 800px;
         user-select: none;
+        overflow: hidden;
       }
       #login-link, #credits-link, #delete-data {
         position: fixed;
@@ -201,7 +202,7 @@
       <a href="https://www.watching-grass-grow.com/" draggable="false" target="_blank"><img style="border: 2px solid green; width: 150px;" draggable="false" src="https://www.watching-grass-grow.com/watching-grass-grow.gif" alt="watching grass grow" title="watching grass grow"></a>
     </div>
 
-    <div class="current-account">hi, <span class="current-username">stranger</span>!</div>
+    <div class="current-account">welcome, <span class="current-username">stranger</span>!</div>
     <a href="/html/login/" id="login-link" draggable="false">→ login</a>
     <a href="/html/credits/" id="credits-link" draggable="false">→ credits</a>
     <div id="delete-data" onclick="deleteAllData()">→ delete data</div>
@@ -243,15 +244,27 @@
           onlineDiv.textContent = `${count} online user${count === 1 ? "" : "s"}`;
         });
 
-        // Increment and show visit count
-        dbRef("visits").transaction(
-          curr => (curr || 0) + 1,
-          (error, committed, snap) => {
-            if (committed && snap.exists()) {
-              visitDiv.textContent = `you are visitor #${snap.val()}`;
+        const hasVisited = localStorage.getItem("visited");
+
+        if (!hasVisited) {
+          dbRef("visits").transaction(
+            curr => (curr || 0) + 1,
+            (error, committed, snap) => {
+              if (committed && snap.exists()) {
+                visitDiv.textContent = `you are visitor #${snap.val()}`;
+                localStorage.setItem("visited", "true");
+              }
             }
-          }
-        );
+          );
+        } else {
+          dbRef("visits").once("value").then(snap => {
+            if (snap.exists()) {
+              visitDiv.textContent = `${snap.val()} visitor${snap.val() === 1 ? "" : "s"}`;
+            } else {
+              visitDiv.textContent = "no visitors yet";
+            }
+          });
+        }
       });
     </script>
 
