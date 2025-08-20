@@ -32,24 +32,29 @@ const fetchLatestCommitInfo = async () => {
 
 const updateVersion = async () => {
   if (isDevEnvironment()) {
-    el.textContent = "v000 (dev)";
+    el.textContent = "v000 (� dev)";
+    el.style.color = "#555";
     return;
   }
 
   try {
     const { totalCommits, date } = await fetchLatestCommitInfo();
 
-    if (cachedCommitCount === null) {
+    if (cachedCommitCount === null && cachedCommitDate === null) {
       cachedCommitCount = totalCommits;
       cachedCommitDate = date;
     }
 
     const version = formatVersion(cachedCommitCount, cachedCommitDate);
-    const tag = totalCommits === cachedCommitCount ? "(latest)" : "(outdated)";
+    const isLatest = totalCommits === cachedCommitCount;
+    const tag = isLatest ? "(✓ latest)" : "(⚠ outdated)";
+
     el.textContent = `${version} ${tag}`;
+    el.style.color = isLatest ? "#006400" : "#8b0000";
   } catch (error) {
-    console.error("Version fetch error:", error);
-    el.textContent = "v000 (error)";
+    console.error("version fetch error:", error);
+    el.textContent = "v000 (⚠ error)";
+    el.style.color = "#8b0000";
   }
 };
 
