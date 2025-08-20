@@ -57,11 +57,21 @@
       const chunkSize = 100;
       const text = '<p>meow</p>';
 
-      let chunk = '';
-      for (let i = 0; i < chunkSize; i ++)
-        chunk += text;
-      container.insertAdjacentHTML('beforeend', chunk);
-      requestAnimationFrame(addLines);
+      function addChunk() {
+        let chunk = '';
+        for (let i = 0; i < chunkSize; i++) {
+          chunk += text;
+        }
+        container.insertAdjacentHTML('beforeend', chunk);
+      }
+
+      addChunk();
+
+      window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+          addChunk();
+        }
+      });
     </script>
   </body>
 </html>

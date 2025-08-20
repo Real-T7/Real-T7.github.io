@@ -24,6 +24,7 @@ const getLatestCommitDate = async () =>
 const updateVer = async () => {
   if (isDevEnv()) {
     el.textContent = "v000 (⚙ dev)";
+    el.title = "currently in dev environment\nsome features have been disabled";
     el.style.color = "#555";
     return;
   }
@@ -37,9 +38,13 @@ const updateVer = async () => {
     const isLatest = latest == clientCount;
 
     el.textContent = `${formatVer(clientCount, clientDate)} ${isLatest ? "(✓ latest)" : "(⚠ outdated)"}`;
+    el.title = isLatest
+      ? "currently on the latest version\ndont refresh the page too much, you might be rate limited"
+      : "please refresh the page to update\nif you cant update, clear the browser cache first";
     el.style.color = isLatest ? "#006400" : "#8b0000";
   } catch {
     el.textContent = "v000 (⚠ error)";
+    el.title = "something went wrong and this stopped working\nopen the console. an error 403 means you are being rate limited";
     el.style.color = "#8b0000";
   }
 };

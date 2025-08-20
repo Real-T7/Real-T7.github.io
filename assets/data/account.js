@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", function() {
-  const bannedNames = ["T7", "S-762", "S-575"];
+  const bannedNames = ["T7", "762", "575"];
   const username = localStorage.getItem("account-username");
 
   if (bannedNames.includes(username)) {
