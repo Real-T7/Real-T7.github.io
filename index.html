@@ -13,21 +13,32 @@
     <style>
       body {
         text-align: center;
-        padding: 80px 20px;
+        padding: 100px 20px;
         max-width: 800px;
         user-select: none;
         overflow: hidden;
       }
-      #login-link, #credits-link, #delete-data {
+      a { margin-top: 0px; }
+      #login-link, #feedback-link, .current-account {
         position: fixed;
         top: 10px;
         right: 10px;
         font-size: 18px;
         margin-top: 30px;
       }
-      #credits-link { top: 40px; }
+      #login-link { top: 40px; }
+      #feedback-link { top: 70px; }
+      .current-username { color: #3FCF8E; }
+      #credits-link, #support-link, #delete-data {
+        position: fixed;
+        bottom: 70px;
+        left: 10px;
+        font-size: 18px;
+        margin-top: 30px;
+      }
+      #support-link { bottom: 40px; }
       #delete-data {
-        top: 70px;
+        bottom: 10px;
         color: #dc143c;
         cursor: pointer;
       }
@@ -76,13 +87,10 @@
         color: #555;
         font-size: 18px;
         bottom: 10px;
-        left: 10px;
-      }
-      #visits, #version { bottom: 40px; }
-      #version {
-        left: unset;
         right: 10px;
       }
+      #online { bottom: 40px; }
+      #visits { bottom: 70px; }
       #screensaver-toggle, #music-player {
         position: fixed;
         top: 10px;
@@ -99,36 +107,22 @@
         justify-content: center;
         text-align: center;
       }
-      #feedback-link {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        font-size: 18px;
-        margin-top: 30px;
-      }
-      .current-account {
-        position: fixed;
-        bottom: 70px;
-        left: 10px;
-        font-size: 18px;
-      }
-      .current-username { color: #3FCF8E; }
       #ad {
         position: fixed;
-        bottom: 70px;
-        right: -300px;
-        text-align: right;
+        bottom: -300px;
+        left: 50%;
+        transform: translate(-50%);
         animation: spawn-ad 1s ease-in-out forwards;
         animation-delay: 1s;
         z-index: 1;
       }
       @keyframes spawn-ad {
-        from { right: -300px; }
-        to { right: 0; }
+        from { bottom: -300px; }
+        to { bottom: 0; }
       }
       @keyframes despawn-ad {
-        from { right: 0; }
-        to { right: -300px; }
+        from { bottom: 0; }
+        to { bottom: -300px; }
       }
       #close-ad {
         background: #dc143c;
@@ -147,8 +141,9 @@
       }
       #black-hole {
         position: absolute;
-        bottom: 70px;
-        right: -300px;
+        bottom: -300px;
+        left: 50%;
+        transform: translate(-50%);
         cursor: grab;
         width: 128px;
         animation: spawn-ad 1s ease-in-out forwards;
@@ -194,31 +189,30 @@
     <p>
       A fun ARG project created on April 28th 2025 using HTML, CSS and JavaScript.
       <br>
-      <span style="color: #dc143c">WARNING</span>: this website may contain flashing lights, loud sounds, blood and disturbing imagery. <span style="color: #dc143c">Proceed with caution.</span>
+      <span style="color: #dc143c">WARNING</span>: this website may contain flashing lights, loud sounds, blood and disturbing imagery.
       <br>
       <span class="special-text">Good Luck &amp; Have Fun&excl;</span>
       <br>
-      This website is in development and will recieve regular updates.
+      <br>
+      This website is in development and will frequently recieve updates.
       <br>
       Have a question? Contact me on Discord: <a href="//discordapp.com/users/878845118369636433/" draggable="false" target="_blank">@real_t7</a>
     </p>
-    <a href="//linktr.ee/TheReal_T7/" draggable="false" target="_blank">→ other contacts</a>
-    <br>
-    <a href="/html/games/" draggable="false">→ minigames</a>
     <br>
 
     <div id="ad">
       <button id="close-ad" onclick="document.getElementById('ad').style.animation = 'despawn-ad 1s ease-in-out forwards';">✕</button>
-      <a href="https://www.watching-grass-grow.com/" draggable="false" target="_blank"><img style="border: 2px solid green; width: 150px;" draggable="false" src="https://www.watching-grass-grow.com/watching-grass-grow.gif" alt="watching grass grow" title="watching grass grow"></a>
+      <a href="https://www.watching-grass-grow.com/" draggable="false" target="_blank"><img style="border: 2px solid green; width: 150px; margin-top: 20px;" draggable="false" src="https://www.watching-grass-grow.com/watching-grass-grow.gif" alt="watching grass grow" title="watching grass grow"></a>
     </div>
 
     <div class="current-account">welcome, <span class="current-username">stranger</span>!</div>
     <a href="/html/login/" id="login-link" draggable="false">→ login</a>
     <a href="/html/credits/" id="credits-link" draggable="false">→ credits</a>
     <a href="/html/feedback/" id="feedback-link" draggable="false">→ send a feedback</a>
-    <div id="delete-data" onclick="deleteAllData()">→ delete data</div>
-    <div id="visits">loading visits...</div>
-    <div id="online">loading online count...</div>
+    <a href="//www.roblox.com/games/10700225610#!/store" id="support-link" draggable="false" target="_blank">→ support me &lpar;robux&rpar;</a>
+    <div id="delete-data" onclick="deleteAllData()">→ delete local data</div>
+    <div id="visits">loading visits...<div>
+    <div id="online">loading online users...</div>
     <div id="version">loading version...</div>
 
     <script>
