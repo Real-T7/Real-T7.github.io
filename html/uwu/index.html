@@ -16,7 +16,7 @@
         padding: 20px;
       }
       .container p { margin-left: 20px; }
-      #credit {
+      #j {
         position: fixed;
         bottom: 10px;
         right: 10px;
@@ -24,6 +24,14 @@
         background-color: lightpink;
         color: palevioletred;
         font-size: 18px;
+      }
+      #cat {
+        position: absolute;
+        width: 64px;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+        cursor: pointer;
       }
       #music-player {
         position: absolute;
@@ -46,14 +54,17 @@
     <audio id="background-music" src="/assets/audio/meow.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;:3&quot; by Tangermusic" title="Play Background Music"></button>
 
+    <img id="cat" src="/assets/images/objects/mewo.gif" hidden draggable="false">
+    <audio id="meow" src="/assets/audio/sfx/meow.wav"></audio>
     <div class="container">
       <p>hii!~</p>
     </div>
 
-    <div id="credit">made by <span style="color: #fff; -webkit-text-stroke: 0.1em #ff1212; paint-order: stroke fill;">575</span> :3</div>
+    <div id="j">made by <span style="color: #fff; -webkit-text-stroke: 0.1em #ff1212; paint-order: stroke fill;">575</span> •⩊•</div>
 
     <script>
       const container = document.querySelector('.container');
+      const cat = document.getElementById('cat');
       const chunkSize = 100;
       const text = '<p>meow</p>';
 
@@ -71,6 +82,14 @@
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
           addChunk();
         }
+
+        if (window.scrollY > 5000) {
+          cat.hidden = false;
+        }
+      });
+
+      cat.addEventListener('click', () => {
+        document.getElementById('meow').play();
       });
     </script>
   </body>
