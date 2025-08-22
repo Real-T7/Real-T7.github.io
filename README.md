@@ -1,11 +1,16 @@
-## NOTE:
-the source code of this website contains spoilers of the ARG. please avoid checking the source code unless the website explicitly tells you to.
+## Introduction
+T7's Website was created on April 28th 2025 using HTML, CSS and JavaScript for educational purposes. now its a fun ARG project you can try to solve :D
 
 *https://real-t7.github.io/*
 
-Have a question? Contact me:
-- Discord: [@real_t7](https://discordapp.com/users/878845118369636433)
-- Other Contacts: https://linktr.ee/TheReal_T7/
+## Important
+1. this website may contain flashing lights, loud sounds, blood and disturbing imagery.
+2. the source code of this website may contain spoilers of the ARG. please avoid checking the source code unless the website explicitly tells you to.
+
+## Contacts
+if you want to ask a question, im more likely to respond if you DM me on Discord: [@real_t7](https://discordapp.com/users/878845118369636433)
+
+for other social media accounts, visit my [Linktree](https://linktr.ee/TheReal_T7/).
 
 ## Licensing:
 - Code: [MIT License](./LICENSE)
