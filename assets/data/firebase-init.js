@@ -12,9 +12,9 @@ if (!isDev) {
       });
     };
 
-    // Load Firebase SDKs
-    await loadScript('https://www.gstatic.com/firebasejs/11.9.0/firebase-app-compat.js');
-    await loadScript('https://www.gstatic.com/firebasejs/11.9.0/firebase-database-compat.js');
+    // load Firebase SDKs
+    await loadScript('https://www.gstatic.com/firebasejs/latest/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/latest/firebase-database-compat.js');
 
     // Firebase config
     const firebaseConfig = {
@@ -30,7 +30,7 @@ if (!isDev) {
     firebase.initializeApp(firebaseConfig);
     window.db = firebase.database();
 
-    // Signal that Firebase is ready
+    // signal that Firebase is ready
     document.dispatchEvent(new Event("firebase-ready"));
   };
 
@@ -39,7 +39,7 @@ if (!isDev) {
   });
 } else {
   console.warn("Firebase disabled in development mode.");
-  // Mock `db` so other code doesnt crash
+  // mock `db` so other code doesnt crash
   window.db = {
     ref: () => ({
       on: () => {},
@@ -53,6 +53,6 @@ if (!isDev) {
     }),
   };
 
-  // Still fire the event so code continues
+  // still fire the event so code continues
   document.dispatchEvent(new Event("firebase-ready"));
 }

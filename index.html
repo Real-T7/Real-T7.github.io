@@ -211,7 +211,7 @@
     <a href="/html/feedback/" id="feedback-link" draggable="false">→ send a feedback</a>
     <a href="//www.roblox.com/games/10700225610#!/store" id="support-link" draggable="false" target="_blank">→ support me &lpar;robux&rpar;</a>
     <div id="delete-data" onclick="deleteAllData()">→ delete local data</div>
-    <div id="visits">loading visits...<div>
+    <div id="visits">loading visits...</div>
     <div id="online">loading online users...</div>
     <div id="version">loading version...</div>
 
@@ -243,7 +243,7 @@
           }
         });
 
-        // display online count
+        // display online users
         onlineUsersRef.on("value", snap => {
           const count = snap.numChildren();
           onlineDiv.textContent = `${count} online user${count === 1 ? "" : "s"}`;
