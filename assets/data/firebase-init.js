@@ -13,8 +13,8 @@ if (!isDev) {
     };
 
     // load Firebase SDKs
-    await loadScript('https://www.gstatic.com/firebasejs/latest/firebase-app-compat.js');
-    await loadScript('https://www.gstatic.com/firebasejs/latest/firebase-database-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js');
+    await loadScript('https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js');
 
     // Firebase config
     const firebaseConfig = {
