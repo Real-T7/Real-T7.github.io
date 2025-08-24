@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cat Gallery</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+
+    <style>
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+      }
+      p { margin-left: 20px; }
+      .gallery {
+        column-count: 4;
+        column-gap: 14px;
+        padding: 20px;
+      }
+      .gallery img {
+        width: 100%;
+        margin-bottom: 14px;
+        border-radius: 8px;
+        display: block;
+        transition: transform 0.2s;
+        break-inside: avoid;
+      }
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      @media (max-width: 1200px) {
+        .gallery { column-count: 3; }
+      }
+      @media (max-width: 800px) {
+        .gallery { column-count: 2; }
+      }
+      @media (max-width: 500px) {
+        .gallery { column-count: 1; }
+      }
+      #music-player {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+    </style>
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/music-player.js" defer></script>
+    
+  </head>
+  <body>
+    <h1>Cat Gallery</h1>
+    <p>Daisy &ndash; my friend's cat</p>
+    <p style="font-size: 14px; color: #555; line-height: 0;">shes so cute</p>
+    <div class="gallery"></div>
+
+    <audio id="background-music" src="/assets/audio/meow.mp3" autoplay loop preload="auto"></audio>
+    <button id="music-player" data-song-title="&quot;:3&quot; by Tangermusic" title="Play Background Music"></button>
+
+    <script>
+        const gallery = document.querySelector(".gallery");
+        const folder = "/assets/images/cat-pics/";
+        const prefix = "daisy-";
+        const ext = ".jpg";
+        
+        let index = 0;
+
+        function loadImages() {
+          const img = new Image();
+          img.src = folder + prefix + String(index).padStart(3, "0") + ext;
+          img.onload = () => {
+            gallery.appendChild(img);
+            index++;
+            loadImages();
+          };
+        }
+
+        loadImages();
+    </script>
+  </body>
+</html>
