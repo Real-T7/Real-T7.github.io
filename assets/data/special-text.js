@@ -19,7 +19,7 @@
       do { idx = (Math.random() * n) | 0; } while (idx === prev);
     }
     prev = idx;
-    rootStyle.setProperty('--special-color', colors[idx]);
+    rootStyle.setProperty('--rainbow', colors[idx]);
   }
 
   tick();

@@ -32,5 +32,5 @@ a:hover {
 }
 .special-text { 
   font-weight: bold; 
-  color: var(--special-color, inherit);
+  color: var(--rainbow, inherit);
 }
