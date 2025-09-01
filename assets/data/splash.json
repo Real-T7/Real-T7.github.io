@@ -5,7 +5,8 @@
     "//roblox.fandom.com/wiki/Blame_John",
     "/assets/images/camel-eating-a-cactus.gif",
     "//youtu.be/YQZEoZ4W0ac",
-    "//roblox.com/games/16483433878"
+    "//roblox.com/games/16483433878",
+    "//roblox.com/games/9866139558"
   ],
   "messages": [
     "Subspace Tripmine",
@@ -44,11 +45,18 @@
     "back for more are ya?",
     "ive been expecting you.",
     "so, wsp?",
+    "what",
     "no.",
-    "T7 IS ME",
+    "qwertyuiopasdfghjklzxcvbnm",
+    "did you know that you are reading this right now?",
+    "try not to read challenge. you lost",
+    "dont you have anything better to do?",
+    "dont look behind you",
+    "dlc?",
+    "[obscure reference]",
     "[ERROR: \"Text not found\"]",
     "[this splash text is no longer available]",
-    "T7 USED SUBSPACE TRIPMINE!",
+    "placeholder",
     "supercalifragilisticexpialidocious!",
     "do NOT open the console and type <span style=\"font-weight: bold;\">time()</span>, it will fry your computer.",
     "if not ok then return end",
@@ -59,6 +67,7 @@
     "[<a href=\"${links[3]}\" target=\"_blank\" id=\"splash-link\">camel-eating-a-cactus.gif</a>]",
     "<a href=\"${links[4]}\" target=\"_blank\" id=\"splash-link\">Nothing Beats A Jet2 Holiday!</a>",
     "also try <a href=\"${links[5]}\" target=\"_blank\" id=\"splash-link\">Block Tales</a>!",
+    "can it be? <a href=\"${links[6]}\" target=\"_blank\" id=\"splash-link\">a snack at 4 am</a>?!",
     "S-762 and S-575 are my friends!"
   ]
 }
