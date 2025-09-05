@@ -47,8 +47,8 @@
     <input type="text" id="id-input" style="margin-top: 20px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
     <button onclick="redirectToKeyword()">Go</button>
 
-    <audio id="background-music" src="/assets/audio/pagenotfound.mp3" loop preload="auto"></audio>
-    <button id="music-player" data-song-title="??? by Toby Fox" title="Play Background Music"></button>
+    <audio id="background-music" src="/assets/audio/midi-dialtone.mp3" loop preload="auto"></audio>
+    <button id="music-player" data-song-title="&quot;Dialtone (MIDI)&quot; by Toby Fox" title="Play Background Music"></button>
 
     <div id="version">loading version...</div>
 
@@ -81,13 +81,17 @@
         '8D', ':$', ':3c', 'Q_Q', 'v_v', ';_;', '-w-', '^w^', '>w<',
         'UwU', 'OvO', 'T_T;', ":'D", "D';", 'o//o', 'o///o', '(._.)',
         '-.-', '-3-', '=_=', 'o.o', '*o*', ':v)', '=]', "(':", 
-        '(>_<)', '(¬_¬)', '(°_°)', '(•_•)', '(._. )'
+        '(>_<)', '(¬_¬)', '(°_°)', '(•_•)', '(._. )',
       ];
 
       const pages = [
         'Not Found', 'Couldn\'t Be Found', 'Gone Fishing', '[REDACTED]',
         'Was Banned', 'Was Burned', 'Was Subspaced', 'Went To Hell',
         'Was Shredded', 'Was Eaten', 'Stolen', 'Lost',
+        'Glitched Out', 'Erased From History', 'Corrupted', 'Out Of Bounds',
+        'Disappeared Into The Void', 'Sleeping', 'On Vacation', 'Misplaced',
+        'Crashed', 'Under Maintenance', 'Out Of Stock', 'Deleted By Accident',
+        'Eliminated', 'Sent To TLC', 'Fell Into The Dark World', 'Forsaken',
       ]
 
       let previousColor = null;
