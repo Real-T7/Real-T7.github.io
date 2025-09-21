@@ -74,10 +74,6 @@
         padding-left: 100%;
         animation: scroll-left 10s linear infinite;
       }
-      #news-ticker:hover {
-        animation-play-state: paused;
-        cursor: pointer;
-      }
       @keyframes scroll-left {
         0% { transform: translateX(0); }
         100% { transform: translateX(-100%); }
@@ -207,9 +203,9 @@
     </div>
 
     <div class="current-account">welcome, <span class="current-username">stranger</span>!</div>
-    <a href="/html/login/" id="login-link" draggable="false">→ login</a>
-    <a href="/html/credits/" id="credits-link" draggable="false">→ credits</a>
-    <a href="/html/feedback/" id="feedback-link" draggable="false">→ send a feedback</a>
+    <a href="/html/login/" id="login-link" draggable="false" target="_blank">→ login</a>
+    <a href="/html/credits/" id="credits-link" draggable="false" target="_blank">→ credits</a>
+    <a href="/html/feedback/" id="feedback-link" draggable="false" target="_blank">→ send a feedback</a>
     <a href="//www.roblox.com/games/10700225610#!/store" id="support-link" draggable="false" target="_blank">→ support me &lpar;robux&rpar;</a>
     <div id="delete-data" onclick="deleteAllData()">→ delete local data</div>
     <div id="visits">loading visits...</div>
@@ -228,7 +224,7 @@
         dbRef("news").on("value", snap => {
           const val = snap.val();
           newsTicker.innerHTML = val
-            ? `<strong>Latest News:</strong> "${val}"`
+            ? val
             : "nothing here at the moment";
         });
 
