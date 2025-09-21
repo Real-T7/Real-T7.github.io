@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Seeded RNG</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+
+    <style>
+      body { 
+        margin-left: 20px;
+      }
+      #seed {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        flex: 1;
+        padding: 5px;
+        font-size: 1em;
+      }
+      button {
+        padding: 6px 12px;
+        font-size: 1em;
+        cursor: pointer;
+      }
+      h2 {
+        margin-top: 15px;
+      }
+    </style>
+
+    <script src="/assets/data/mobile.js"></script>
+  </head>
+  <body>
+    <a href="../">← back to minigames</a>
+
+    <h2>Seed-based Random Number Generator</h2>
+
+    <input type="text" id="seed" placeholder="enter seed">
+    <br>
+    <button onclick="generate()">generate</button>
+    <h3 id="result"></h3>
+
+    <script>
+    function stringToSeed(str) {
+      let seed = 0;
+      for (let i = 0; i < str.length; i++) {
+        seed = (seed * 31 + str.charCodeAt(i)) >>> 0;
+      }
+      return seed;
+    }
+
+    function seededRNG(seed) {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed / 4294967296;
+    }
+
+    function generate() {
+      const input = document.getElementById("seed").value;
+      if (!input) return;
+      let seed = stringToSeed(input);
+      let num = seededRNG(seed);
+      document.getElementById("result").innerText = `random number: ${num}`;
+    }
+  </script>
+  </body>
+</html>

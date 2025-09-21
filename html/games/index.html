@@ -7,27 +7,50 @@
 
     <style>
       body { margin-left: 20px; }
-      .spacer {
+
+      .row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+      }
+
+      .row .main {
+        min-width: 300px;
         display: inline-block;
-        width: 100px;
+      }
+
+      .row .extra {
+        color: #ff0;
       }
     </style>
 
     <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
-    <a href="/">← back to homepage</a>
+    <a href="/">← back</a>
 
     <h1>Minigames</h1>
-    <br>
     <h5>Note: some games are hidden across the website. Find them!</h5>
     <br>
-    <a href="epic-button/">The Epic Button ™</a><div class="spacer"></div><a href="epic-button/local/" style="color: #ff0;">+ Local Edition</a>
-    <br>
-    <a href="rng/">Random Number Generator</a>
-    <br>
-    <a href="text-editor/">Text Editor</a>
-    <br>
+
+    <div class="row">
+      <a href="epic-button/" class="main">The Epic Button ™</a>
+      <a href="epic-button/local/" class="extra">+ Local Edition</a>
+    </div>
+
+    <div class="row">
+      <a href="rng/" class="main">Random Number Generator</a>
+      <a href="rng/seed/" class="extra">+ Seed-based Version</a>
+    </div>
+
+    <div class="row">
+      <a href="reaction-time/" class="main">Reaction Time Tester</a>
+    </div>
+
+    <div class="row">
+      <a href="text-editor/" class="main">Text Editor</a>
+    </div>
+
     <p>More coming soon!</p>
   </body>
 </html>

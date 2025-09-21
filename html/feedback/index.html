@@ -54,12 +54,11 @@
     <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
-    <a href="../" id="home-link">← back to homepage</a>
     <h1>The Feedback Center</h1>
     <p>want to report a bug, suggest an idea or spam gibberish? send a feedback!</p>
     <p style="color: #ff0">NOTE: if you want to ask a question, im more likely to respond if you DM me on <a href="//discordapp.com/users/878845118369636433/" draggable="false" target="_blank">Discord</a>.</p>
 
-    <input type="text" id="name" placeholder="enter your name (or leave blank for anonymous)">
+    <input type="text" id="name" placeholder="enter your name">
     <br>
     <textarea id="feedback" placeholder="type your feedback here"></textarea>
     <br>
@@ -67,6 +66,8 @@
     <p id="status"></p>
 
     <script>
+      const RATE_LIMIT_MS = 15000;
+
       function formatUTCDate(date) {
         const year = date.getUTCFullYear();
         const month = String(date.getUTCMonth() + 1).padStart(2, "0");
@@ -81,13 +82,31 @@
         const feedback = document.getElementById("feedback").value.trim();
         const status = document.getElementById("status");
 
-        if (!feedback) {
-          status.textContent = "⚠️ please enter some feedback vro";
+        if (!nameInput) {
+          status.textContent = "⚠️ please enter your name";
           status.style.color = "orange";
           return;
         }
 
-        const sender = nameInput || "someone";
+        if (!feedback) {
+          status.textContent = "⚠️ please enter some feedback";
+          status.style.color = "orange";
+          return;
+        }
+
+        const lastSent = localStorage.getItem("last-feedback-time");
+        const now = Date.now();
+
+        if (lastSent && now - lastSent < RATE_LIMIT_MS) {
+          const waitSec = Math.ceil((RATE_LIMIT_MS - (now - lastSent)) / 1000);
+          status.textContent = `⏳ please wait ${waitSec}s before sending again`;
+          status.style.color = "orange";
+          return;
+        }
+
+        localStorage.setItem("last-feedback-time", now);
+
+        const sender = nameInput;
         const timestamp = formatUTCDate(new Date());
         const message = `📩 feedback from **${sender}** at *${timestamp}*:\n${feedback}`;
 
