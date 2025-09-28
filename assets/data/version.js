@@ -8,9 +8,7 @@ let cachedVersion = null;
 
 const getVersionInfo = async () => {
   const url = "https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1";
-  const res = await fetch(url, {
-    headers: { "Cache-Control": "no-cache" }
-  });
+  const res = await fetch(url);
 
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
