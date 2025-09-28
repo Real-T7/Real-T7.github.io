@@ -15,6 +15,7 @@ const fetchJSON = async (url) => {
 
 const getCommitCount = async () => {
   const res = await fetch("https://api.github.com/repos/Real-T7/Real-T7.github.io/commits?per_page=1");
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const link = res.headers.get("Link");
   if (link) {
     const match = link.match(/&page=(\d+)>; rel="last"/);
@@ -62,6 +63,8 @@ const updateVer = async () => {
     el.textContent = "v000 (⚠ error)";
     el.title = "something went wrong\nfailed to fetch version (possible rate limit)";
     el.style.color = "#8b0000";
+
+    console.error("failed to fetch version:", err);
   }
 };
 
