@@ -1,11 +1,11 @@
 ## Introduction
-T7's Website was created on April 28th 2025 using HTML, CSS and JavaScript for educational purposes. now its a fun ARG project you can try to solve :D
+T7's Website was created on April 28th 2025 using HTML, CSS and JavaScript for educational purposes. now its a fun ARG project you can try to [CONTENT BLOCKED].
 
 *https://real-t7.github.io/*
 
 ## Warning
-1. this ARG may include flashing lights, loud sounds, blood and disturbing imagery. view with care if you are sensitive.
-2. the source code may contain ARG spoilers. peek at your own risk.
+1. this ARG may include flashing lights, loud sounds, disturbing imagery and [CONTENT BLOCKED].
+2. the source code may contain ARG spoilers.
 3. this ARG is 100% made up and NOT real. none of the characters, events or info exist in the real world.
 
 ## Contacts
