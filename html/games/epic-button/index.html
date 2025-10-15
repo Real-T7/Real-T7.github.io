@@ -100,9 +100,9 @@
         onlineUsersRef.on('value', (snapshot) => {
           const onlineCount = snapshot.numChildren();
           if (onlineCount === 1) {
-            onlineDiv.textContent = `you are the only person here. bring some friends!`;
+            onlineDiv.textContent = `you are the only person here.`;
           } else {
-            onlineDiv.textContent = `there are ${onlineCount} cool online users!`;
+            onlineDiv.textContent = `${onlineCount} online users!`;
           }
         });
       });

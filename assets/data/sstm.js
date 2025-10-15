@@ -1,4 +1,4 @@
-const img = document.getElementById("black-hole");
+const img = document.getElementById("sstm");
 let drag = false, ox = 0, oy = 0, vx = 0, vy = 0, rot = 0, af;
 
 const pos = () => ({ x: img.offsetLeft, y: img.offsetTop });

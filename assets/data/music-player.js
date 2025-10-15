@@ -22,7 +22,7 @@ player.addEventListener('mouseleave', () => {
 });
 
 player.addEventListener('click', () => {
-  if (Math.random() < 0.01) return location.href = "/html/piano/";
+  if (Math.random() < 0.01) return location.href = "/html/music/";
   music.paused ? music.play() : music.pause();
   updateUI();
 });

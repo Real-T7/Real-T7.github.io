@@ -72,6 +72,7 @@
     "if not ok then return end",
     "There's &lt;&lt;a cat on ,my keyboard!~",
     "Sodium lauryl sulfate (SLS) is a surfactant in toothpaste. SLS disallows your taste buds to pick up on sweet flavors. Phospholipids are molecules on your tongue that prevents you from tasting bitter flavors. However with SLS, it will break apart phospholipids, meaning that you will not be able to taste sweet flavors but it will also enhance bitter flavors, meaning drinking orange juice with toothpaste will result in you only being able to taste the acid in the juice, resulting in the bad taste. Or something like that.",
+    "i am <span style=\"color: var(--rainbow, inherit)\">colorful</span>",
     "you should join my <a href=\"${links[0]}\" target=\"_blank\" id=\"splash-link\">Discord server</a> now!",
     "🥚 ← This is my chicken Paul. He hasn't hatched yet. Please put him in your <a href=\"${links[1]}\" target=\"_blank\" id=\"splash-link\">password</a> and keep him safe",
     "[<a href=\"${links[2]}\" target=\"_blank\" id=\"splash-link\">camel-eating-a-cactus.gif</a>]",

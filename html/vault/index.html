@@ -10,7 +10,6 @@
     </style>
 
     <script src="/assets/data/mobile.js"></script>
-    <script src="/assets/data/hunt.js" defer></script>
   </head>
   <body>
     <div id="solved-content" hidden>
@@ -21,14 +20,14 @@
       <p>...</p>
       <p>or is there?</p>
 
-      <input type="text" id="code-input" onkeydown="if (event.key==='Enter' && document.getElementById('code-input').value.trim() === '2763') window.location.href='/'">
+      <input type="text" id="code-input">
     </div>
 
     <script>
       const code = new URLSearchParams(location.search).get('code');
 
       if (code) {
-        if (code === 'b2f7d6i3') {
+        if (code === 'placeholder') {
           document.getElementById('solved-content').hidden = false;
         } else {
           alert('incorrect.');

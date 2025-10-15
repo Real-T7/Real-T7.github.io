@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>A Forgotten Memory...</title>
+    <title>A Forgotten Memory</title>
     <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
     
     <style>
@@ -14,7 +14,7 @@
         min-width: 100%;
         min-height: 100%;
         transform-style: preserve-3d;
-        height: 20000px;
+        height: 50000px;
       }
       p {
         font-size: 36px;
@@ -23,38 +23,23 @@
         margin-top: 1000px;
         margin-bottom: 1000px;
         user-select: default;
+        opacity: 0.5;
       }
       #qr-code {
         position: absolute;
+        bottom: 10px;
         left: 50%;
         transform: translate(-50%, -50%);
+        cursor: pointer;
+        opacity: 0.25;
       }
     </style>
 
     <script src="/assets/data/mobile.js"></script>
   </head>
   <body>
-    <p>...</p>
-    <p>missing something?</p>
-    <p>forgetting something?</p>
-    <p>feeling guilty of something?</p>
-    <p>feeling sad about something?</p>
-    <p>wish you could do something?</p>
-    <p>no.</p>
-    <p>you can't.</p>
-    <p>in this world,...</p>
-    <p>your choices don't matter.</p>
-    <p>your acts are meaningless.</p>
-    <p>however, maybe...</p>
-    <p>just maybe...</p>
-    <p>you still have a chance.</p>
-    <p>don't worry.</p>
-    <p>you can't change the past,...</p>
-    <p>but you can still change the future.</p>
-    <p>keep going.</p>
-    <p>don't give up.</p>
     <a href="qr" id="qr-code">
-      <img src="/assets/images/qr-code.png" style="cursor: pointer; opacity: 0;">
+      <img src="/assets/images/qr-code.png">
     </a>
 
     <audio loop autoplay id="static-noise" src="/assets/audio/static.mp3"></audio>

@@ -72,8 +72,8 @@
     "path": "/html/static/"
   },
   {
-    "ids": ["recordings","conversation","record","archive","archived"],
-    "path": "/html/recordings/"
+    "ids": ["archives","recordings","conversation","record","archive","archived"],
+    "path": "/html/archives/"
   },
   {
     "ids": ["spawn","respawn","revive","spawnlocation","spawnpoint","spawn-location","spawn-point"],
