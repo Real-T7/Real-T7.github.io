@@ -27,7 +27,7 @@
       const code = new URLSearchParams(location.search).get('code');
 
       if (code) {
-        if (code === 'placeholder') {
+        if (code === 'PLACEHOLDER') {
           document.getElementById('solved-content').hidden = false;
         } else {
           alert('incorrect.');

@@ -10,6 +10,8 @@
         text-align: center;
         padding: 100px 20px;
         max-width: 800px;
+        overflow: hidden;
+        user-select: none;
       }
       #music-player {
         position: fixed;
@@ -23,53 +25,73 @@
         justify-content: center;
         text-align: center;
       }
-      #version {
+      #version, #path, #unknown {
         position: fixed;
         color: #555;
         font-size: 18px;
         bottom: 10px;
         right: 10px;
       }
+      #path {
+        right: unset;
+        left: 10px;
+      }
+      #unknown {
+        top: 10px;
+        cursor: pointer;
+        margin-top: unset;
+        text-decoration: none;
+      }
+      #code404 {
+        font-family: monospace;
+        font-size: 80px;
+      }
+      .particles {
+        font-family: monospace;
+        position: fixed;
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+        transition: opacity 1s ease;
+        z-index: -1;
+      }
     </style>
-
     <script src="/assets/data/mobile.js"></script>
     <script src="/assets/data/redirect.js" defer></script>
     <script src="/assets/data/music-player.js" defer></script>
     <script src="/assets/data/version.js" defer></script>
   </head>
   <body>
-    <h1 id="404" style="cursor: pointer; display: inline; user-select: none;">404</h1>
+    <h1 id="code404" style="cursor: pointer; display: inline; user-select: none;">404</h1>
 
     <br>
-    <h2 id="page-not-found" style="display: inline; user-select: none;">Page <span id="404-not" style="cursor: pointer;">Not Found</span> <span id="404-face" style="cursor: pointer;">&colon;&lpar;</span></h2>
+    <h2 id="page-not-found" style="display: inline; user-select: none;">Page <span id="not" style="cursor: pointer;">Not Found</span> <span id="face" style="cursor: pointer;">&colon;&lpar;</span></h2>
     <br>
 
     <input type="text" id="id-input" style="margin-top: 20px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
     <button onclick="redirectToKeyword()">Go</button>
 
-    <audio id="background-music" src="/assets/audio/midi-dialtone.mp3" loop preload="auto"></audio>
+    <audio id="background-music" src="/assets/audio/midi-dialtone.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;Dialtone (MIDI)&quot; by Toby Fox" title="Play Background Music"></button>
 
+    <div id="path">loading path...</div>
     <div id="version">loading version...</div>
+    <a id="unknown" draggable="false" href="/html/archives/alt.html">?</div>
 
     <br>
-    <a href="/" id="home-hyperlink">← back to homepage</a>
+    <a href="/" id="home-hyperlink" draggable="false">← back</a>
 
-    <script>
+    <script type="module">
+      import { colors, brickColors } from "/assets/data/colors.js";
+
       let target = 404;
       let clicks = 0;
 
-      const clicker = document.getElementById("404");
+      const clicker = document.getElementById("code404");
       const pageNotFound = document.getElementById("page-not-found");
-      const face = document.getElementById("404-face");
-      const notFound = document.getElementById("404-not");
-
-      const colors = [
-        '#26de81', '#fc5c65', '#fd9644', '#fed330',
-        '#2bcbba', '#45aaf2', '#4b7bec', '#a55eea',
-        '#ffc1f3', '#76ead7', '#ff9c71', '#32e0c4',
-        '#d291bc', '#fa744f'
-      ];
+      const face = document.getElementById("face");
+      const notFound = document.getElementById("not");
+      const music = document.getElementById("background-music");
 
       const faces = [
         ':(', ':)', '>:)', '>:(', ':D', 'D:', ':3', '3:',
@@ -85,22 +107,36 @@
       ];
 
       const pages = [
-        'Not Found', 'Couldn\'t Be Found', 'Gone Fishing', '[REDACTED]',
-        'Was Banned', 'Was Burned', 'Was Subspaced', 'Went To Hell',
+        'Not Found', '???', 'Gone Fishing', '[REDACTED]',
+        'Was Banned', 'Incinerated', 'Was Subspaced', 'Went To Hell',
         'Was Shredded', 'Was Eaten', 'Stolen', 'Lost',
         'Glitched Out', 'Erased From History', 'Corrupted', 'Out Of Bounds',
         'Disappeared Into The Void', 'Sleeping', 'On Vacation', 'Misplaced',
         'Crashed', 'Under Maintenance', 'Out Of Stock', 'Deleted By Accident',
-        'Eliminated', 'Sent To TLC', 'Forsaken', 'sudo rm -rf /',
+        'Eliminated', 'Breached Containment', 'Forsaken', 'Executed \"sudo rm -rf /\"',
       ]
 
       let previousColor = null;
       let previousFace = null;
       let previousPage = null;
 
-      let href404 = "//deltarune.com/lancer/";
+      let href404 = "/html/archives/";
+
+      let secret = "";
+      const message = `
+        <div style="font-family: monospace; font-size: 40px; text-align: center;">
+          <div style="color: #1447ff;">7 M</div>
+          <div style="color: #ff1212;">5 J</div>
+          <div style="color: #47ed87;">8 F</div>
+          <div style="color: #9933ff;">4 I</div>
+          <div style="color: #f7ba00;">1 C</div>
+          <div style="color: #73b7ff;">2 A</div>
+          <div style="font-weight: 900; color: #a3a2a5;">0 P</div>
+        </div>
+      `;
 
       function clickFace() {
+        let randomFace;
         do {
           randomFace = faces[Math.floor(Math.random() * faces.length)];
         } while (randomFace === previousFace);
@@ -111,6 +147,7 @@
       }
 
       function clickPNF() {
+        let randomPage;
         do {
           randomPage = pages[Math.floor(Math.random() * pages.length)];
         } while (randomPage === previousPage);
@@ -125,6 +162,7 @@
 
         clicks++;
 
+        let randomColor;
         do {
           randomColor = colors[Math.floor(Math.random() * colors.length)];
         } while (randomColor === previousColor);
@@ -137,7 +175,7 @@
           console.log(`Page Found! ( x${clicks} )`);
 
           if (notFound.textContent === "[REDACTED]" && face.textContent === ":3") {
-            pageNotFound.textContent = `Page Found...? ${face.textContent}`;
+            pageNotFound.innerHTML = `<span style="text-decoration: line-through;">Page</span> Easter Egg Found ${face.textContent}`;
             href404 = "/html/uwu";
           }
           else pageNotFound.textContent = `Page Found ${face.textContent}`;
@@ -155,6 +193,125 @@
       clicker.addEventListener("click", click404);
       face.addEventListener("click", clickFace);
       notFound.addEventListener("click", clickPNF);
+
+      document.getElementById("path").textContent = window.location.href;
+
+      document.addEventListener("keydown", e => {
+        if (document.activeElement === document.getElementById("id-input")) return;
+        if (e.key >= "A" && e.key <= "Z" && !e.shiftKey) {
+          secret += e.key;
+          if (secret.endsWith("PLACEHOLDER")) {
+            document.body.style.transition = "1s";
+            document.body.style.opacity = 0;
+
+            let step = music.volume / 20;
+            let fade = setInterval(() => {
+              music.volume = Math.max(0, music.volume - step);
+              if (music.volume === 0) { clearInterval(fade); music.pause(); }
+            }, 50);
+
+            setTimeout(() => {
+              document.body.innerHTML = message;
+              document.body.style.opacity = 1;
+            }, 1000);
+            secret = "";
+          }
+          if (secret.length > 20) secret = secret.slice(-20);
+        }
+      });
+
+      const whispers = [
+        "are you still there?",
+        "follow the noise",
+        "do you miss me?",
+        "look closer",
+        "forgotten",
+        "trace",
+        "lost",
+        "wake",
+        "from",
+        "stay",
+        "away",
+        "keep",
+        "there",
+        "that",
+        "here",
+        "worry",
+      ];
+
+      function whisper() {
+        const w = document.createElement("div");
+        w.textContent = whispers[Math.floor(Math.random() * whispers.length)];
+        w.style.position = "fixed";
+        w.style.left = Math.random() * 80 + "%";
+        w.style.top = Math.random() * 80 + "%";
+        w.style.opacity = 0;
+        w.style.pointerEvents = "none";
+        w.style.transition = "opacity 1.5s ease";
+        w.style.fontSize = "14px";
+        w.style.color = "#888";
+
+        document.body.appendChild(w);
+
+        requestAnimationFrame(() => {
+          w.style.opacity = 0.4;
+          setTimeout(() => { w.style.opacity = 0; }, 800);
+          setTimeout(() => { w.remove(); }, 2000);
+        });
+      }
+
+      setInterval(() => {
+        if (Math.random() < 0.25) whisper(); 
+      }, 3000);
+
+      function spawnParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particles";
+        particle.textContent = "404";
+
+        particle.style.color = brickColors[Math.floor(Math.random() * brickColors.length)];
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.top = Math.random() * window.innerHeight + "px";
+        particle.style.fontSize = (Math.random() * 24 + 16) + "px";
+
+        document.body.appendChild(particle);
+
+        requestAnimationFrame(() => {
+          particle.getBoundingClientRect();
+          particle.style.opacity = 0.3 + Math.random() * 0.3;
+        });
+
+        const angle = Math.random() * 2 * Math.PI;
+        const speed = Math.random() * 0.5 + 0.2;
+        let x = parseFloat(particle.style.left);
+        let y = parseFloat(particle.style.top);
+
+        const lifetime = Math.random() * 5000 + 2000;
+
+        const moveParticle = setInterval(() => {
+          x += Math.cos(angle) * speed;
+          y += Math.sin(angle) * speed;
+          particle.style.left = x + "px";
+          particle.style.top = y + "px";
+        }, 16);
+
+        setTimeout(() => {
+          particle.style.opacity = 0;
+          setTimeout(() => {
+            clearInterval(moveParticle);
+            particle.remove();
+          }, 1000);
+        }, lifetime);
+
+        nextParticle();
+      }
+
+      function nextParticle() {
+        const next = Math.random() * 1500 + 500;
+        setTimeout(spawnParticle, next);
+      }
+
+      nextParticle();
     </script>
   </body>
 </html>

@@ -132,9 +132,8 @@
         left: 0;
         opacity: 0.5;
       }
-      #close-ad:hover {
-        background: #8b0000;
-      }
+      #close-ad:hover { background: #8b0000; }
+      #countdown { color: #90e090; }
       #sstm {
         position: absolute;
         bottom: -300px;
@@ -144,6 +143,15 @@
         width: 64px;
         animation: spawn-ad 1s ease-in-out forwards;
         animation-delay: 1s;
+      }
+      .particles {
+        font-family: monospace;
+        position: fixed;
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+        transition: opacity 1s ease;
+        z-index: -1;
       }
       .spacer { height: 1000px; }
     </style>
@@ -157,7 +165,7 @@
     <script src="/assets/data/music-player.js" defer></script>
     <script src="/assets/data/redirect.js" defer></script>
     <script src="/assets/data/screensaver.js" defer></script>
-    <script src="/assets/data/special-text.js" defer></script>
+    <script src="/assets/data/special-text.js" type="module" defer></script>
     <script src="/assets/data/splash.js" defer></script>
     <script src="/assets/data/version.js" defer></script>
   </head>
@@ -174,7 +182,7 @@
     </div>
 
     <br>
-    <input type="text" id="id-input" style="margin-top: 20px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
+    <input type="text" id="id-input" style="margin-top: 10px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
     <button onclick="redirectToKeyword()">Go</button>
 
     <input type="checkbox" id="screensaver-toggle" title="Screensaver" checked>
@@ -184,7 +192,7 @@
 
     <br>
     <p>
-      A fun(?) ARG project created on April 28th 2025 using HTML, CSS and JavaScript.
+      A fun(<a href="/assets/data/misc/messageboxclicker.exe" download draggable="false" style="color: #eeeeee; text-decoration: none;">?</a>) ARG project created on April 28th 2025 using HTML, CSS and JavaScript.
       <br>
       <span style="color: #dc143c">WARNING</span>: this website may contain flashing lights, loud sounds and disturbing imagery.
       <br>
@@ -195,7 +203,8 @@
       <br>
       Have a question? Contact me on Discord: <a href="//discordapp.com/users/878845118369636433/" draggable="false" target="_blank">@real_t7</a>
     </p>
-    <br>
+
+    <div id="countdown">loading timer...</div>
 
     <div id="ad">
       <button id="close-ad" onclick="document.getElementById('ad').style.animation = 'despawn-ad 1s ease-in-out forwards';">✕</button>
@@ -211,6 +220,33 @@
     <div id="visits">loading visits...</div>
     <div id="online">loading online users...</div>
     <div id="version">loading version...</div>
+
+    <script>
+      const t = 1346976000;
+
+      setInterval(() => {
+        let d = t - Math.floor(Date.now() / 1000);
+        const s = d < 0 ? "-" : "";
+        d = Math.abs(d);
+        const D = Math.floor(d / 86400),
+              H = Math.floor(d / 3600) % 24,
+              M = Math.floor(d / 60) % 60,
+              S = d % 60;
+        document.getElementById("countdown").textContent = s + ` ${D}d ${H}h ${M}m ${S}s`;
+      }, 1000);
+      </script>
+
+    <script>
+      function deleteAllData() {
+        if (confirm("are you sure you want to delete all data on this browser?")) {
+          if (confirm("are you REALLY sure? this action is permanent and cannot be undone.")) {
+            localStorage.clear();
+            sessionStorage.clear();
+            location.reload();
+          }
+        }
+      }
+    </script>
 
     <script>
       document.addEventListener("firebase-ready", () => {
@@ -271,6 +307,58 @@
           });
         }
       });
+    </script>
+    
+    <script type="module">
+      import { colors, brickColors } from "/assets/data/colors.js";
+      function spawnParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particles";
+        particle.textContent = "■";
+
+        particle.style.color = brickColors[Math.floor(Math.random() * brickColors.length)];
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.top = Math.random() * window.innerHeight + "px";
+        particle.style.fontSize = (Math.random() * 24 + 16) + "px";
+
+        document.body.appendChild(particle);
+
+        requestAnimationFrame(() => {
+          particle.getBoundingClientRect();
+          particle.style.opacity = 0.3 + Math.random() * 0.3;
+        });
+
+        const angle = Math.random() * 2 * Math.PI;
+        const speed = Math.random() * 0.5 + 0.2;
+        let x = parseFloat(particle.style.left);
+        let y = parseFloat(particle.style.top);
+
+        const lifetime = Math.random() * 5000 + 2000;
+
+        const moveParticle = setInterval(() => {
+          x += Math.cos(angle) * speed;
+          y += Math.sin(angle) * speed;
+          particle.style.left = x + "px";
+          particle.style.top = y + "px";
+        }, 16);
+
+        setTimeout(() => {
+          particle.style.opacity = 0;
+          setTimeout(() => {
+            clearInterval(moveParticle);
+            particle.remove();
+          }, 1000);
+        }, lifetime);
+
+        nextParticle();
+      }
+
+      function nextParticle() {
+        const next = Math.random() * 1500 + 500;
+        setTimeout(spawnParticle, next);
+      }
+
+      nextParticle();
     </script>
 
     <script>

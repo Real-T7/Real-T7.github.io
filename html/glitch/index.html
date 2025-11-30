@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>[END OF HALLWAY]</title>
+    <link rel="stylesheet" href="/assets/data/styles.css">
+
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+        user-select: none;
+        font-family: monospace;
+      }
+      canvas {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      div {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+      @keyframes shake {
+        0%   { transform: translate(0, 0); }
+        10%  { transform: translate(2px, -1px); }
+        20%  { transform: translate(-2px, 1px); }
+        30%  { transform: translate(1px, 2px); }
+        40%  { transform: translate(-1px, -2px); }
+        50%  { transform: translate(2px, 2px); }
+        60%  { transform: translate(-2px, -2px); }
+        70%  { transform: translate(1px, -2px); }
+        80%  { transform: translate(-1px, 2px); }
+        90%  { transform: translate(2px, 1px); }
+        100% { transform: translate(0, 0); }
+      }
+      #hash {
+        font-size: 128px;
+        animation: shake 0.1s infinite;
+      }
+    </style>
+
+    <script src="/assets/data/mobile.js"></script>
+    <script src="/assets/data/glitch.js" type="module" defer></script>
+  </head>
+  <body>
+    <div>
+      <p id="hash">#</p>
+    </div>
+    <canvas id="glitch"></canvas>
+
+    <script>
+      const h = document.getElementById("hash")
+      let t;
+
+      h.addEventListener("mouseenter", () => {
+        t = setInterval(() => {
+          const char = String.fromCharCode(Math.floor(Math.random() * 95) + 32);
+          h.textContent = char;
+        }, 1);
+      });
+
+      h.addEventListener("mouseleave", () => {
+        clearInterval(t);
+        h.textContent = "#";
+      });
+    </script>
+
+    <script>
+      console.log("[HASH'S PLACE.\nT7 & HASH ONLY.]");
+    </script>
+  </body>
+</html>

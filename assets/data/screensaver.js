@@ -12,7 +12,7 @@ function resetTimer() {
 
   timeout = setTimeout(() => {
     window.location.href = "/html/games/screensaver/";
-  }, 300000);
+  }, 600000);
 }
 
 function setupInactivityTimer() {

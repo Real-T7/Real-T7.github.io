@@ -28,7 +28,7 @@ function redirectToKeyword() {
     if (match) {
       window.location.href = match.path;
     } else {
-      window.location.href = "/" + id;
+      window.location.href = id;
     }
   }
 }
