@@ -156,12 +156,12 @@
       .spacer { height: 1000px; }
     </style>
 
+    <script src="/assets/data/key.js"></script>
     <script src="/assets/data/mobile.js"></script>
     <script src="/assets/data/time.js"></script>
     <script src="/assets/data/firebase-init.js"></script>
     <script src="/assets/data/sstm.js" defer></script>
     <script src="/assets/data/account.js" defer></script>
-    <script src="/assets/data/delete-data.js" defer></script>
     <script src="/assets/data/music-player.js" defer></script>
     <script src="/assets/data/redirect.js" defer></script>
     <script src="/assets/data/screensaver.js" defer></script>
@@ -182,8 +182,8 @@
     </div>
 
     <br>
-    <input type="text" id="id-input" style="margin-top: 10px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
-    <button onclick="redirectToKeyword()">Go</button>
+    <input type="text" id="id-input" style="margin-top: 10px;" onkeydown="if (event.key === 'Enter') redirect();" placeholder="Enter Redirect ID">
+    <button onclick="redirect()">Go</button>
 
     <input type="checkbox" id="screensaver-toggle" title="Screensaver" checked>
 
@@ -192,7 +192,7 @@
 
     <br>
     <p>
-      A fun(<a href="/assets/data/misc/messageboxclicker.exe" download draggable="false" style="color: #eeeeee; text-decoration: none;">?</a>) ARG project created on April 28th 2025 using HTML, CSS and JavaScript.
+      This is my personal website, created on <span style="font-family: monospace; background-color: #555;">Apr_28_2025</span>, where I share random stuff. It also features a fun(<a href="/assets/data/misc/messageboxclicker.exe" download draggable="false" style="color: #eeeeee; text-decoration: none;">?</a>) ARG for you!
       <br>
       <span style="color: #dc143c">WARNING</span>: this website may contain flashing lights, loud sounds and disturbing imagery.
       <br>
@@ -215,14 +215,14 @@
     <a href="/html/login/" id="login-link" draggable="false" target="_blank">→ login</a>
     <a href="/html/credits/" id="credits-link" draggable="false" target="_blank">→ credits</a>
     <a href="/html/feedback/" id="feedback-link" draggable="false" target="_blank">→ send a feedback</a>
-    <a href="//www.roblox.com/games/10700225610#!/store" id="support-link" draggable="false" target="_blank">→ support me &lpar;robux&rpar;</a>
+    <a href="//www.roblox.com/games/10700225610#!/store" id="support-link" draggable="false" target="_blank">→ donate &lpar;robux&rpar;</a>
     <div id="delete-data" onclick="deleteAllData()">→ delete local data</div>
     <div id="visits">loading visits...</div>
     <div id="online">loading online users...</div>
     <div id="version">loading version...</div>
 
     <script>
-      const t = 1346976000;
+      const t = 1346976000; // Friday, September 7, 2012 7:00:00 AM GMT+07:00
 
       setInterval(() => {
         let d = t - Math.floor(Date.now() / 1000);

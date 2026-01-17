@@ -9,7 +9,7 @@ fetch("/assets/data/id.json")
     console.error("failed to load IDs:", error);
   });
 
-function redirectToKeyword() {
+function redirect() {
   const id = document.getElementById("id-input").value.trim().toLowerCase();
   if (!id) return;
 

@@ -3,13 +3,13 @@
     "//discord.gg/sRss8M5jhM",
     "//neal.fun/password-game",
     "/assets/images/camel-eating-a-cactus.gif",
-    "//youtu.be/YQZEoZ4W0ac",
     "//roblox.com/games/16483433878",
     "//roblox.com/games/9866139558"
   ],
   "messages": [
-    "Subspace Tripmine",
+    "<span style=\"color: #1447ff\">762</span> + <span style=\"color: #ff1212\">575</span> = 1337<br><span style=\"color: #47ed87\">871</span> + <span style=\"color: #9933ff\">466</span> = 1337",
     "Hello, World!",
+    "Subspace Tripmine",
     "dihydrogen monoxide",
     "got some pizza?",
     "car",
@@ -77,9 +77,7 @@
     "you should join my <a href=\"${links[0]}\" target=\"_blank\" id=\"splash-link\">Discord server</a> now!",
     "🥚 ← This is my chicken Paul. He hasn't hatched yet. Please put him in your <a href=\"${links[1]}\" target=\"_blank\" id=\"splash-link\">password</a> and keep him safe",
     "[<a href=\"${links[2]}\" target=\"_blank\" id=\"splash-link\">camel-eating-a-cactus.gif</a>]",
-    "<a href=\"${links[3]}\" target=\"_blank\" id=\"splash-link\">Nothing Beats A Jet2 Holiday</a>",
-    "also try <a href=\"${links[4]}\" target=\"_blank\" id=\"splash-link\">Block Tales</a>!",
-    "can it be? <a href=\"${links[5]}\" target=\"_blank\" id=\"splash-link\">a snack at 4 am</a>?!",
-    "762 + 575 = 1337<br>871 + 466 = 1337"
+    "also try <a href=\"${links[3]}\" target=\"_blank\" id=\"splash-link\">Block Tales</a>!",
+    "can it be? <a href=\"${links[4]}\" target=\"_blank\" id=\"splash-link\">a snack at 4 am</a>?!"
   ]
 }

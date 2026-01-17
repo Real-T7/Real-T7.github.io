@@ -53,8 +53,8 @@
     <audio id="background-music" src="/assets/audio/meow.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;:3&quot; by Tangermusic" title="Play Background Music"></button>
 
-    <img id="cat" src="/assets/images/objects/mewo.gif" hidden draggable="false" title="Waiting for something to happen?">
-    <audio id="meow" src="/assets/audio/sfx/meow.wav"></audio>
+    <img id="placeholder" src="" hidden draggable="false" title="placeholder">
+    <audio id="bass" src="/assets/audio/sfx/bass.wav"></audio>
     <div class="container">
       <p>hii!~</p>
     </div>
@@ -63,7 +63,7 @@
 
     <script>
       const container = document.querySelector('.container');
-      const cat = document.getElementById('cat');
+      const placeholder = document.getElementById('placeholder');
       const chunkSize = 100;
       const text = '<p>meow</p>';
 
@@ -83,12 +83,12 @@
         }
 
         if (window.scrollY > 5000) {
-          cat.hidden = false;
+          placeholder.hidden = false;
         }
       });
 
-      cat.addEventListener('click', () => {
-        document.getElementById('meow').play();
+      placeholder.addEventListener('click', () => {
+        document.getElementById('bass').play();
       });
     </script>
   </body>

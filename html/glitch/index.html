@@ -62,22 +62,58 @@
     <script>
       const h = document.getElementById("hash")
       let t;
+      let fontIndex = 0;
+      const ranges = [
+        [0x21,   0x7E],   // Basic Latin (printable ASCII)
+        [0xA1,   0xFF],   // Latin-1 Supplement (symbols, accented letters)
+        [0x0100, 0x017F], // Latin Extended-A
+        [0x0180, 0x024F], // Latin Extended-B
+        [0x2000, 0x206F], // General Punctuation
+        [0x20A0, 0x20CF], // Currency Symbols
+        [0x2200, 0x22FF],  // Mathematical Operators
+      ];
+      const fonts = [
+        "Times New Roman",
+        "Helvetica",
+        "EB Garamond",
+
+        "Courier", 
+        "Optima",
+        "Didot",
+        "Exo",
+
+        "Impact",
+        "Source Sans Pro", 
+        
+        "Courier New",
+        "Helvetica Neue",
+        "Roboto",
+        "Open Sans", 
+        "Noto Sans",
+        "Oswald",
+        "Segoe UI"
+      ];
 
       h.addEventListener("mouseenter", () => {
         t = setInterval(() => {
-          const char = String.fromCharCode(Math.floor(Math.random() * 95) + 32);
+          const [min, max] = ranges[Math.floor(Math.random() * ranges.length)];
+          const char = String.fromCharCode(Math.floor(Math.random() * (max - min + 1)) + min);
           h.textContent = char;
+          h.style.fontFamily = fonts[fontIndex];
+          fontIndex = (fontIndex + 1) % fonts.length;
         }, 1);
       });
 
       h.addEventListener("mouseleave", () => {
         clearInterval(t);
         h.textContent = "#";
+        h.style.fontFamily = "monospace";
+        fontIndex = 0;
       });
     </script>
 
     <script>
-      console.log("[HASH'S PLACE.\nT7 & HASH ONLY.]");
+      console.log("[HASHTAGGED]");
     </script>
   </body>
 </html>

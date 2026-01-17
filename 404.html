@@ -68,8 +68,8 @@
     <h2 id="page-not-found" style="display: inline; user-select: none;">Page <span id="not" style="cursor: pointer;">Not Found</span> <span id="face" style="cursor: pointer;">&colon;&lpar;</span></h2>
     <br>
 
-    <input type="text" id="id-input" style="margin-top: 20px;" onkeydown="if (event.key==='Enter') redirectToKeyword();" placeholder="Enter ID">
-    <button onclick="redirectToKeyword()">Go</button>
+    <input type="text" id="id-input" style="margin-top: 20px;" onkeydown="if (event.key==='Enter') redirect();" placeholder="Enter Redirect ID">
+    <button onclick="redirect()">Go</button>
 
     <audio id="background-music" src="/assets/audio/midi-dialtone.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;Dialtone (MIDI)&quot; by Toby Fox" title="Play Background Music"></button>
@@ -94,16 +94,28 @@
       const music = document.getElementById("background-music");
 
       const faces = [
-        ':(', ':)', '>:)', '>:(', ':D', 'D:', ':3', '3:',
-        '>:D', ';)', ';(', '>:3', ';3', ':-)', ':-(', '._.',
-        ';-;', 'XD', '>_>', '<_<', '@_@', '3:<', '.-.', ':P',
-        'owo', 'uwu', 'T_T', '*-*', ':O', ':]', ':/', ':|', ':V',
-        '^_^', '-_-', 'o_o', 'O_O', '>:O', ":'(", ":' )", ':^)',
-        ':X', 'x_x', '>.<', '<3', '</3', ':B', ':9', ':o)', '8)',
-        '8D', ':$', ':3c', 'Q_Q', 'v_v', ';_;', '-w-', '^w^', '>w<',
-        'UwU', 'OvO', 'T_T;', ":'D", "D';", 'o//o', 'o///o', '(._.)',
-        '-.-', '-3-', '=_=', 'o.o', '*o*', ':v)', '=]', "(':", 
-        '(>_<)', '(¬_¬)', '(°_°)', '(•_•)', '(._. )',
+        ':)', ':-)', ':]', ':}', ':>', ':o)', ':^)', '=]',
+        ':(', ':-(', ':[', ':{', ':<', ':c', ':C', '3:<',
+
+        ':D', ':-D', 'XD', 'xD', 'Xd', '8D', '>:D', ":'D",
+        'D:', "D';", ':O', ':-O', ':o', '>:O', 'O_O', '0_0',
+
+        ';)', ';-)', ';D', ';P', ';p', ';(', ';_;', ';-;',
+        ':P', ':-P', ':p', ':-p', ':B', ':9', ':V', ':v)',
+
+        ':|', ':-|', ':/', ':-/', ':X', ':-X', ':$', '=_=',
+        '-_-', '-__-', '--__--', '.-.', '-.-', '._.', '._.;',
+
+        'o_o', 'o.o', 'O_O', '0_o', 'o_0', '@_@', 'x_x', 'v_v',
+        'Q_Q', 'T_T', 'T_T;', '(T_T)', '(Q_Q)', '(x_x)', '(._.)',
+
+        '^_^', '^o^', '^O^', '^w^', '-w-', '>w<', '*-*', '*o*',
+        'o//o', 'o///o', 'owo', 'uwu', 'UwU', 'OvO', '<3',
+
+        '</3', '(>_<)', '>.<', '(¬_¬)', '(°_°)', '(•_•)', '(ಠ_ಠ)', '(ಥ_ಥ)',
+        '>_>', '<_<', '(>_>)', '(<_<)', '(o_o)', '(O_O)', '\\o/', '\\(^_^)/',
+
+        '_(:3 」∠)_', ':3', ':3c', ';3', '>:3', '-3-', '(._. )', "(':"
       ];
 
       const pages = [

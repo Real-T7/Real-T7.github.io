@@ -38,6 +38,7 @@
         border-bottom: 16px solid #fff;
         -webkit-animation: spin 2s linear infinite;
         animation: spin 2s linear infinite;
+        pointer-events: none;
       }
       @-webkit-keyframes spin {
         0% { -webkit-transform: rotate(0deg); }
@@ -58,24 +59,16 @@
         75% {content: "...";}
         100% {content: "";}
       }
-      #smile {
+      #reanimated {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 100px;
-        z-index: 2;
+        width: 125px;
+        z-index: 0;
         cursor: pointer;
       }
-      #click-count {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        font-size: 14px;
-        color: #555;
-        font-family: monospace;
-      }
-      #timer {
+      #click-count, #timer, #online, #credit {
         position: absolute;
         bottom: 10px;
         left: 10px;
@@ -83,27 +76,27 @@
         color: #555;
         font-family: monospace;
       }
-      #online {
-        position: absolute;
-        top: 10px;
+      #click-count { bottom: 30px; }
+      #online { bottom: 50px; }
+      #credit {
+        left: unset;
         right: 10px;
-        font-size: 14px;
-        color: #555;
-        font-family: monospace;
       }
     </style>
     
     <script src="/assets/data/mobile.js"></script>
     <script src="/assets/data/music-player.js" defer></script>
+    <script src="/assets/data/firebase-init.js"></script>
   </head>
   <body>
     <h1>Loading<span class="dots"></span></h1>
-    <p>sorry were having a bit of a traffic jam going on here pls wait</p>
+    <p>sorry we're having a traffic jam going on here pls wait</p>
     <div id="loader"></div>
-    <div id="timer">0</div>
-    <div id="click-count">0</div>
     <div id="online">0</div>
-    <div id="smile">&colon;&rpar;</div>
+    <div id="click-count">0</div>
+    <div id="timer">0</div>
+    <div id="credit">by Reanimated</div>
+    <img id="reanimated" src="/assets/images/T7R_spin.gif" title="[T7R_spin.gif]">
 
     <audio id="background-music" src="/assets/audio/elevator.mp3" autoplay loop preload="auto"></audio>
     <button id="music-player" data-song-title="&quot;Local Forecast - Elevator&quot; by Kevin MacLeod" title="Play Background Music"></button>
@@ -118,25 +111,20 @@
       }, 1000);
     </script>
 
-    <script>
-      let clicks = 0;
-      const clicker = document.getElementById("smile");
-      const clickCount = document.getElementById("click-count");
+    <script type="module">
+      import { colors } from "/assets/data/colors.js";
 
-      const colors = [
-        '#26de81', '#fc5c65', '#fd9644', '#fed330',
-        '#2bcbba', '#45aaf2', '#4b7bec', '#a55eea',
-        '#ffc1f3', '#76ead7', '#ff9c71', '#32e0c4',
-        '#d291bc', '#fa744f'
-      ];
+      let clicks = 0;
+      const clicker = document.getElementById("reanimated");
+      const clickCount = document.getElementById("click-count");
 
       let previousColor = null;
 
-      function clickSmile() {
-
+      function clickR() {
         clicks++;
         clickCount.textContent = `${clicks} clicks`;
 
+        let randomColor;
         do {
           randomColor = colors[Math.floor(Math.random() * colors.length)];
         } while (randomColor === previousColor);
@@ -146,10 +134,9 @@
         clicker.style.color = randomColor;
       }
 
-      clicker.addEventListener("click", clickSmile);
+      clicker.addEventListener("click", clickR);
     </script>
 
-    <script src="/assets/data/firebase-init.js"></script>
     <script>
       document.addEventListener("firebase-ready", () => {
         const onlineUsersRef = db.ref('online/loading');
