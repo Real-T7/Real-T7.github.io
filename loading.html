@@ -111,8 +111,7 @@
       }, 1000);
     </script>
 
-    <script type="module">
-      import { colors } from "/assets/data/colors.js";
+    <script>
 
       let clicks = 0;
       const clicker = document.getElementById("reanimated");
@@ -123,15 +122,6 @@
       function clickR() {
         clicks++;
         clickCount.textContent = `${clicks} clicks`;
-
-        let randomColor;
-        do {
-          randomColor = colors[Math.floor(Math.random() * colors.length)];
-        } while (randomColor === previousColor);
-
-        previousColor = randomColor;
-
-        clicker.style.color = randomColor;
       }
 
       clicker.addEventListener("click", clickR);

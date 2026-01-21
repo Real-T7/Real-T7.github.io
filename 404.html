@@ -147,6 +147,25 @@
         </div>
       `;
 
+      const whispers = [
+        "are you still there?",
+        "follow the noise",
+        "do you miss me?",
+        "look closer",
+        "forgotten",
+        "trace",
+        "lost",
+        "wake",
+        "from",
+        "stay",
+        "away",
+        "keep",
+        "there",
+        "that",
+        "here",
+        "worry",
+      ];
+
       function clickFace() {
         let randomFace;
         do {
@@ -231,25 +250,6 @@
           if (secret.length > 20) secret = secret.slice(-20);
         }
       });
-
-      const whispers = [
-        "are you still there?",
-        "follow the noise",
-        "do you miss me?",
-        "look closer",
-        "forgotten",
-        "trace",
-        "lost",
-        "wake",
-        "from",
-        "stay",
-        "away",
-        "keep",
-        "there",
-        "that",
-        "here",
-        "worry",
-      ];
 
       function whisper() {
         const w = document.createElement("div");
