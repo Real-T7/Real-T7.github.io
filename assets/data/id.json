@@ -44,7 +44,7 @@
     "path": "/html/games/reaction-time/"
   },
   {
-    "ids": ["microwave","html/microwave"],
+    "ids": ["microwave"],
     "path": "/html/microwave/"
   },
   {
@@ -87,5 +87,9 @@
   {
     "ids": ["github","git-hub","git","source","source-code","code","repo","repository"],
     "path": "//github.com/Real-T7/Real-T7.github.io"
+  },
+  {
+    "ids": ["lore, characters"],
+    "path": "https://docs.google.com/document/d/1yAHnQJL1pKoq0pI2M9-SX5wRJGKAtS6IeX7jLi065yE/edit?usp=sharing"
   }
 ]
